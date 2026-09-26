@@ -43,7 +43,6 @@ O cenário CT-150 foi localizado em `Cenarios_Treino`, linha 151: “agora não�
 
 Link posterior: `https://drive.google.com/drive/project/17pVdp0OtuAwK48QiFy2YS16FYxRCt-A6`. Metadados identificaram “Ita - Grupo 01”, MIME `application/vnd.google-apps.project`; não é um Google Doc. A consulta de filhos retornou vazia, a rota `/drive/project` foi rejeitada pelo fetch e o download pelo ID retornou 403. O navegador web também não leu a página. Não foi possível identificar/capturar Voz e Tom por esse agrupamento; solicitado link direto do documento ou texto.
 
-## Gate da etapa 1
+## Gate da etapa 1 — atualização autorizada
 
-Recebidas e incorporadas: 3/4, contando a cópia sanitizada do HTML. Etapa 1 permanece bloqueada exclusivamente pelo documento Voz e Tom; etapas 2–10 não iniciadas.
-Próxima ação: receber Voz e Tom, revisar integridade/segurança, registrar origem/data/hash e concluir o congelamento das quatro fontes antes de avançar.
+Três fontes locais revisadas e congeladas. Gate estrutural aprovado com exceção documental explícita do usuário: Voz e Tom está `SOURCE_PENDING_LOCAL_COPY` e não bloqueia governança, containers, contratos, arquitetura ou preparação. Conteúdo e regras dessa fonte não são considerados definitivos sem cópia versionada. Não tentar acessar Drive novamente; relatos de acesso acima são somente histórico.

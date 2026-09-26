@@ -1,4 +1,4 @@
-# Fluxo oficial de implementação: 1 → 10
+# Fluxo oficial de implementação: 1 → 18 (1–10 detalhadas)
 
 Fonte normativa: briefing de implantação do usuário, registrado em 2026-09-26.
 Este documento registra obrigações e critérios futuros, não declara implementação concluída.
@@ -10,6 +10,14 @@ Cada etapa precisa de evidência versionada, validação, atualização de `STAT
 Só iniciar a etapa seguinte após validar integralmente a anterior. Checkpoint parcial não libera avanço.
 Bloqueios devem identificar causa e último estado válido, sem esconder falhas ou fabricar checks verdes.
 
+## Atualização autorizada pelo usuário — fontes locais
+
+A instrução posterior do usuário prevalece sobre o gate documental original: Voz e Tom recebe `SOURCE_PENDING_LOCAL_COPY`. Sua ausência é uma dependência documental **não bloqueante** para repositório, governança, containers, contratos, arquitetura e preparação dos componentes. Os demais gates continuam obrigatórios, em sequência, com evidências e checkpoints.
+
+O gate da etapa 1 libera avanço estrutural com as três fontes locais revisadas/congeladas e a quarta explicitamente pendente; isso não certifica conteúdo ausente. As partes de etapas posteriores que dependam especificamente de Voz e Tom permanecem provisórias e rastreadas, sem conteúdo inventado. Google Drive não faz parte do caminho crítico, das dependências ou do runtime; não reconstruir acesso. GitHub e o repositório público são a fonte versionada principal.
+
+O usuário passou a referir a sequência 1 → 18. Somente 1–10 foram detalhadas no briefing e neste workspace. As definições/gates 11–18 foram solicitados; não inventar essas etapas nem iniciar a vertical slice por inferência.
+
 ## 1. Criar repositório e congelar as fontes
 
 Criar repositório público `ita-agent-batalha` na conta do ambiente; inspecionar antes se o nome existir.
@@ -19,7 +27,7 @@ Preservar originais; se houver dados sensíveis, guardar o original fora do Git 
 Google Docs deve ter representação versionável, preferencialmente Markdown, com origem/data.
 Registrar integridade com SHA-256. Derivados futuros ficam em `config/` ou `evals/`.
 
-**Gate:** quatro fontes disponíveis, revisadas e congeladas; proveniência e hashes registrados; revisão de segurança de árvore/histórico antes do push; checkpoint Git.
+**Gate vigente:** fontes locais disponíveis revisadas e congeladas; proveniência e hashes registrados; Voz e Tom marcado `SOURCE_PENDING_LOCAL_COPY` quando ausente; revisão de segurança de árvore/histórico antes do push; checkpoint Git. Exceção documental não bloqueante autorizada acima.
 
 ## 2. Governança do GitHub
 

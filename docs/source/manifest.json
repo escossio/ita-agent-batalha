@@ -1,7 +1,7 @@
 {
   "manifest_version": "1.0",
   "inventory_date": "2026-09-26",
-  "status": "blocked_inaccessible_voice_and_tone",
+  "status": "STRUCTURAL_GATE_PASSED_WITH_DOCUMENTARY_DEPENDENCY",
   "sources": [
     {
       "id": "decision_rules",
@@ -48,7 +48,7 @@
     {
       "id": "voice_and_tone",
       "expected_name": "Ita: Voz e Tom",
-      "status": "inaccessible",
+      "status": "SOURCE_PENDING_LOCAL_COPY",
       "origin": "https://claude.ai/artifact/YEMJ288EEVpnw1GgY4WE2e",
       "captured_at": null,
       "path": null,
@@ -63,7 +63,10 @@
         "metadata_access": "success",
         "children_search": "empty",
         "content_access": "project URL unsupported; download by ID HTTP 403"
-      }
+      },
+      "blocking_structural_steps": false,
+      "authority": "Conteúdo só será definitivo após cópia local versionada",
+      "retrieval_policy": "LOCAL_ONLY_NO_DRIVE"
     }
   ]
 }

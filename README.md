@@ -2,11 +2,11 @@
 
 Fundação do agente financeiro ITA. Repositório público: <https://github.com/escossio/ita-agent-batalha>.
 
-**Estado: etapa 1 parcial: duas planilhas íntegras e o protótipo sanitizado incorporados; falta “Ita: Voz e Tom”. Não há runtime implementado.**
+**Etapa 1: gate estrutural aprovado. Três fontes congeladas; Voz e Tom é `SOURCE_PENDING_LOCAL_COPY`, dependência documental não bloqueante.**
 
 A sequência oficial está em [IMPLEMENTATION_ORDER.md](docs/architecture/IMPLEMENTATION_ORDER.md).
 O estado verificável e as pendências estão em [STATUS.md](STATUS.md).
-As etapas 2–10 não foram iniciadas: sua execução depende da validação da etapa anterior.
+Avanço sequencial com gates e checkpoints. Etapas 11–18 ainda não especificadas; nenhuma vertical slice autorizada.
 
 ## Documentos-fonte
 
@@ -17,7 +17,7 @@ Os nomes abaixo foram fornecidos no briefing de implantação. Após uma cópia 
 | `ITA_arvore_decisao_regras_produtos.xlsx` | Reenvio local pelo usuário | Regras, árvore decisória e restrições de produtos | 2026-09-26; original íntegro, sem alterações |
 | `cenarios_treinamento_ITA_250.xlsx` | Arquivo local fornecido pelo usuário | Fonte de cenários de avaliação/regressão; não treinamento automático de modelo | 2026-09-26; original íntegro, sem alterações |
 | `prototipo_IAI_ITA_jornada.html` | Arquivo local fornecido pelo usuário | Referência de jornada e interação | 2026-09-26; publicada cópia `prototipo_IAI_ITA_jornada.sanitized.html` |
-| `Ita: Voz e Tom` | [Artefato Claude informado pelo usuário](https://claude.ai/artifact/YEMJ288EEVpnw1GgY4WE2e) | Diretrizes de linguagem e comportamento a classificar na etapa 5 | Bloqueada: HTTP 403; conteúdo não capturado |
+| `Ita: Voz e Tom` | [Artefato Claude informado pelo usuário](https://claude.ai/artifact/YEMJ288EEVpnw1GgY4WE2e) | Diretrizes de linguagem e comportamento a classificar na etapa 5 | SOURCE_PENDING_LOCAL_COPY; não bloqueia estrutura |
 
 Na incorporação, registrar proveniência, data UTC, tamanho e SHA-256 em `docs/source/manifest.json`.
 Se Voz e Tom estiver no Google Docs, capturar Markdown com origem e data explícitas.
@@ -57,3 +57,5 @@ Seu código usa valores fixos e insere entrada do usuário em `innerHTML`; não 
 Workspace isolado no padrão de projetos do AGT. Configuração Git local com identidade pública noreply.
 AGT coordena; workers executam cargas pesadas e certificam o SHA solicitado. GitHub Actions será a certificação pública na etapa 2.
 Não há deploy externo, migração GCP, API bancária, movimentação financeira ou vertical slice implementados.
+
+Acesso ao Drive não é necessário nem será reconstruído. Trabalhar somente com artefatos locais; o GitHub/repositório público é a fonte versionada principal. Regras específicas de Voz e Tom dependem de sua futura cópia local.
