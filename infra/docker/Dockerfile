@@ -6,6 +6,7 @@ COPY requirements.txt /app/requirements.txt
 RUN pip install --no-cache-dir -r /app/requirements.txt
 COPY packages/runtime/ /app/packages/runtime/
 COPY packages/contracts/ /app/packages/contracts/
+COPY config/rules.json /app/config/rules.json
 COPY services/${COMPONENT}/ /app/component/
 USER 10001:10001
 EXPOSE 8080

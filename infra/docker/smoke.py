@@ -21,6 +21,28 @@ if __name__ == "__main__":
     for service in services:
         compose("exec", "-T", service, "python", "-c",
                 "import urllib.request; urllib.request.urlopen('http://localhost:8080/healthz',timeout=3)")
+    # Real Policy HTTP roundtrip, independent from the test-process engine.
+    policy_probe = """
+import json
+import urllib.request
+from uuid import uuid4
+cid = str(uuid4())
+value = dict(correlation_id=cid, context=dict(schema_version="1.0", customer_id="demo-customer",
+    mode="DEMO", consent_to_analysis=False, financial_level="stable", emotional_state="neutral",
+    human_requested=False, provenance="DEMO_FIXTURE"), action="project_cashflow",
+    request=dict(schema_version="1.0", request_id=cid, correlation_id=cid, customer_id="demo-customer",
+    tool="finance.project", arguments=dict(kind="projection", proposed_spend_cents=100)))
+for consent, expected in ((False, "deny"), (True, "allow")):
+    value["context"]["consent_to_analysis"] = consent
+    req = urllib.request.Request("http://policy:8080/v1/evaluate", data=json.dumps(value).encode(),
+        headers={"Content-Type": "application/json", "X-Correlation-ID": cid})
+    with urllib.request.urlopen(req, timeout=5) as response:
+        result = json.load(response)
+        assert result["outcome"] == expected
+        assert result["correlation_id"] == cid
+        assert result["authorized_tools"] == (["finance.project"] if consent else [])
+"""
+    compose("exec", "-T", "agent", "python", "-c", policy_probe)
     # Probe actual container IPs as well as DNS, so lack of discovery alone is not proof.
     for target, port in (("postgres", 5432), ("finance", 8080), ("data", 8080)):
         info = json.loads(subprocess.check_output(["docker", "inspect", compose("ps", "-q", target)]))[0]

@@ -12,3 +12,5 @@
 !requirements.txt
 !services/
 !services/**
+!config/
+!config/rules.json
