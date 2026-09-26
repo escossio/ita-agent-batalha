@@ -64,3 +64,5 @@ ADRs 0001–0003 registram oito ambiguidades/conflitos, limites locais de opçõ
 ## Etapa 7 — Policy Engine
 
 Entradas estruturadas e PolicyDecision com validade/vínculo de requisição. Allow-list, bloqueios de produto/ferramenta, humano, nível financeiro, elegibilidade e linguagem. Fatos/contexto confiáveis são responsabilidade do serviço, nunca grants do LLM. Interface interna preparada; wiring HTTP com Broker nas etapas seguintes.
+
+Validação da etapa 7: 43 testes curtos e lint/arquitetura/scans aprovados; smoke distribuído inclui chamadas HTTP reais de Policy com e sem consentimento.
