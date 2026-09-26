@@ -9,7 +9,7 @@ class ModelUnavailable(Exception):
     pass
 
 
-class VertexProvider:
+class VertexGeminiProvider:
     name = "vertex"
 
     def __init__(self, project, location, model, session_factory=None):

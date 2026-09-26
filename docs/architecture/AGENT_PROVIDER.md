@@ -2,7 +2,7 @@
 
 Decisão do usuário, 2026-09-26: Vertex AI/Gemini via ADC/identidade, sem chave hardcoded. Mock explícito autorizado para certificação quando não houver credencial. Descoberta ADC no AGT retornou DefaultCredentialsError; nenhum projeto pago, chave ou infraestrutura externa foi criado. Ativação real permanece externa e **não bloqueia os gates estruturais**.
 
-`ModelProvider` define interpret/compose; domínio, Policy e Broker não importam Google. O adaptador `vertex.py` usa generateContent REST e google-auth ADC, com host derivado de projeto/região/modelo validados. Sem API key, ferramentas nativas do modelo, SQL ou execução arbitrária. Dependências específicas ficam em requirements-agent.txt e somente na imagem Agent.
+`ModelProvider` define interpret/compose; domínio, Policy e Broker não importam Google. O adaptador `VertexGeminiProvider` em `vertex.py` usa generateContent REST e google-auth ADC, com host derivado de projeto/região/modelo validados. Sem API key, ferramentas nativas do modelo, SQL ou execução arbitrária. Dependências específicas ficam em requirements-agent.txt e somente na imagem Agent.
 
 Modelo produz ModelPlan validado: intenção e solicitação de ferramenta da allow-list. Não escolhe cliente, saldo, gasto proposto ou elegibilidade. Gasto vem da entrada estruturada. Agent consulta Policy; Broker reautoriza independentemente; somente resultados tipados voltam para AgentResponse. Contexto recebido pode restringir uma solicitação, nunca conceder permissão que Policy negou. Contexto de autorização é do servidor.
 
@@ -18,3 +18,11 @@ Fontes técnicas consultadas em 2026-09-26:
 - [Saída estruturada](https://cloud.google.com/vertex-ai/generative-ai/docs/multimodal/control-generated-output).
 
 Não há memória persistente de conversa nesta fundação; apenas contexto validado da requisição, minimizando retenção. Outros frameworks podem implementar o mesmo port sem alterar Finance, Policy ou Broker.
+
+## Ampliação autorizada: ambiente do hackathon
+
+O usuário informou teste manual HTTP 200 / VERTEX_OK com a identidade do ambiente Google, Vertex API habilitada e acesso BigQuery. Essa evidência é **relatada pelo operador**, não uma chamada reproduzida nesta sessão do AGT. A inspeção local continua sem ADC. Não se cria chave nem se transfere identidade entre ambientes.
+
+Provider oficial: Vertex AI/Gemini. O mock permanece exclusivamente como seleção explícita para CI/desenvolvimento. As mesmas camadas da imagem Agent já contêm as duas implementações; escolher projeto/região/modelo/provider em runtime não recompila domínio nem inclui segredos na imagem. A ativação real exige identidade e conectividade do runtime Google; o override de Compose, sozinho, não concede acesso.
+
+O inventário e o gate de mapeamento BigQuery estão em [BIGQUERY_INVENTORY.md](BIGQUERY_INVENTORY.md). O Agent não recebe configuração de dataset e sua identidade futura deve ter somente a permissão de modelo necessária; Data Access recebe identidade separada para dados. A identidade ampla usada no teste manual não é o desenho de menor privilégio da aplicação.

@@ -38,7 +38,7 @@ def configured_provider() -> ModelProvider:
     if name == "mock":
         return MockProvider()
     if name == "vertex":
-        from .vertex import VertexProvider
-        return VertexProvider(os.getenv("GOOGLE_CLOUD_PROJECT", ""),
+        from .vertex import VertexGeminiProvider
+        return VertexGeminiProvider(os.getenv("GOOGLE_CLOUD_PROJECT", ""),
                               os.getenv("GOOGLE_CLOUD_LOCATION", ""), os.getenv("ITA_VERTEX_MODEL", ""))
     raise ValueError("unsupported model provider")

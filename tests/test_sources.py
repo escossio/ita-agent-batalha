@@ -27,7 +27,9 @@ class SourceGateTests(unittest.TestCase):
                     self.assertIsNone(archive.testzip())
 
     def test_agent_import_bypass_is_rejected(self):
-        for source in ("import psycopg", "from packages.finance import calculate", "import subprocess", "exec('x')"):
+        for source in ("import psycopg", "from packages.finance import calculate", "import subprocess", "exec('x')",
+                       "from google.cloud import bigquery", "import google.cloud.bigquery",
+                       "url = 'https://bigquery.googleapis.com/bigquery/v2/projects'"):
             with self.subTest(source=source):
                 self.assertTrue(violations(Path("services/agent/main.py"), source))
 

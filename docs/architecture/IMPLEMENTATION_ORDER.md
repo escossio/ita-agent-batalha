@@ -236,3 +236,11 @@ checks, resultados de testes, containers, resultado de `docker compose config`, 
 pendências, divergências e riscos encontrados antes da publicação. Distinguir “não executado” de “aprovado”.
 
 A instrução posterior explícita autoriza a vertical slice exclusivamente na etapa 11, após validar 1–10.
+
+## Ampliação posterior autorizada — Vertex/Gemini e dados da competição
+
+A ordem 1–18 e os checkpoints anteriores permanecem válidos. Provider oficial da etapa 10: Google Vertex AI/Gemini, `ModelProvider` substituível, `VertexGeminiProvider` real por ADC/identidade e `MockProvider` explícito no CI. O usuário confirmou teste manual do provider e BigQuery no ambiente Google. Essa evidência não substitui certificação do runtime deste repositório.
+
+Antes de implementar adapter BigQuery definitivo, inventariar **todas** as tabelas/schemas do dataset autorizado. A fonte sintética externa da competição é distinta de fixtures locais. Agent/modelo nunca acessam BigQuery; Policy autoriza, Broker medeia, Data Access consulta, Finance calcula. Projeto/dataset/região/modelo vêm de configuração externa; mesma imagem promovida por digest, identidade do runtime, sem credencial incorporada. Não realizar deploy definitivo nesta ampliação.
+
+Ausência de ADC no AGT não bloqueia preparação do provider/contratos/mock. Ausência do inventário impede declarar o adapter definitivo concluído. Registrar o limite e preservar o último SHA certificado. Esta ampliação não reinicia nem reinterpreta 1–10, e não libera gates futuros por antecipação.
