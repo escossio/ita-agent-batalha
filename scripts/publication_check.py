@@ -21,7 +21,8 @@ def inspect(name: str, data: bytes) -> list[str]:
             findings.append(f"{name}: personal email")
     for value in re.findall(r"(?<![\w.])(?:\d{1,3}\.){3}\d{1,3}(?![\w.])", text):
         try:
-            if ipaddress.ip_address(value).is_private:
+            address = ipaddress.ip_address(value)
+            if address.is_private and not (address.is_loopback or address.is_unspecified):
                 findings.append(f"{name}: private network address")
         except ValueError:
             pass

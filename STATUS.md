@@ -12,8 +12,9 @@ Voz e Tom: **SOURCE_PENDING_LOCAL_COPY**, dependência documental não bloqueant
 | Etapa | Estado | Evidência |
 | --- | --- | --- |
 | 1 | Gate estrutural aprovado com pendência documental | Três fontes congeladas; hashes/ZIP/XML/sanitização conferidos; manifesto atualizado conforme instrução do usuário |
-| 2 | Em andamento | Proteção aplicada pela API; PR e seis checks obrigatórios; validação pública pendente |
-| 3–10 | Não iniciadas | Aguardar gates anteriores; Voz e Tom não bloqueia partes independentes |
+| 2 | Concluída | PR #1 integrado; seis checks e CodeQL verdes no commit 535da98; merge 2aa4652 |
+| 3 | Em andamento | Containerização e fluxo distribuído isolado |
+| 4–10 | Não iniciadas | Aguardar gates anteriores |
 | 11–18 | Planejadas, não iniciadas | Definições recebidas e registradas no plano oficial |
 
 Originais preservados: XLSX byte a byte; HTML original privado e cópia pública sanitizada. Histórico de recepção em docs/source/INTAKE_REVIEW.md. Etapas anteriores de acesso remoto são históricas e não geram dependência atual.
@@ -35,3 +36,11 @@ Manifesto e hashes das três fontes locais aprovados; fonte ausente permanece se
 - Local: lint aprovado; 3 testes curtos aprovados; check de arquitetura reporta honestamente 0 arquivos runtime; build round-trip do pacote fonte aprovado; scans de árvore, histórico e XML expandido sem achados. Build de containers será acrescentado na etapa 3.
 - Durante os testes, a planilha de cenários no workspace foi alterada externamente para 19.517 bytes e ZIP inválido. Cópia preservada privadamente; restaurado o exemplar certificado do Git (24.017 bytes, hash do manifesto), sem mudança de conteúdo versionado. Testes repetidos passaram.
 - Preflight workers: um indisponível, dois compatíveis disponíveis. Runner global é específico de outro repositório e não foi executado/modificado. Fluxo isolado do ITA será preparado na etapa 3 com fallback entre workers.
+
+- Segundo arquivo local divergente preservado fora do Git; trabalho continuado em worktree isolado com hashes certificados. A versão incorreta nunca foi incorporada aos commits.
+
+## Etapa 3 — candidato para certificação
+
+Compose: web, api, agent, policy, tool-broker, finance, data, postgres, observability e job secrets-init. Imagens base pinadas por digest, redes segmentadas, secrets gerados fora do Git e usuário de aplicação PostgreSQL sem superuser. Agent não tem rede/segredo/arquivo de banco, Finance ou Data.
+
+Local no AGT: `docker compose config --quiet` aprovado; lint e 6 unit tests curtos aprovados; análise de 9 arquivos runtime sem violação. Build/up/smoke/shutdown aguardam worker, sem execução pesada local.

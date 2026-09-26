@@ -1,0 +1,11 @@
+*
+!infra/
+!infra/docker/
+!infra/docker/Dockerfile
+!infra/docker/Postgres.Dockerfile
+!infra/docker/postgres-init.sh
+!packages/
+!packages/runtime/
+!packages/runtime/**
+!services/
+!services/**

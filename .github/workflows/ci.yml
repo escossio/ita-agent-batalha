@@ -29,5 +29,7 @@ jobs:
           python-version: '3.13'
       - run: python -m pip install -r requirements-dev.txt
       - name: Certify without modifying tracked files
+        env:
+          ITA_CI_WORKER: '1'
         run: bash scripts/check.sh '${{ matrix.check }}'
       - run: git diff --exit-code
