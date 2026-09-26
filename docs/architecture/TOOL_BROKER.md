@@ -8,6 +8,6 @@ Finance e Data estão em redes acessíveis apenas ao Broker. Agent não possui a
 
 Auditoria tipada: tool solicitada, Policy solicitada/decidida, autorização, bloqueio e conclusão; inclui correlation, ferramenta, duração, status e razão. Sem payload completo, saldo ou texto de usuário. Falha de auditoria antes da execução impede a chamada. ToolResult registra resultado validado ao chamador.
 
-Fixtures/contextos são sintéticos DEMO e explícitos. O adaptador Data nesta etapa lê fixture do container; não consulta PostgreSQL e não substitui falha de banco por fixture. A troca para persistência obrigatória é gate da vertical slice na etapa 11. Não existe autenticação de cliente bancário real; não publicar essa interface como serviço multiusuário antes de identidade apropriada.
+Fixtures/contextos são sintéticos DEMO e explícitos. Desde a etapa 11, Data consulta exclusivamente PostgreSQL; fixtures são seed explícito de inicialização, nunca fallback após falha. A integração modifica o banco e verifica a mudança da resposta pela Web. Não existe autenticação de cliente bancário real; não publicar essa interface como serviço multiusuário antes de identidade apropriada.
 
 A interface interna `/v1/evaluate` é diagnóstico de regras com entradas confiáveis, não canal de execução. Mesmo que alguém consiga obter um allow ali, o Broker chama `/v1/authorize` independentemente e não aceita essa decisão. Consentimento mutável e identidade da jornada devem ser integrados explicitamente na etapa 11.

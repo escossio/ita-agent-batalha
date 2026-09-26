@@ -20,8 +20,8 @@ Voz e Tom: **SOURCE_PENDING_LOCAL_COPY**, dependência documental não bloqueant
 | 7 | Concluída | PR #6; SHA dd04465 aprovado em CI/worker, inclusive Policy HTTP; merge 5a0fa23 |
 | 8 | Concluída | PR #7; SHA e7f10e7, 55 testes/CI/worker aprovados; merge e5401f3 |
 | 9 | Concluída | PR #8; SHA 6313b9b aprovado em CI/worker; 66 testes; merge 78845aa |
-| 10 | Em validação | Vertex/Gemini via ADC, provider substituível e mock explícito autorizado; aguarda CI/worker |
-| 11 | Não iniciada | Aguarda gate 10; vertical slice autorizada somente após 1–10 |
+| 10 | Concluída com mock autorizado | PR #10; SHA 7c6e99f; 76 testes/CI/worker aprovados; merge 40e0ca8. Vertex real aguarda ADC externo |
+| 11 | Em validação | Web/API e PostgreSQL conectados à arquitetura; integração completa somente em workers |
 | 12 | Não iniciada | Aguarda gate 11 |
 | 13 | Não iniciada | Dataset íntegro; runner de eval funcional ainda não implementado |
 | 14 | Não iniciada | Aguarda gate 13 |
@@ -101,3 +101,7 @@ O usuário escolheu Vertex AI/Gemini, ADC e abstração substituível; autorizou
 Configuração tocada: compose.yaml, compose.vertex.yaml, .env.example, infra/docker/Dockerfile, .dockerignore e requirements-agent.txt. Nenhuma configuração global do host alterada.
 
 Etapa 10: 76 testes curtos aprovados; Compose base e override Vertex validados sem subir containers no AGT. Certificação real de Gemini permanece não executada; mock e transporte Vertex simulado são identificados separadamente.
+
+## Etapa 11 — vertical slice
+
+Web apresenta pergunta/gasto, API valida e converte representação monetária sem float, Agent coordena Policy/Broker, Finance calcula e Data consulta PostgreSQL. Fixture é seed explícito, não fallback. Integração altera saldo no banco e verifica mudança da resposta pela Web. Configuração alterada: Dockerfile, requirements-data.txt, .dockerignore, workflow CodeQL (inclui JavaScript) e verify.sh. Original HTML permanece arquivado e intacto.

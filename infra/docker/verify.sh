@@ -9,6 +9,7 @@ trap cleanup EXIT
 docker compose config --quiet
 docker compose build --quiet
 docker compose up -d --wait --wait-timeout 180
+python3 infra/docker/vertical_slice.py
 python3 infra/docker/smoke.py
 docker compose down --volumes --remove-orphans
 trap - EXIT

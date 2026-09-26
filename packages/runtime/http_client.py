@@ -17,6 +17,7 @@ class NoRedirect(urllib.request.HTTPRedirectHandler):
 
 
 class HttpTransport:
+    TIMEOUT = 2
     ROUTES = {
         "authorize": "http://policy:8080/v1/authorize",
         "snapshot": "http://data:8080/v1/snapshot",
@@ -28,7 +29,7 @@ class HttpTransport:
             headers={"Content-Type": "application/json", "X-Correlation-ID": correlation_id})
         opener = urllib.request.build_opener(NoRedirect, urllib.request.ProxyHandler({}))
         try:
-            with opener.open(request, timeout=2) as response:
+            with opener.open(request, timeout=self.TIMEOUT) as response:
                 if response.headers.get("X-Correlation-ID") != correlation_id:
                     raise RemoteFailure("INVALID_OUTPUT")
                 body = response.read(262145)

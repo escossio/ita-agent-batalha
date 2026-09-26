@@ -2,9 +2,10 @@ FROM python:3.13-slim@sha256:7c61056e61ac89e852de05f3dc6fa51a6dd2181797bceed46aa
 ARG COMPONENT
 ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1
 WORKDIR /app
-COPY requirements.txt requirements-agent.txt /app/
+COPY requirements.txt requirements-agent.txt requirements-data.txt /app/
 RUN pip install --no-cache-dir -r /app/requirements.txt
 RUN if [ "$COMPONENT" = agent ]; then pip install --no-cache-dir -r /app/requirements-agent.txt; fi
+RUN if [ "$COMPONENT" = data ]; then pip install --no-cache-dir -r /app/requirements-data.txt; fi
 COPY packages/runtime/ /app/packages/runtime/
 COPY packages/contracts/ /app/packages/contracts/
 COPY config/rules.json /app/config/rules.json
