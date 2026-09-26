@@ -1,0 +1,3440 @@
+{
+  "schema_version": "1.0",
+  "tables": {
+    "decision_rules": {
+      "Arvore_Decisao": [
+        {
+          "cells": {
+            "A1": "Nível",
+            "B1": "Nó / Pergunta",
+            "C1": "SIM / Caminho",
+            "D1": "NÃO / Caminho",
+            "E1": "Saída esperada"
+          },
+          "row": 1
+        },
+        {
+          "cells": {
+            "A2": "0",
+            "B2": "Cliente interage com o ITA",
+            "C2": "Identificar necessidade/objetivo",
+            "D2": "",
+            "E2": ""
+          },
+          "row": 2
+        },
+        {
+          "cells": {
+            "A3": "1",
+            "B3": "Necessidade = dificuldade financeira?",
+            "C3": "Verificar inadimplência",
+            "D3": "Ir para demais necessidades",
+            "E3": ""
+          },
+          "row": 3
+        },
+        {
+          "cells": {
+            "A4": "2",
+            "B4": "Está inadimplente?",
+            "C4": "Verificar renegociação elegível",
+            "D4": "Verificar risco de saldo negativo",
+            "E4": ""
+          },
+          "row": 4
+        },
+        {
+          "cells": {
+            "A5": "3",
+            "B5": "Renegociação elegível?",
+            "C5": "Priorizar renegociação",
+            "D5": "Orientação/canal de apoio",
+            "E5": "Solução de dívida"
+          },
+          "row": 5
+        },
+        {
+          "cells": {
+            "A6": "3",
+            "B6": "Há risco de saldo negativo?",
+            "C6": "Reorganizar/simular; crédito somente se adequado + elegível",
+            "D6": "Orientação financeira",
+            "E6": "Prevenção"
+          },
+          "row": 6
+        },
+        {
+          "cells": {
+            "A7": "1",
+            "B7": "Necessidade = liquidez?",
+            "C7": "Avaliar se crédito é adequado",
+            "D7": "Ir para demais necessidades",
+            "E7": ""
+          },
+          "row": 7
+        },
+        {
+          "cells": {
+            "A8": "2",
+            "B8": "Crédito é adequado ao contexto?",
+            "C8": "Verificar elegibilidade",
+            "D8": "Alternativas sem crédito",
+            "E8": ""
+          },
+          "row": 8
+        },
+        {
+          "cells": {
+            "A9": "3",
+            "B9": "Crédito elegível?",
+            "C9": "Simular crédito e impacto",
+            "D9": "Outras alternativas",
+            "E9": "Liquidez"
+          },
+          "row": 9
+        },
+        {
+          "cells": {
+            "A10": "1",
+            "B10": "Objetivo = comprar carro/imóvel/bem?",
+            "C10": "Entender urgência/prazo",
+            "D10": "Ir para demais necessidades",
+            "E10": ""
+          },
+          "row": 10
+        },
+        {
+          "cells": {
+            "A11": "2",
+            "B11": "Precisa agora?",
+            "C11": "Verificar financiamento elegível",
+            "D11": "Comparar consórcio / formação de entrada / financiamento futuro",
+            "E11": "Aquisição"
+          },
+          "row": 11
+        },
+        {
+          "cells": {
+            "A12": "3",
+            "B12": "Financiamento elegível?",
+            "C12": "Simular financiamento",
+            "D12": "Outras alternativas",
+            "E12": "Aquisição imediata"
+          },
+          "row": 12
+        },
+        {
+          "cells": {
+            "A13": "2",
+            "B13": "Pode esperar?",
+            "C13": "Comparar consórcio + acumulação + financiamento futuro",
+            "D13": "",
+            "E13": "Aquisição planejada"
+          },
+          "row": 13
+        },
+        {
+          "cells": {
+            "A14": "1",
+            "B14": "Possui sobra financeira?",
+            "C14": "Verificar reserva",
+            "D14": "Entender outro objetivo/necessidade",
+            "E14": ""
+          },
+          "row": 14
+        },
+        {
+          "cells": {
+            "A15": "2",
+            "B15": "Possui reserva adequada?",
+            "C15": "Entender objetivo e avaliar investimentos",
+            "D15": "Priorizar construção de reserva",
+            "E15": "Acumulação"
+          },
+          "row": 15
+        },
+        {
+          "cells": {
+            "A16": "3",
+            "B16": "Possui objetivo definido?",
+            "C16": "Investimentos aderentes ao objetivo/perfil",
+            "D16": "Ajudar a definir objetivo",
+            "E16": "Investimento"
+          },
+          "row": 16
+        }
+      ],
+      "Contrato_Tecnico": [
+        {
+          "cells": {
+            "A1": "Bloco",
+            "B1": "Conteúdo"
+          },
+          "row": 1
+        },
+        {
+          "cells": {
+            "A2": "INPUTS",
+            "B2": "intenção/problema; contexto financeiro; projeções; elegibilidade; produtos disponíveis; preferências/objetivos quando disponíveis"
+          },
+          "row": 2
+        },
+        {
+          "cells": {
+            "A3": "MOTOR DE REGRAS",
+            "B3": "restrições; priorização; adequação ao problema; bloqueios; condições de oferta"
+          },
+          "row": 3
+        },
+        {
+          "cells": {
+            "A4": "MOTOR FINANCEIRO",
+            "B4": "calcula impacto de cada alternativa; projeções; comprometimento; saldo futuro; cenários"
+          },
+          "row": 4
+        },
+        {
+          "cells": {
+            "A5": "LLM / ITA",
+            "B5": "entende linguagem natural; explica diagnóstico; apresenta alternativas permitidas; conduz simulação; preserva autonomia"
+          },
+          "row": 5
+        },
+        {
+          "cells": {
+            "A6": "OUTPUT",
+            "B6": "solução recomendada; alternativas relevantes; justificativa; impacto; produto quando aderente; próximo passo"
+          },
+          "row": 6
+        },
+        {
+          "cells": {
+            "A7": "REGRA DE SEGURANÇA",
+            "B7": "LLM não inventa elegibilidade, taxa, limite, parcela, custo ou produto disponível. Esses dados devem vir de sistemas/regras/cálculos."
+          },
+          "row": 7
+        },
+        {
+          "cells": {
+            "A8": "REGRA DE AUTONOMIA",
+            "B8": "O ITA recomenda e explica; a decisão final permanece com o cliente."
+          },
+          "row": 8
+        },
+        {
+          "cells": {
+            "A9": "REGRA MULTIPRODUTO",
+            "B9": "Se crédito, consórcio e/ou financiamento forem simultaneamente elegíveis, filtrar primeiro por necessidade, prazo e contexto; depois comparar somente alternativas aderentes."
+          },
+          "row": 9
+        }
+      ],
+      "Exemplos": [
+        {
+          "cells": {
+            "A1": "Caso",
+            "B1": "Contexto",
+            "C1": "Elegibilidades",
+            "D1": "Decisão esperada do ITA"
+          },
+          "row": 1
+        },
+        {
+          "cells": {
+            "A2": "Cliente inadimplente",
+            "B2": "Dívida vencida e dificuldade de caixa",
+            "C2": "Renegociação=SIM; Crédito=SIM",
+            "D2": "Priorizar renegociação; não iniciar pela oferta de novo crédito."
+          },
+          "row": 2
+        },
+        {
+          "cells": {
+            "A3": "Compra de carro em 2 anos",
+            "B3": "Orçamento saudável, sobra mensal",
+            "C3": "Consórcio=SIM; Financiamento=SIM; Crédito=SIM",
+            "D3": "Comparar caminhos de aquisição planejada; não listar todos os produtos indiscriminadamente."
+          },
+          "row": 3
+        },
+        {
+          "cells": {
+            "A4": "Compra de carro agora",
+            "B4": "Entrada disponível e capacidade mensal",
+            "C4": "Consórcio=SIM; Financiamento=SIM",
+            "D4": "Financiamento pode ser alternativa aderente à urgência; simular impacto e comparar com recursos próprios."
+          },
+          "row": 4
+        },
+        {
+          "cells": {
+            "A5": "Sobra após fim de parcela",
+            "B5": "R$500/mês liberados, sem reserva",
+            "C5": "Investimentos=SIM; Consórcio=SIM",
+            "D5": "Primeiro avaliar construção de reserva; elegibilidade comercial não determina recomendação."
+          },
+          "row": 5
+        },
+        {
+          "cells": {
+            "A6": "Aumento de renda não confirmado",
+            "B6": "Entrada 25% acima do histórico",
+            "C6": "Investimentos=SIM; Crédito=SIM",
+            "D6": "Perguntar se a mudança é recorrente antes de recalcular capacidade ou recomendar produto."
+          },
+          "row": 6
+        },
+        {
+          "cells": {
+            "A7": "Cliente pergunta se consegue gastar R$800",
+            "B7": "Projeção fica negativa antes do salário",
+            "C7": "Crédito=SIM",
+            "D7": "Primeiro mostrar impacto e alternativas; crédito só entra se adequado à necessidade e capacidade."
+          },
+          "row": 7
+        }
+      ],
+      "Matriz_Regras": [
+        {
+          "cells": {
+            "A1": "Rule ID",
+            "B1": "Situação / condição",
+            "C1": "Soluções candidatas",
+            "D1": "Decisão / prioridade",
+            "E1": "Produto possível",
+            "F1": "Bloqueio / cuidado"
+          },
+          "row": 1
+        },
+        {
+          "cells": {
+            "A2": "R001",
+            "B2": "inadimplente = SIM AND renegociacao_elegivel = SIM",
+            "C2": "Renegociação",
+            "D2": "Priorizar tratamento da dívida",
+            "E2": "Renegociação",
+            "F2": "Não estimular novo crédito como primeira resposta"
+          },
+          "row": 2
+        },
+        {
+          "cells": {
+            "A3": "R002",
+            "B3": "inadimplente = SIM AND renegociacao_elegivel = NÃO",
+            "C3": "Orientação / canal de apoio",
+            "D3": "Ajudar a tratar situação atual",
+            "E3": "Nenhum automático",
+            "F3": "Não inventar solução não elegível"
+          },
+          "row": 3
+        },
+        {
+          "cells": {
+            "A4": "R003",
+            "B4": "inadimplente = NÃO AND risco_saldo_negativo = SIM",
+            "C4": "Reorganização / simulação / eventual crédito",
+            "D4": "Prevenir insuficiência primeiro",
+            "E4": "Crédito se adequado + elegível",
+            "F4": "Crédito não deve ser resposta automática"
+          },
+          "row": 4
+        },
+        {
+          "cells": {
+            "A5": "R004",
+            "B5": "necessidade = liquidez AND credito_elegivel = SIM AND capacidade_pagamento = SIM",
+            "C5": "Alternativas sem crédito + crédito",
+            "D5": "Comparar impacto antes de ofertar",
+            "E5": "Empréstimo / crédito",
+            "F5": "Mostrar custo e efeito futuro"
+          },
+          "row": 5
+        },
+        {
+          "cells": {
+            "A6": "R005",
+            "B6": "objetivo = aquisição AND urgencia = ALTA AND financiamento_elegivel = SIM",
+            "C6": "Recursos próprios / financiamento",
+            "D6": "Comparar caminhos",
+            "E6": "Financiamento",
+            "F6": "Validar capacidade e impacto"
+          },
+          "row": 6
+        },
+        {
+          "cells": {
+            "A7": "R006",
+            "B7": "objetivo = aquisição AND urgencia = BAIXA AND consorcio_elegivel = SIM",
+            "C7": "Consórcio / acumulação / financiamento futuro",
+            "D7": "Comparar alternativas",
+            "E7": "Consórcio",
+            "F7": "Não tratar consórcio como equivalente a compra imediata"
+          },
+          "row": 7
+        },
+        {
+          "cells": {
+            "A8": "R007",
+            "B8": "sobra_recorrente = SIM AND reserva = NÃO",
+            "C8": "Construção de reserva",
+            "D8": "Priorizar proteção financeira",
+            "E8": "Investimento de liquidez compatível, se aplicável",
+            "F8": "Não partir direto para objetivo de maior risco"
+          },
+          "row": 8
+        },
+        {
+          "cells": {
+            "A9": "R008",
+            "B9": "sobra_recorrente = SIM AND reserva = SIM AND objetivo_definido = SIM",
+            "C9": "Investimentos",
+            "D9": "Recomendar conforme objetivo/perfil",
+            "E9": "Investimentos",
+            "F9": "Respeitar perfil e horizonte"
+          },
+          "row": 9
+        },
+        {
+          "cells": {
+            "A10": "R009",
+            "B10": "parcela_terminou = SIM",
+            "C10": "Reserva / dívida / objetivo / investimento",
+            "D10": "Avaliar contexto antes de direcionar folga",
+            "E10": "Investimento ou outra solução",
+            "F10": "Não assumir que todo valor ficou livre"
+          },
+          "row": 10
+        },
+        {
+          "cells": {
+            "A11": "R010",
+            "B11": "aumento_renda_detectado = SIM AND recorrencia_confirmada = NÃO",
+            "C11": "Confirmação de contexto",
+            "D11": "Perguntar se renda será recorrente",
+            "E11": "Nenhum ainda",
+            "F11": "Não recalcular renda permanente sem confirmação"
+          },
+          "row": 11
+        },
+        {
+          "cells": {
+            "A12": "R011",
+            "B12": "aumento_renda_detectado = SIM AND recorrencia_confirmada = SIM",
+            "C12": "Reserva / investimento / consórcio / financiamento",
+            "D12": "Entender objetivo e recalcular capacidade",
+            "E12": "Múltiplos possíveis",
+            "F12": "Elegibilidade é filtro, não recomendação"
+          },
+          "row": 12
+        },
+        {
+          "cells": {
+            "A13": "R012",
+            "B13": "recuperacao_financeira = SIM",
+            "C13": "Reserva / meta / investimento / aquisição planejada",
+            "D13": "Consolidar melhora e entender próximo objetivo",
+            "E13": "Conforme contexto",
+            "F13": "Não atribuir melhora ao ITA sem evidência"
+          },
+          "row": 13
+        },
+        {
+          "cells": {
+            "A14": "R013",
+            "B14": "produto_elegivel = SIM AND necessidade_aderente = NÃO",
+            "C14": "Nenhuma",
+            "D14": "Não ofertar",
+            "E14": "Nenhum",
+            "F14": "Produto disponível não implica oferta"
+          },
+          "row": 14
+        },
+        {
+          "cells": {
+            "A15": "R014",
+            "B15": "multiplos_produtos_elegiveis = SIM",
+            "C15": "Todas soluções aderentes",
+            "D15": "Simular e comparar apenas as que resolvem a necessidade",
+            "E15": "Pode haver >1",
+            "F15": "Cliente decide após explicação"
+          },
+          "row": 15
+        }
+      ],
+      "Necessidade_Produto": [
+        {
+          "cells": {
+            "A1": "Problema / objetivo",
+            "B1": "Primeira solução a avaliar",
+            "C1": "Produtos que podem entrar",
+            "D1": "Condição para produto",
+            "E1": "Exemplo de orientação"
+          },
+          "row": 1
+        },
+        {
+          "cells": {
+            "A2": "Não consegue chegar até o próximo salário",
+            "B2": "Reduzir/adiar gasto; reorganizar fluxo; simular",
+            "C2": "Crédito / empréstimo",
+            "D2": "Elegível + capacidade + produto realmente melhora a solução",
+            "E2": "Antes de contratar, posso comparar o impacto dessa opção com esperar ou reduzir o gasto."
+          },
+          "row": 2
+        },
+        {
+          "cells": {
+            "A3": "Dívidas pressionam orçamento / inadimplência",
+            "B3": "Tratar dívida e reorganizar compromissos",
+            "C3": "Renegociação",
+            "D3": "Dívida elegível à renegociação",
+            "E3": "Posso simular como uma renegociação alteraria suas parcelas e sua sobra mensal."
+          },
+          "row": 3
+        },
+        {
+          "cells": {
+            "A4": "Parcela terminou / nova folga",
+            "B4": "Entender prioridades: reserva, dívida, objetivo",
+            "C4": "Investimentos",
+            "D4": "Contexto saudável + aderência a objetivo/perfil",
+            "E4": "Essa parcela terminou e abriu uma folga mensal. Quer comparar possíveis usos desse valor?"
+          },
+          "row": 4
+        },
+        {
+          "cells": {
+            "A5": "Renda aumentou",
+            "B5": "Confirmar recorrência e entender objetivo",
+            "C5": "Investimentos / consórcio / financiamento",
+            "D5": "Mudança confirmada + elegibilidade + adequação",
+            "E5": "Sua renda recorrente mudou. Posso mostrar como isso altera seus objetivos e opções."
+          },
+          "row": 5
+        },
+        {
+          "cells": {
+            "A6": "Quer comprar carro/imóvel/bem agora",
+            "B6": "Comparar recursos próprios e custo da aquisição",
+            "C6": "Financiamento",
+            "D6": "Elegível + capacidade + urgência compatível",
+            "E6": "Posso simular o financiamento e mostrar o impacto das parcelas no seu orçamento."
+          },
+          "row": 6
+        },
+        {
+          "cells": {
+            "A7": "Quer comprar carro/imóvel/bem sem urgência",
+            "B7": "Planejar aquisição",
+            "C7": "Consórcio / investimentos para entrada / financiamento futuro",
+            "D7": "Prazo compatível + elegibilidade",
+            "E7": "Como você pode esperar, posso comparar caminhos para chegar ao objetivo."
+          },
+          "row": 7
+        },
+        {
+          "cells": {
+            "A8": "Situação financeira melhorou",
+            "B8": "Consolidar reserva e definir próximo objetivo",
+            "C8": "Investimentos / consórcio / financiamento",
+            "D8": "Melhora consistente + objetivo + elegibilidade",
+            "E8": "Seu cenário vem melhorando. Quer transformar essa nova margem em um objetivo?"
+          },
+          "row": 8
+        },
+        {
+          "cells": {
+            "A9": "Tem sobra recorrente, mas sem reserva",
+            "B9": "Construir colchão financeiro",
+            "C9": "Investimentos adequados à reserva, se aplicável",
+            "D9": "Liquidez/risco aderentes",
+            "E9": "Antes de assumir um novo compromisso, podemos estruturar uma reserva."
+          },
+          "row": 9
+        },
+        {
+          "cells": {
+            "A10": "Tem sobra + reserva + objetivo",
+            "B10": "Planejar objetivo",
+            "C10": "Investimentos",
+            "D10": "Perfil/horizonte/objetivo aderentes",
+            "E10": "Posso mostrar caminhos para direcionar sua sobra ao objetivo."
+          },
+          "row": 10
+        }
+      ],
+      "Visao_Geral": [
+        {
+          "cells": {
+            "A1": "ITA — Motor de Decisão: necessidade → solução → produto",
+            "B1": ""
+          },
+          "row": 1
+        },
+        {
+          "cells": {
+            "A2": "Princípio central",
+            "B2": "O ITA começa pelo problema/objetivo do cliente. Produto é consequência da necessidade, não o ponto de partida."
+          },
+          "row": 2
+        },
+        {
+          "cells": {
+            "A3": "Regra central",
+            "B3": "Elegibilidade ≠ recomendação. Um cliente pode ser elegível a vários produtos; o ITA filtra pelo problema, contexto financeiro, regras de negócio e impacto."
+          },
+          "row": 3
+        },
+        {
+          "cells": {
+            "A4": "Fluxo",
+            "B4": "INTENÇÃO/PROBLEMA → CONTEXTO FINANCEIRO → SOLUÇÕES POSSÍVEIS → ELEGIBILIDADE → REGRAS → SIMULAÇÃO → ORIENTAÇÃO → CLIENTE DECIDE"
+          },
+          "row": 4
+        },
+        {
+          "cells": {
+            "A5": "Papel da IA",
+            "B5": "Entender intenção, contextualizar, explicar alternativas e conduzir a conversa."
+          },
+          "row": 5
+        },
+        {
+          "cells": {
+            "A6": "Papel das regras",
+            "B6": "Determinar soluções permitidas/bloqueadas, prioridades e condições de elegibilidade."
+          },
+          "row": 6
+        },
+        {
+          "cells": {
+            "A7": "Papel do motor financeiro",
+            "B7": "Calcular projeções e impacto das alternativas; números não devem ser inventados pelo LLM."
+          },
+          "row": 7
+        }
+      ]
+    },
+    "evaluation_scenarios": {
+      "Cenarios_Treino": [
+        {
+          "cells": {
+            "A1": "ID",
+            "B1": "Tipo",
+            "C1": "Cenário",
+            "D1": "Pergunta / Gatilho",
+            "E1": "Contexto prático",
+            "F1": "Comportamento esperado do ITA"
+          },
+          "row": 1
+        },
+        {
+          "cells": {
+            "A2": "CT-001",
+            "B2": "Receptivo",
+            "C2": "Até o próximo salário dá?",
+            "D2": "Tenho R$ 1.800 na conta e queria comprar um tênis de R$ 600. Dá até o próximo salário?",
+            "E2": "Saldo positivo, compra pontual e compromissos ainda por vencer.",
+            "F2": "Projetar saldo até a próxima renda com e sem a compra, explicar impacto e permitir simulação de outro valor."
+          },
+          "row": 2
+        },
+        {
+          "cells": {
+            "A3": "CT-002",
+            "B3": "Receptivo",
+            "C3": "Até o próximo salário dá?",
+            "D3": "Tenho R$ 3.200. Posso gastar R$ 1.500 numa viagem este fim de semana?",
+            "E3": "Gasto relevante antes da próxima renda.",
+            "F3": "Considerar compromissos futuros e gasto esperado; mostrar cenário base versus cenário com a viagem."
+          },
+          "row": 3
+        },
+        {
+          "cells": {
+            "A4": "CT-003",
+            "B4": "Receptivo",
+            "C4": "Até o próximo salário dá?",
+            "D4": "Se eu gastar R$ 400 hoje, fico tranquila até receber?",
+            "E4": "Cliente quer validar gasto de curto prazo.",
+            "F4": "Calcular saldo projetado até próxima renda e comunicar margem restante."
+          },
+          "row": 4
+        },
+        {
+          "cells": {
+            "A5": "CT-004",
+            "B5": "Receptivo",
+            "C5": "Até o próximo salário dá?",
+            "D5": "Quero comprar um celular de R$ 2.400. Cabe no meu orçamento até o salário?",
+            "E5": "Compra alta à vista.",
+            "F5": "Mostrar impacto no caixa de curto prazo e alternativas de valor/data, sem decidir pelo cliente."
+          },
+          "row": 5
+        },
+        {
+          "cells": {
+            "A6": "CT-005",
+            "B6": "Receptivo",
+            "C6": "Até o próximo salário dá?",
+            "D6": "Tenho R$ 900 sobrando. Posso gastar R$ 300 no fim de semana?",
+            "E6": "Saldo aparente pode não representar valor disponível.",
+            "F6": "Descontar compromissos previstos e estimar gastos até a próxima renda."
+          },
+          "row": 6
+        },
+        {
+          "cells": {
+            "A7": "CT-006",
+            "B7": "Receptivo",
+            "C7": "Até o próximo salário dá?",
+            "D7": "Dá para jantar fora hoje e gastar uns R$ 250?",
+            "E7": "Decisão cotidiana e imediata.",
+            "F7": "Projetar impacto do gasto no período restante até a renda."
+          },
+          "row": 7
+        },
+        {
+          "cells": {
+            "A8": "CT-007",
+            "B8": "Receptivo",
+            "C8": "Até o próximo salário dá?",
+            "D8": "Posso fazer uma compra de R$ 700 hoje sem apertar o resto do mês?",
+            "E8": "Cliente busca noção de folga financeira.",
+            "F8": "Comparar saldo projetado com e sem a compra e explicar eventual aperto."
+          },
+          "row": 8
+        },
+        {
+          "cells": {
+            "A9": "CT-008",
+            "B9": "Receptivo",
+            "C9": "Até o próximo salário dá?",
+            "D9": "Tenho R$ 2.500, mas ainda faltam 12 dias para receber. Posso gastar R$ 1.000?",
+            "E9": "Horizonte de 12 dias e gasto expressivo.",
+            "F9": "Considerar compromissos conhecidos e padrão variável dos próximos 12 dias."
+          },
+          "row": 9
+        },
+        {
+          "cells": {
+            "A10": "CT-009",
+            "B10": "Receptivo",
+            "C10": "Até o próximo salário dá?",
+            "D10": "Quero gastar R$ 350 em roupa. Quanto sobraria até meu salário?",
+            "E10": "Cliente pergunta diretamente pela sobra.",
+            "F10": "Informar saldo projetado pós-gasto e principais compromissos considerados."
+          },
+          "row": 10
+        },
+        {
+          "cells": {
+            "A11": "CT-010",
+            "B11": "Receptivo",
+            "C11": "Até o próximo salário dá?",
+            "D11": "Se eu pedir um delivery de R$ 120 hoje, muda muito meu cenário?",
+            "E11": "Microdecisão financeira.",
+            "F11": "Mostrar impacto proporcional e evitar alarmismo."
+          },
+          "row": 11
+        },
+        {
+          "cells": {
+            "A12": "CT-011",
+            "B12": "Receptivo",
+            "C12": "Até o próximo salário dá?",
+            "D12": "Tenho R$ 1.400 e queria fazer uma compra de R$ 900. É arriscado?",
+            "E12": "Compra consumiria grande parte do saldo.",
+            "F12": "Explicar margem projetada e risco de faltar caixa para compromissos esperados."
+          },
+          "row": 12
+        },
+        {
+          "cells": {
+            "A13": "CT-012",
+            "B13": "Receptivo",
+            "C13": "Até o próximo salário dá?",
+            "D13": "Consigo gastar R$ 500 no aniversário da minha mãe este mês?",
+            "E13": "Gasto planejado com motivação pessoal.",
+            "F13": "Simular gasto e mostrar impacto, respeitando decisão do cliente."
+          },
+          "row": 13
+        },
+        {
+          "cells": {
+            "A14": "CT-013",
+            "B14": "Receptivo",
+            "C14": "Até o próximo salário dá?",
+            "D14": "Tenho um evento sábado e devo gastar R$ 450. Dá?",
+            "E14": "Gasto futuro conhecido.",
+            "F14": "Incluir gasto hipotético na projeção e comparar cenários."
+          },
+          "row": 14
+        },
+        {
+          "cells": {
+            "A15": "CT-014",
+            "B15": "Receptivo",
+            "C15": "Até o próximo salário dá?",
+            "D15": "Posso reservar R$ 800 para lazer até o próximo pagamento?",
+            "E15": "Cliente quer definir orçamento disponível.",
+            "F15": "Calcular faixa compatível com compromissos e mostrar margem."
+          },
+          "row": 15
+        },
+        {
+          "cells": {
+            "A16": "CT-015",
+            "B16": "Receptivo",
+            "C16": "Até o próximo salário dá?",
+            "D16": "Se eu gastar R$ 1.200 agora, vou entrar no negativo antes de receber?",
+            "E16": "Cliente quer risco explícito de saldo negativo.",
+            "F16": "Projetar trajetória do saldo e indicar se/quando pode ficar negativo."
+          },
+          "row": 16
+        },
+        {
+          "cells": {
+            "A17": "CT-016",
+            "B17": "Receptivo",
+            "C17": "Até o próximo salário dá?",
+            "D17": "Tenho R$ 2.100. Quanto posso gastar sem comprometer minhas contas até o salário?",
+            "E17": "Pergunta inversa: quer limite orientativo.",
+            "F17": "Estimar margem após compromissos e gastos esperados; apresentar como referência, não autorização."
+          },
+          "row": 17
+        },
+        {
+          "cells": {
+            "A18": "CT-017",
+            "B18": "Receptivo",
+            "C18": "Até o próximo salário dá?",
+            "D18": "Queria comprar um presente de R$ 300. Meu orçamento aguenta?",
+            "E18": "Pequena compra antes da renda.",
+            "F18": "Projetar e explicar efeito sobre a sobra."
+          },
+          "row": 18
+        },
+        {
+          "cells": {
+            "A19": "CT-018",
+            "B19": "Receptivo",
+            "C19": "Até o próximo salário dá?",
+            "D19": "Ainda faltam 20 dias para receber. Posso gastar R$ 600 hoje?",
+            "E19": "Horizonte maior aumenta incerteza.",
+            "F19": "Usar compromissos certos e estimativa de variáveis, deixando claro o que é estimativa."
+          },
+          "row": 19
+        },
+        {
+          "cells": {
+            "A20": "CT-019",
+            "B20": "Receptivo",
+            "C20": "Até o próximo salário dá?",
+            "D20": "Tenho R$ 4.000 na conta, mas várias contas ainda vão cair. Posso gastar R$ 1.500?",
+            "E20": "Saldo alto com compromissos pendentes.",
+            "F20": "Mostrar que saldo em conta não equivale a dinheiro livre e quantificar compromissos."
+          },
+          "row": 20
+        },
+        {
+          "cells": {
+            "A21": "CT-020",
+            "B21": "Receptivo",
+            "C21": "Até o próximo salário dá?",
+            "D21": "Se eu comprar uma passagem de R$ 900 hoje, como fico até o salário?",
+            "E21": "Compra de viagem.",
+            "F21": "Simular saldo futuro e permitir testar outra data/valor."
+          },
+          "row": 21
+        },
+        {
+          "cells": {
+            "A22": "CT-021",
+            "B22": "Receptivo",
+            "C22": "Até o próximo salário dá?",
+            "D22": "Dá para gastar R$ 200 no cinema e jantar hoje?",
+            "E22": "Decisão de lazer.",
+            "F22": "Projetar efeito simples e contextualizado."
+          },
+          "row": 22
+        },
+        {
+          "cells": {
+            "A23": "CT-022",
+            "B23": "Receptivo",
+            "C23": "Até o próximo salário dá?",
+            "D23": "Quero fazer uma compra de R$ 750. Melhor esperar o salário?",
+            "E23": "Cliente compara agora versus depois.",
+            "F23": "Simular os dois momentos e explicar diferenças sem escolher pelo cliente."
+          },
+          "row": 23
+        },
+        {
+          "cells": {
+            "A24": "CT-023",
+            "B24": "Receptivo",
+            "C24": "Até o próximo salário dá?",
+            "D24": "Se eu gastar R$ 500 agora e mais R$ 300 semana que vem, ainda dá?",
+            "E24": "Dois gastos hipotéticos.",
+            "F24": "Simular ambos no fluxo e mostrar saldo projetado."
+          },
+          "row": 24
+        },
+        {
+          "cells": {
+            "A25": "CT-024",
+            "B25": "Receptivo",
+            "C25": "Até o próximo salário dá?",
+            "D25": "Tenho R$ 1.000 livre hoje. Posso usar metade?",
+            "E25": "Cliente chama saldo de 'livre'.",
+            "F25": "Validar contra compromissos antes de tratar o valor como disponível."
+          },
+          "row": 25
+        },
+        {
+          "cells": {
+            "A26": "CT-025",
+            "B26": "Receptivo",
+            "C26": "Até o próximo salário dá?",
+            "D26": "Posso pagar R$ 600 à vista por um curso este mês?",
+            "E26": "Gasto com educação.",
+            "F26": "Projetar impacto e alternativas de timing."
+          },
+          "row": 26
+        },
+        {
+          "cells": {
+            "A27": "CT-026",
+            "B27": "Receptivo",
+            "C27": "Até o próximo salário dá?",
+            "D27": "Tenho R$ 2.700. Se gastar R$ 1.000, quanto sobra depois das contas?",
+            "E27": "Quer saldo após compromissos.",
+            "F27": "Calcular cenário completo até próxima renda."
+          },
+          "row": 27
+        },
+        {
+          "cells": {
+            "A28": "CT-027",
+            "B28": "Receptivo",
+            "C28": "Até o próximo salário dá?",
+            "D28": "Quero aproveitar uma promoção de R$ 480 hoje. Cabe?",
+            "E28": "Urgência comercial.",
+            "F28": "Não se deixar influenciar pela urgência; analisar somente impacto financeiro."
+          },
+          "row": 28
+        },
+        {
+          "cells": {
+            "A29": "CT-028",
+            "B29": "Receptivo",
+            "C29": "Até o próximo salário dá?",
+            "D29": "Dá para gastar R$ 150 a mais esta semana?",
+            "E29": "Incremento de gasto variável.",
+            "F29": "Adicionar ao gasto esperado e mostrar nova projeção."
+          },
+          "row": 29
+        },
+        {
+          "cells": {
+            "A30": "CT-029",
+            "B30": "Receptivo",
+            "C30": "Até o próximo salário dá?",
+            "D30": "Estou pensando em gastar R$ 1.800 numa TV. Dá antes do próximo salário?",
+            "E30": "Compra grande.",
+            "F30": "Comparar cenário atual, compra agora e eventualmente compra após renda."
+          },
+          "row": 30
+        },
+        {
+          "cells": {
+            "A31": "CT-030",
+            "B31": "Receptivo",
+            "C31": "Até o próximo salário dá?",
+            "D31": "Se eu gastar R$ 300 hoje, ainda consigo pagar tudo que falta?",
+            "E31": "Foco em obrigações.",
+            "F31": "Checar compromissos conhecidos e projetar cobertura."
+          },
+          "row": 31
+        },
+        {
+          "cells": {
+            "A32": "CT-031",
+            "B32": "Receptivo",
+            "C32": "Até o próximo salário dá?",
+            "D32": "Quanto eu realmente tenho disponível até receber?",
+            "E32": "Sem valor de compra específico.",
+            "F32": "Calcular saldo disponível estimado após compromissos e variáveis."
+          },
+          "row": 32
+        },
+        {
+          "cells": {
+            "A33": "CT-032",
+            "B33": "Receptivo",
+            "C33": "Até o próximo salário dá?",
+            "D33": "Tenho R$ 5.000 de saldo, mas quero gastar R$ 3.000. É tranquilo?",
+            "E33": "Saldo alto pode gerar falsa segurança.",
+            "F33": "Avaliar proporção e compromissos; explicar margem futura."
+          },
+          "row": 33
+        },
+        {
+          "cells": {
+            "A34": "CT-033",
+            "B34": "Receptivo",
+            "C34": "Até o próximo salário dá?",
+            "D34": "Quero gastar R$ 250 em um presente e R$ 180 num jantar. Dá?",
+            "E34": "Dois gastos no mesmo período.",
+            "F34": "Somar hipóteses e projetar impacto conjunto."
+          },
+          "row": 34
+        },
+        {
+          "cells": {
+            "A35": "CT-034",
+            "B35": "Receptivo",
+            "C35": "Até o próximo salário dá?",
+            "D35": "Se eu fizer uma compra de R$ 950 hoje, qual meu menor saldo até o salário?",
+            "E35": "Cliente quer ponto de maior aperto.",
+            "F35": "Projetar fluxo temporal e informar menor saldo previsto."
+          },
+          "row": 35
+        },
+        {
+          "cells": {
+            "A36": "CT-035",
+            "B36": "Receptivo",
+            "C36": "Até o próximo salário dá?",
+            "D36": "Posso gastar R$ 100 por dia até receber?",
+            "E36": "Cliente propõe ritmo diário.",
+            "F36": "Projetar gasto acumulado versus dias restantes e compromissos."
+          },
+          "row": 36
+        },
+        {
+          "cells": {
+            "A37": "CT-036",
+            "B37": "Receptivo",
+            "C37": "Até o próximo salário dá?",
+            "D37": "Tenho R$ 1.600 e faltam 8 dias. Quanto posso separar para lazer?",
+            "E37": "Busca orçamento de lazer.",
+            "F37": "Estimar margem depois dos compromissos e comunicar faixa."
+          },
+          "row": 37
+        },
+        {
+          "cells": {
+            "A38": "CT-037",
+            "B38": "Receptivo",
+            "C38": "Até o próximo salário dá?",
+            "D38": "Quero gastar R$ 700 numa manutenção do carro. Como fico?",
+            "E38": "Gasto necessário.",
+            "F38": "Simular impacto sem classificar gasto como bom/ruim."
+          },
+          "row": 38
+        },
+        {
+          "cells": {
+            "A39": "CT-038",
+            "B39": "Receptivo",
+            "C39": "Até o próximo salário dá?",
+            "D39": "Preciso gastar R$ 900 no dentista. Vou conseguir chegar ao salário?",
+            "E39": "Despesa necessária e relevante.",
+            "F39": "Projetar fluxo e apontar eventual insuficiência com alternativas de timing se aplicável."
+          },
+          "row": 39
+        },
+        {
+          "cells": {
+            "A40": "CT-039",
+            "B40": "Receptivo",
+            "C40": "Até o próximo salário dá?",
+            "D40": "Se eu gastar R$ 450 hoje, meu saldo fica negativo em algum momento?",
+            "E40": "Pergunta sobre trajetória.",
+            "F40": "Projetar por data e identificar eventual cruzamento de zero."
+          },
+          "row": 40
+        },
+        {
+          "cells": {
+            "A41": "CT-040",
+            "B41": "Receptivo",
+            "C41": "Até o próximo salário dá?",
+            "D41": "Posso gastar R$ 800 e ainda manter uma folga de R$ 500?",
+            "E41": "Cliente define margem desejada.",
+            "F41": "Testar se saldo projetado respeita a margem escolhida."
+          },
+          "row": 41
+        },
+        {
+          "cells": {
+            "A42": "CT-041",
+            "B42": "Receptivo",
+            "C42": "Até o próximo salário dá?",
+            "D42": "Quero comprar algo de R$ 1.100, mas não quero ficar apertada. O que acontece?",
+            "E42": "Critério subjetivo 'apertada'.",
+            "F42": "Traduzir em números: sobra e compromissos, e perguntar/usar margem objetiva."
+          },
+          "row": 42
+        },
+        {
+          "cells": {
+            "A43": "CT-042",
+            "B43": "Receptivo",
+            "C43": "Até o próximo salário dá?",
+            "D43": "Dá para fazer uma compra de R$ 300 hoje e outra de R$ 300 no fim do mês?",
+            "E43": "Gastos em datas distintas.",
+            "F43": "Projetar ambos nas respectivas datas."
+          },
+          "row": 43
+        },
+        {
+          "cells": {
+            "A44": "CT-043",
+            "B44": "Receptivo",
+            "C44": "Até o próximo salário dá?",
+            "D44": "Tenho uma conta grande daqui a 5 dias. Ainda posso gastar R$ 200?",
+            "E44": "Compromisso próximo.",
+            "F44": "Priorizar compromisso certo na projeção."
+          },
+          "row": 44
+        },
+        {
+          "cells": {
+            "A45": "CT-044",
+            "B45": "Receptivo",
+            "C45": "Até o próximo salário dá?",
+            "D45": "Recebo semana que vem. Posso antecipar uma compra de R$ 650?",
+            "E45": "Curto horizonte.",
+            "F45": "Comparar comprar agora versus após a entrada."
+          },
+          "row": 45
+        },
+        {
+          "cells": {
+            "A46": "CT-045",
+            "B46": "Receptivo",
+            "C46": "Até o próximo salário dá?",
+            "D46": "Se eu gastar R$ 1.000 agora, quanto sobra no dia anterior ao salário?",
+            "E46": "Ponto temporal específico.",
+            "F46": "Calcular saldo projetado imediatamente antes da renda."
+          },
+          "row": 46
+        },
+        {
+          "cells": {
+            "A47": "CT-046",
+            "B47": "Receptivo",
+            "C47": "Até o próximo salário dá?",
+            "D47": "Tenho R$ 2.200 e ainda tenho cartão e aluguel para pagar. Posso gastar R$ 400?",
+            "E47": "Compromissos explicitados pelo cliente.",
+            "F47": "Cruzar informação do cliente com dados e projetar sobra."
+          },
+          "row": 47
+        },
+        {
+          "cells": {
+            "A48": "CT-047",
+            "B48": "Receptivo",
+            "C48": "Até o próximo salário dá?",
+            "D48": "Quero sair no fim de semana. Tenho até R$ 350 para gastar?",
+            "E48": "Orçamento máximo.",
+            "F48": "Validar se o teto mantém cenário sustentável."
+          },
+          "row": 48
+        },
+        {
+          "cells": {
+            "A49": "CT-048",
+            "B49": "Receptivo",
+            "C49": "Até o próximo salário dá?",
+            "D49": "Posso comprar um ingresso de R$ 280 hoje?",
+            "E49": "Compra simples.",
+            "F49": "Responder com impacto contextual, não apenas sim/não."
+          },
+          "row": 49
+        },
+        {
+          "cells": {
+            "A50": "CT-049",
+            "B50": "Receptivo",
+            "C50": "Até o próximo salário dá?",
+            "D50": "Se eu gastar R$ 600, ainda sobra dinheiro para mercado até receber?",
+            "E50": "Cliente associa gasto a necessidade futura.",
+            "F50": "Considerar estimativa de mercado até a próxima renda."
+          },
+          "row": 50
+        },
+        {
+          "cells": {
+            "A51": "CT-050",
+            "B51": "Receptivo",
+            "C51": "Até o próximo salário dá?",
+            "D51": "Quanto posso gastar hoje sem correr risco de ficar negativo?",
+            "E51": "Busca limite de segurança.",
+            "F51": "Calcular margem estimada e explicitar incertezas dos gastos variáveis."
+          },
+          "row": 51
+        },
+        {
+          "cells": {
+            "A52": "CT-051",
+            "B52": "Receptivo",
+            "C52": "Por que meu dinheiro está acabando tão rápido?",
+            "D52": "Por que meu dinheiro está acabando tão rápido esse mês?",
+            "E52": "Sobra menor que o habitual.",
+            "F52": "Comparar mês atual com histórico e destacar fatores de maior impacto."
+          },
+          "row": 52
+        },
+        {
+          "cells": {
+            "A53": "CT-052",
+            "B53": "Receptivo",
+            "C53": "Por que meu dinheiro está acabando tão rápido?",
+            "D53": "Onde eu gastei mais este mês?",
+            "E53": "Cliente quer identificar aumento de categoria.",
+            "F53": "Comparar categorias e quantificar diferenças relevantes."
+          },
+          "row": 53
+        },
+        {
+          "cells": {
+            "A54": "CT-053",
+            "B54": "Receptivo",
+            "C54": "Por que meu dinheiro está acabando tão rápido?",
+            "D54": "Por que sobrou tão pouco dinheiro desta vez?",
+            "E54": "Queda de sobra mensal.",
+            "F54": "Explicar variações de renda, fixos, variáveis e novas parcelas."
+          },
+          "row": 54
+        },
+        {
+          "cells": {
+            "A55": "CT-054",
+            "B55": "Receptivo",
+            "C55": "Por que meu dinheiro está acabando tão rápido?",
+            "D55": "O que mudou nos meus gastos este mês?",
+            "E55": "Busca comparação temporal.",
+            "F55": "Identificar mudanças relevantes versus padrão histórico."
+          },
+          "row": 55
+        },
+        {
+          "cells": {
+            "A56": "CT-055",
+            "B56": "Receptivo",
+            "C56": "Por que meu dinheiro está acabando tão rápido?",
+            "D56": "Estou gastando mais do que normalmente gasto?",
+            "E56": "Cliente quer benchmark consigo mesmo.",
+            "F56": "Comparar total e categorias com média histórica pessoal."
+          },
+          "row": 56
+        },
+        {
+          "cells": {
+            "A57": "CT-056",
+            "B57": "Receptivo",
+            "C57": "Por que meu dinheiro está acabando tão rápido?",
+            "D57": "Por que minha fatura ficou tão alta?",
+            "E57": "Aumento de gastos no cartão.",
+            "F57": "Identificar principais compras/categorias e novas parcelas relacionadas."
+          },
+          "row": 57
+        },
+        {
+          "cells": {
+            "A58": "CT-057",
+            "B58": "Receptivo",
+            "C58": "Por que meu dinheiro está acabando tão rápido?",
+            "D58": "Qual gasto mais pesou no meu orçamento este mês?",
+            "E58": "Quer principal driver.",
+            "F58": "Rankear impactos em valor, sem julgamento moral."
+          },
+          "row": 58
+        },
+        {
+          "cells": {
+            "A59": "CT-058",
+            "B59": "Receptivo",
+            "C59": "Por que meu dinheiro está acabando tão rápido?",
+            "D59": "Meu salário foi o mesmo. Por que estou com menos dinheiro?",
+            "E59": "Renda estável, sobra menor.",
+            "F59": "Isolar aumento de despesas e compromissos."
+          },
+          "row": 59
+        },
+        {
+          "cells": {
+            "A60": "CT-059",
+            "B60": "Receptivo",
+            "C60": "Por que meu dinheiro está acabando tão rápido?",
+            "D60": "Estou gastando demais com comida?",
+            "E60": "Pergunta sobre categoria específica.",
+            "F60": "Comparar alimentação com histórico pessoal e mostrar variação."
+          },
+          "row": 60
+        },
+        {
+          "cells": {
+            "A61": "CT-060",
+            "B61": "Receptivo",
+            "C61": "Por que meu dinheiro está acabando tão rápido?",
+            "D61": "O que fez meu saldo cair tanto esta semana?",
+            "E61": "Janela semanal.",
+            "F61": "Identificar transações e padrões que explicam a queda."
+          },
+          "row": 61
+        },
+        {
+          "cells": {
+            "A62": "CT-061",
+            "B62": "Receptivo",
+            "C62": "Por que meu dinheiro está acabando tão rápido?",
+            "D62": "Por que meu dinheiro rendeu menos este mês?",
+            "E62": "Percepção de menor duração do saldo.",
+            "F62": "Mostrar mudanças em ritmo de gasto e compromissos."
+          },
+          "row": 62
+        },
+        {
+          "cells": {
+            "A63": "CT-062",
+            "B63": "Receptivo",
+            "C63": "Por que meu dinheiro está acabando tão rápido?",
+            "D63": "Tive algum gasto fora do meu padrão?",
+            "E63": "Busca anomalias.",
+            "F63": "Detectar valores/categorias fora da faixa habitual."
+          },
+          "row": 63
+        },
+        {
+          "cells": {
+            "A64": "CT-063",
+            "B64": "Receptivo",
+            "C64": "Por que meu dinheiro está acabando tão rápido?",
+            "D64": "Minhas parcelas aumentaram?",
+            "E64": "Foco em comprometimento.",
+            "F64": "Comparar valor total mensal de parcelas com meses anteriores."
+          },
+          "row": 64
+        },
+        {
+          "cells": {
+            "A65": "CT-064",
+            "B65": "Receptivo",
+            "C65": "Por que meu dinheiro está acabando tão rápido?",
+            "D65": "Estou gastando mais com restaurante?",
+            "E65": "Categoria explícita.",
+            "F65": "Comparar restaurante com média e período anterior."
+          },
+          "row": 65
+        },
+        {
+          "cells": {
+            "A66": "CT-065",
+            "B66": "Receptivo",
+            "C66": "Por que meu dinheiro está acabando tão rápido?",
+            "D66": "Por que meu saldo está menor que no mesmo período do mês passado?",
+            "E66": "Comparação por dia do mês.",
+            "F66": "Comparar períodos equivalentes e explicar diferenças."
+          },
+          "row": 66
+        },
+        {
+          "cells": {
+            "A67": "CT-066",
+            "B67": "Receptivo",
+            "C67": "Por que meu dinheiro está acabando tão rápido?",
+            "D67": "Quais foram os três gastos que mais impactaram meu mês?",
+            "E67": "Quer síntese.",
+            "F67": "Apresentar 3 principais impactos relevantes e valores."
+          },
+          "row": 67
+        },
+        {
+          "cells": {
+            "A68": "CT-067",
+            "B68": "Receptivo",
+            "C68": "Por que meu dinheiro está acabando tão rápido?",
+            "D68": "Comecei alguma nova despesa recorrente?",
+            "E68": "Busca recorrências novas.",
+            "F68": "Detectar nova cobrança repetida/assinatura/compromisso."
+          },
+          "row": 68
+        },
+        {
+          "cells": {
+            "A69": "CT-068",
+            "B69": "Receptivo",
+            "C69": "Por que meu dinheiro está acabando tão rápido?",
+            "D69": "Tenho mais contas fixas agora?",
+            "E69": "Mudança em despesas fixas.",
+            "F69": "Comparar recorrências e novos compromissos."
+          },
+          "row": 69
+        },
+        {
+          "cells": {
+            "A70": "CT-069",
+            "B70": "Receptivo",
+            "C70": "Por que meu dinheiro está acabando tão rápido?",
+            "D70": "Quanto meus gastos aumentaram em relação ao mês passado?",
+            "E70": "Quer quantificação.",
+            "F70": "Calcular variação absoluta e percentual, contextualizada."
+          },
+          "row": 70
+        },
+        {
+          "cells": {
+            "A71": "CT-070",
+            "B71": "Receptivo",
+            "C71": "Por que meu dinheiro está acabando tão rápido?",
+            "D71": "Por que estou usando mais do meu salário este mês?",
+            "E71": "Comprometimento maior.",
+            "F71": "Explicar aumento de despesas e taxa de comprometimento."
+          },
+          "row": 71
+        },
+        {
+          "cells": {
+            "A72": "CT-071",
+            "B72": "Receptivo",
+            "C72": "Por que meu dinheiro está acabando tão rápido?",
+            "D72": "Estou gastando mais com transporte ultimamente?",
+            "E72": "Tendência de categoria.",
+            "F72": "Comparar últimos períodos e sinalizar tendência."
+          },
+          "row": 72
+        },
+        {
+          "cells": {
+            "A73": "CT-072",
+            "B73": "Receptivo",
+            "C73": "Por que meu dinheiro está acabando tão rápido?",
+            "D73": "O que mais mudou no meu comportamento financeiro?",
+            "E73": "Pergunta ampla.",
+            "F73": "Priorizar 2–3 mudanças com maior efeito financeiro."
+          },
+          "row": 73
+        },
+        {
+          "cells": {
+            "A74": "CT-073",
+            "B74": "Receptivo",
+            "C74": "Por que meu dinheiro está acabando tão rápido?",
+            "D74": "Meu gasto com lazer aumentou muito?",
+            "E74": "Categoria lazer.",
+            "F74": "Comparar valor e frequência com padrão."
+          },
+          "row": 74
+        },
+        {
+          "cells": {
+            "A75": "CT-074",
+            "B75": "Receptivo",
+            "C75": "Por que meu dinheiro está acabando tão rápido?",
+            "D75": "Por que tive menos sobra mesmo cortando restaurantes?",
+            "E75": "Pode haver compensação em outra categoria.",
+            "F75": "Mostrar outros aumentos que neutralizaram a redução."
+          },
+          "row": 75
+        },
+        {
+          "cells": {
+            "A76": "CT-075",
+            "B76": "Receptivo",
+            "C76": "Por que meu dinheiro está acabando tão rápido?",
+            "D76": "Teve algum mês parecido com este?",
+            "E76": "Busca contexto histórico.",
+            "F76": "Comparar com histórico e encontrar padrão semelhante, se houver."
+          },
+          "row": 76
+        },
+        {
+          "cells": {
+            "A77": "CT-076",
+            "B77": "Receptivo",
+            "C77": "Por que meu dinheiro está acabando tão rápido?",
+            "D77": "Estou fazendo mais compras parceladas?",
+            "E77": "Comportamento de parcelamento.",
+            "F77": "Comparar quantidade e valor mensal comprometido."
+          },
+          "row": 77
+        },
+        {
+          "cells": {
+            "A78": "CT-077",
+            "B78": "Receptivo",
+            "C78": "Por que meu dinheiro está acabando tão rápido?",
+            "D78": "Quanto das minhas despesas novas veio de parcelas?",
+            "E78": "Origem da pressão.",
+            "F78": "Quantificar novas parcelas versus demais aumentos."
+          },
+          "row": 78
+        },
+        {
+          "cells": {
+            "A79": "CT-078",
+            "B79": "Receptivo",
+            "C79": "Por que meu dinheiro está acabando tão rápido?",
+            "D79": "Por que minhas despesas fixas subiram?",
+            "E79": "Fixos aumentaram.",
+            "F79": "Identificar recorrências que mudaram de valor ou surgiram."
+          },
+          "row": 79
+        },
+        {
+          "cells": {
+            "A80": "CT-079",
+            "B80": "Receptivo",
+            "C80": "Por que meu dinheiro está acabando tão rápido?",
+            "D80": "Meu mercado aumentou ou é impressão minha?",
+            "E80": "Categoria mercado.",
+            "F80": "Comparar gasto com média pessoal e número de compras."
+          },
+          "row": 80
+        },
+        {
+          "cells": {
+            "A81": "CT-080",
+            "B81": "Receptivo",
+            "C81": "Por que meu dinheiro está acabando tão rápido?",
+            "D81": "Estou gastando mais vezes ou gastando valores maiores?",
+            "E81": "Frequência versus ticket.",
+            "F81": "Separar aumento por frequência e valor médio."
+          },
+          "row": 81
+        },
+        {
+          "cells": {
+            "A82": "CT-081",
+            "B82": "Receptivo",
+            "C82": "Por que meu dinheiro está acabando tão rápido?",
+            "D82": "O que explica eu ter chegado na metade do mês com tão pouco saldo?",
+            "E82": "Ritmo de consumo.",
+            "F82": "Comparar ritmo acumulado com meses anteriores."
+          },
+          "row": 82
+        },
+        {
+          "cells": {
+            "A83": "CT-082",
+            "B83": "Receptivo",
+            "C83": "Por que meu dinheiro está acabando tão rápido?",
+            "D83": "Qual categoria saiu mais do meu padrão?",
+            "E83": "Busca desvio relativo.",
+            "F83": "Identificar maior desvio versus histórico pessoal."
+          },
+          "row": 83
+        },
+        {
+          "cells": {
+            "A84": "CT-083",
+            "B84": "Receptivo",
+            "C84": "Por que meu dinheiro está acabando tão rápido?",
+            "D84": "Estou gastando mais no fim de semana?",
+            "E84": "Padrão temporal.",
+            "F84": "Comparar gastos de fim de semana com histórico."
+          },
+          "row": 84
+        },
+        {
+          "cells": {
+            "A85": "CT-084",
+            "B85": "Receptivo",
+            "C85": "Por que meu dinheiro está acabando tão rápido?",
+            "D85": "As assinaturas estão pesando no meu orçamento?",
+            "E85": "Recorrências pequenas agregadas.",
+            "F85": "Somar assinaturas e comparar evolução."
+          },
+          "row": 85
+        },
+        {
+          "cells": {
+            "A86": "CT-085",
+            "B86": "Receptivo",
+            "C86": "Por que meu dinheiro está acabando tão rápido?",
+            "D86": "Quais despesas eu não tinha três meses atrás?",
+            "E86": "Novos compromissos.",
+            "F86": "Listar novas recorrências/parcelas presentes no período atual."
+          },
+          "row": 86
+        },
+        {
+          "cells": {
+            "A87": "CT-086",
+            "B87": "Receptivo",
+            "C87": "Por que meu dinheiro está acabando tão rápido?",
+            "D87": "Minha renda caiu ou meus gastos subiram?",
+            "E87": "Quer decomposição.",
+            "F87": "Separar efeito de renda e efeito de despesas."
+          },
+          "row": 87
+        },
+        {
+          "cells": {
+            "A88": "CT-087",
+            "B88": "Receptivo",
+            "C88": "Por que meu dinheiro está acabando tão rápido?",
+            "D88": "Por que fiquei negativo este mês?",
+            "E88": "Evento de saldo negativo.",
+            "F88": "Reconstruir principais movimentos anteriores ao saldo negativo."
+          },
+          "row": 88
+        },
+        {
+          "cells": {
+            "A89": "CT-088",
+            "B89": "Receptivo",
+            "C89": "Por que meu dinheiro está acabando tão rápido?",
+            "D89": "O que aconteceu de diferente nos últimos 30 dias?",
+            "E89": "Janela móvel.",
+            "F89": "Comparar últimos 30 dias com período anterior."
+          },
+          "row": 89
+        },
+        {
+          "cells": {
+            "A90": "CT-089",
+            "B90": "Receptivo",
+            "C90": "Por que meu dinheiro está acabando tão rápido?",
+            "D90": "Estou gastando mais com compras online?",
+            "E90": "Categoria/canal específico se disponível.",
+            "F90": "Comparar categoria identificável; não inventar canal se dado não suportar."
+          },
+          "row": 90
+        },
+        {
+          "cells": {
+            "A91": "CT-090",
+            "B91": "Receptivo",
+            "C91": "Por que meu dinheiro está acabando tão rápido?",
+            "D91": "Quanto meus gastos variáveis cresceram?",
+            "E91": "Foco em variáveis.",
+            "F91": "Comparar total variável com histórico."
+          },
+          "row": 91
+        },
+        {
+          "cells": {
+            "A92": "CT-091",
+            "B92": "Receptivo",
+            "C92": "Por que meu dinheiro está acabando tão rápido?",
+            "D92": "Minhas contas estão crescendo todo mês?",
+            "E92": "Tendência.",
+            "F92": "Avaliar sequência temporal e distinguir tendência de oscilação."
+          },
+          "row": 92
+        },
+        {
+          "cells": {
+            "A93": "CT-092",
+            "B93": "Receptivo",
+            "C93": "Por que meu dinheiro está acabando tão rápido?",
+            "D93": "Por que meu orçamento apertou depois que fiz aquela compra?",
+            "E93": "Impacto de compra/parcelamento.",
+            "F93": "Mostrar compromisso gerado e efeito na sobra."
+          },
+          "row": 93
+        },
+        {
+          "cells": {
+            "A94": "CT-093",
+            "B94": "Receptivo",
+            "C94": "Por que meu dinheiro está acabando tão rápido?",
+            "D94": "Estou comprometendo mais renda com parcelas?",
+            "E94": "Comprometimento da renda.",
+            "F94": "Calcular evolução do peso das parcelas sobre renda."
+          },
+          "row": 94
+        },
+        {
+          "cells": {
+            "A95": "CT-094",
+            "B95": "Receptivo",
+            "C95": "Por que meu dinheiro está acabando tão rápido?",
+            "D95": "Qual mudança teve maior impacto na minha sobra?",
+            "E95": "Driver principal.",
+            "F95": "Quantificar contribuição das principais mudanças."
+          },
+          "row": 95
+        },
+        {
+          "cells": {
+            "A96": "CT-095",
+            "B96": "Receptivo",
+            "C96": "Por que meu dinheiro está acabando tão rápido?",
+            "D96": "O que eu poderia observar para não ser pego de surpresa de novo?",
+            "E96": "Cliente quer aprendizado.",
+            "F96": "Explicar sinais observáveis e oferecer monitoramento, sem prescrição rígida."
+          },
+          "row": 96
+        },
+        {
+          "cells": {
+            "A97": "CT-096",
+            "B97": "Receptivo",
+            "C97": "Por que meu dinheiro está acabando tão rápido?",
+            "D97": "Esse mês foi realmente pior ou só parece?",
+            "E97": "Busca confirmação objetiva.",
+            "F97": "Comparar indicadores do mês com histórico pessoal."
+          },
+          "row": 97
+        },
+        {
+          "cells": {
+            "A98": "CT-097",
+            "B98": "Receptivo",
+            "C98": "Por que meu dinheiro está acabando tão rápido?",
+            "D98": "Quanto a mais gastei em alimentação neste mês?",
+            "E98": "Quantificação de categoria.",
+            "F98": "Calcular diferença versus referência histórica."
+          },
+          "row": 98
+        },
+        {
+          "cells": {
+            "A99": "CT-098",
+            "B99": "Receptivo",
+            "C99": "Por que meu dinheiro está acabando tão rápido?",
+            "D99": "Quais gastos cresceram juntos?",
+            "E99": "Busca composição.",
+            "F99": "Mostrar categorias/compromissos que aumentaram simultaneamente."
+          },
+          "row": 99
+        },
+        {
+          "cells": {
+            "A100": "CT-099",
+            "B100": "Receptivo",
+            "C100": "Por que meu dinheiro está acabando tão rápido?",
+            "D100": "Meu dinheiro está acabando por causa de uma despesa grande ou de várias pequenas?",
+            "E100": "Quer decomposição.",
+            "F100": "Separar impacto de outliers e acúmulo de gastos recorrentes/pequenos."
+          },
+          "row": 100
+        },
+        {
+          "cells": {
+            "A101": "CT-100",
+            "B101": "Receptivo",
+            "C101": "Por que meu dinheiro está acabando tão rápido?",
+            "D101": "Me explica de forma simples por que sobrou menos dinheiro?",
+            "E101": "Pede síntese acessível.",
+            "F101": "Responder com 2–3 fatores em linguagem simples e valores."
+          },
+          "row": 101
+        },
+        {
+          "cells": {
+            "A102": "CT-101",
+            "B102": "Ativo",
+            "C102": "Minha parcela terminou",
+            "D102": "Parcela de R$ 500 chega à 6ª de 6 neste mês.",
+            "E102": "Cliente conclui financiamento de móveis.",
+            "F102": "Detectar fim do compromisso e oferecer visão da nova folga mensal."
+          },
+          "row": 102
+        },
+        {
+          "cells": {
+            "A103": "CT-102",
+            "B103": "Ativo",
+            "C103": "Minha parcela terminou",
+            "D103": "Última parcela de R$ 240 do celular é paga.",
+            "E103": "Compromisso recorrente deixa de existir.",
+            "F103": "Informar valor liberado no próximo ciclo e convidar para simular impacto."
+          },
+          "row": 103
+        },
+        {
+          "cells": {
+            "A104": "CT-103",
+            "B104": "Ativo",
+            "C104": "Minha parcela terminou",
+            "D104": "Compra parcelada de R$ 180 chega à 10ª de 10.",
+            "E104": "Pequena folga mensal surge.",
+            "F104": "Abordar de forma proporcional, sem exagerar relevância."
+          },
+          "row": 104
+        },
+        {
+          "cells": {
+            "A105": "CT-104",
+            "B105": "Ativo",
+            "C105": "Minha parcela terminou",
+            "D105": "Parcela de R$ 1.200 do curso termina.",
+            "E105": "Folga relevante.",
+            "F105": "Mostrar impacto mensal e no horizonte futuro."
+          },
+          "row": 105
+        },
+        {
+          "cells": {
+            "A106": "CT-105",
+            "B106": "Ativo",
+            "C106": "Minha parcela terminou",
+            "D106": "Última parcela de R$ 350 do eletrodoméstico.",
+            "E106": "Fim de compromisso.",
+            "F106": "Calcular nova sobra esperada."
+          },
+          "row": 106
+        },
+        {
+          "cells": {
+            "A107": "CT-106",
+            "B107": "Ativo",
+            "C107": "Minha parcela terminou",
+            "D107": "Duas parcelas terminam no mesmo mês: R$ 200 e R$ 300.",
+            "E107": "Liberação combinada de R$ 500.",
+            "F107": "Consolidar eventos e abordar uma vez, evitando notificações duplicadas."
+          },
+          "row": 107
+        },
+        {
+          "cells": {
+            "A108": "CT-107",
+            "B108": "Ativo",
+            "C108": "Minha parcela terminou",
+            "D108": "Parcela de R$ 90 termina.",
+            "E108": "Valor baixo.",
+            "F108": "Avaliar relevância antes de interromper o cliente."
+          },
+          "row": 108
+        },
+        {
+          "cells": {
+            "A109": "CT-108",
+            "B109": "Ativo",
+            "C109": "Minha parcela terminou",
+            "D109": "Última parcela de R$ 750 termina, mas cliente ainda tem alto comprometimento.",
+            "E109": "Folga existe, porém cenário continua apertado.",
+            "F109": "Contextualizar a folga sem sugerir que todo valor está livre."
+          },
+          "row": 109
+        },
+        {
+          "cells": {
+            "A110": "CT-109",
+            "B110": "Ativo",
+            "C110": "Minha parcela terminou",
+            "D110": "Parcela de R$ 400 termina e cliente tem saldo negativo recorrente.",
+            "E110": "Nova folga pode ajudar recuperação.",
+            "F110": "Mostrar impacto sobre projeção, sem prescrever contratação/produto."
+          },
+          "row": 110
+        },
+        {
+          "cells": {
+            "A111": "CT-110",
+            "B111": "Ativo",
+            "C111": "Minha parcela terminou",
+            "D111": "Parcela de R$ 600 termina e cliente está financeiramente estável.",
+            "E111": "Oportunidade positiva.",
+            "F111": "Mostrar nova margem e perguntar se quer explorar possibilidades."
+          },
+          "row": 111
+        },
+        {
+          "cells": {
+            "A112": "CT-111",
+            "B112": "Ativo",
+            "C112": "Minha parcela terminou",
+            "D112": "Última parcela de viagem de R$ 320.",
+            "E112": "Compromisso de lazer termina.",
+            "F112": "Abordar sem julgamento da categoria."
+          },
+          "row": 112
+        },
+        {
+          "cells": {
+            "A113": "CT-112",
+            "B113": "Ativo",
+            "C113": "Minha parcela terminou",
+            "D113": "Última parcela de notebook de R$ 450.",
+            "E113": "Fim de parcelamento.",
+            "F113": "Projetar próxima sobra mensal."
+          },
+          "row": 113
+        },
+        {
+          "cells": {
+            "A114": "CT-113",
+            "B114": "Ativo",
+            "C114": "Minha parcela terminou",
+            "D114": "Última parcela de tratamento de R$ 280.",
+            "E114": "Despesa necessária termina.",
+            "F114": "Reconhecer somente efeito financeiro, sem juízo sobre saúde."
+          },
+          "row": 114
+        },
+        {
+          "cells": {
+            "A115": "CT-114",
+            "B115": "Ativo",
+            "C115": "Minha parcela terminou",
+            "D115": "Parcela de R$ 150 termina após 12 meses.",
+            "E115": "Compromisso longo acaba.",
+            "F115": "Mostrar valor anualizado apenas se útil, mantendo foco mensal."
+          },
+          "row": 115
+        },
+        {
+          "cells": {
+            "A116": "CT-115",
+            "B116": "Ativo",
+            "C116": "Minha parcela terminou",
+            "D116": "Parcela de R$ 900 termina antes do próximo salário.",
+            "E116": "Mudança imediata no fluxo.",
+            "F116": "Mostrar efeito no próximo ciclo."
+          },
+          "row": 116
+        },
+        {
+          "cells": {
+            "A117": "CT-116",
+            "B117": "Ativo",
+            "C117": "Minha parcela terminou",
+            "D117": "Parcela termina, mas outra nova parcela de valor semelhante começa.",
+            "E117": "Folga líquida quase nula.",
+            "F117": "Não anunciar 'R$ X livres'; calcular efeito líquido."
+          },
+          "row": 117
+        },
+        {
+          "cells": {
+            "A118": "CT-117",
+            "B118": "Ativo",
+            "C118": "Minha parcela terminou",
+            "D118": "Três parcelamentos pequenos terminam juntos.",
+            "E118": "Vários eventos pequenos.",
+            "F118": "Agrupar em uma única mensagem de oportunidade."
+          },
+          "row": 118
+        },
+        {
+          "cells": {
+            "A119": "CT-118",
+            "B119": "Ativo",
+            "C119": "Minha parcela terminou",
+            "D119": "Parcela termina e renda caiu no mesmo período.",
+            "E119": "Contexto mudou.",
+            "F119": "Considerar renda antes de chamar o valor de folga."
+          },
+          "row": 119
+        },
+        {
+          "cells": {
+            "A120": "CT-119",
+            "B120": "Ativo",
+            "C120": "Minha parcela terminou",
+            "D120": "Parcela termina e aluguel aumentou.",
+            "E120": "Liberação é parcialmente absorvida.",
+            "F120": "Mostrar impacto líquido."
+          },
+          "row": 120
+        },
+        {
+          "cells": {
+            "A121": "CT-120",
+            "B121": "Ativo",
+            "C121": "Minha parcela terminou",
+            "D121": "Última parcela de R$ 500, mas há conta anual próxima.",
+            "E121": "Folga de curto prazo limitada.",
+            "F121": "Contextualizar compromissos futuros conhecidos."
+          },
+          "row": 121
+        },
+        {
+          "cells": {
+            "A122": "CT-121",
+            "B122": "Ativo",
+            "C122": "Minha parcela terminou",
+            "D122": "Parcela termina depois de meses de saldo negativo.",
+            "E122": "Possível ponto de virada.",
+            "F122": "Mostrar como o fim do compromisso altera projeção."
+          },
+          "row": 122
+        },
+        {
+          "cells": {
+            "A123": "CT-122",
+            "B123": "Ativo",
+            "C123": "Minha parcela terminou",
+            "D123": "Parcela termina e cliente possui reserva mensal crescente.",
+            "E123": "Cenário saudável.",
+            "F123": "Convidar a definir objetivo para nova margem."
+          },
+          "row": 123
+        },
+        {
+          "cells": {
+            "A124": "CT-123",
+            "B124": "Ativo",
+            "C124": "Minha parcela terminou",
+            "D124": "Parcela de R$ 100 termina, cliente tem renda alta.",
+            "E124": "Baixa materialidade.",
+            "F124": "Evitar abordagem ou usar limiar de relevância."
+          },
+          "row": 124
+        },
+        {
+          "cells": {
+            "A125": "CT-124",
+            "B125": "Ativo",
+            "C125": "Minha parcela terminou",
+            "D125": "Parcela de R$ 800 termina, cliente tem renda de R$ 3.500.",
+            "E125": "Alta materialidade.",
+            "F125": "Priorizar abordagem e mostrar redução de comprometimento."
+          },
+          "row": 125
+        },
+        {
+          "cells": {
+            "A126": "CT-125",
+            "B126": "Ativo",
+            "C126": "Minha parcela terminou",
+            "D126": "Parcela termina no cartão, mas há outra cobrança idêntica não parcelada.",
+            "E126": "Risco de confusão.",
+            "F126": "Distinguir fim da parcela de outras transações."
+          },
+          "row": 126
+        },
+        {
+          "cells": {
+            "A127": "CT-126",
+            "B127": "Ativo",
+            "C127": "Minha parcela terminou",
+            "D127": "Última parcela aparece duplicada por erro de dado.",
+            "E127": "Qualidade de dado.",
+            "F127": "Não abordar até validar consistência."
+          },
+          "row": 127
+        },
+        {
+          "cells": {
+            "A128": "CT-127",
+            "B128": "Ativo",
+            "C128": "Minha parcela terminou",
+            "D128": "Registro mostra parcela 12/12.",
+            "E128": "Gatilho explícito.",
+            "F128": "Reconhecer encerramento após confirmação da transação."
+          },
+          "row": 128
+        },
+        {
+          "cells": {
+            "A129": "CT-128",
+            "B129": "Ativo",
+            "C129": "Minha parcela terminou",
+            "D129": "Registro mostra parcela 11/12.",
+            "E129": "Ainda não terminou.",
+            "F129": "Não disparar abordagem de fim de parcela."
+          },
+          "row": 129
+        },
+        {
+          "cells": {
+            "A130": "CT-129",
+            "B130": "Ativo",
+            "C130": "Minha parcela terminou",
+            "D130": "Parcela 6/6 é estornada.",
+            "E130": "Encerramento ambíguo.",
+            "F130": "Aguardar consistência antes de abordar."
+          },
+          "row": 130
+        },
+        {
+          "cells": {
+            "A131": "CT-130",
+            "B131": "Ativo",
+            "C131": "Minha parcela terminou",
+            "D131": "Parcela termina e cliente recebe salário no dia seguinte.",
+            "E131": "Momento de abordagem.",
+            "F131": "Escolher timing útil e não excessivo."
+          },
+          "row": 131
+        },
+        {
+          "cells": {
+            "A132": "CT-131",
+            "B132": "Ativo",
+            "C132": "Minha parcela terminou",
+            "D132": "Parcela termina no início do mês.",
+            "E132": "Folga já afeta o ciclo.",
+            "F132": "Mostrar efeito no orçamento do mês seguinte/atual conforme regra."
+          },
+          "row": 132
+        },
+        {
+          "cells": {
+            "A133": "CT-132",
+            "B133": "Ativo",
+            "C133": "Minha parcela terminou",
+            "D133": "Parcela termina no fim do mês.",
+            "E133": "Impacto começa no próximo ciclo.",
+            "F133": "Explicar temporalidade corretamente."
+          },
+          "row": 133
+        },
+        {
+          "cells": {
+            "A134": "CT-133",
+            "B134": "Ativo",
+            "C134": "Minha parcela terminou",
+            "D134": "Última parcela de R$ 250 de seguro anual parcelado.",
+            "E134": "Compromisso acaba, mas pode renovar.",
+            "F134": "Evitar assumir que despesa desapareceu permanentemente se recorrência anual provável."
+          },
+          "row": 134
+        },
+        {
+          "cells": {
+            "A135": "CT-134",
+            "B135": "Ativo",
+            "C135": "Minha parcela terminou",
+            "D135": "Parcela de imposto termina.",
+            "E135": "Fim de obrigação temporária.",
+            "F135": "Mostrar impacto sem sugerir uso específico da folga."
+          },
+          "row": 135
+        },
+        {
+          "cells": {
+            "A136": "CT-135",
+            "B136": "Ativo",
+            "C136": "Minha parcela terminou",
+            "D136": "Parcela de R$ 480 termina e cliente tem meta declarada.",
+            "E136": "Nova folga pode apoiar objetivo.",
+            "F136": "Perguntar se quer simular direcionamento à meta."
+          },
+          "row": 136
+        },
+        {
+          "cells": {
+            "A137": "CT-136",
+            "B137": "Ativo",
+            "C137": "Minha parcela terminou",
+            "D137": "Parcela termina e cliente acabou de assumir outra dívida.",
+            "E137": "Contexto contraposto.",
+            "F137": "Mostrar efeito líquido sobre comprometimento."
+          },
+          "row": 137
+        },
+        {
+          "cells": {
+            "A138": "CT-137",
+            "B138": "Ativo",
+            "C138": "Minha parcela terminou",
+            "D138": "Última parcela de R$ 300 e gastos variáveis subiram R$ 300.",
+            "E138": "Folga absorvida pelo padrão recente.",
+            "F138": "Não tratar valor integral como sobra garantida."
+          },
+          "row": 138
+        },
+        {
+          "cells": {
+            "A139": "CT-138",
+            "B139": "Ativo",
+            "C139": "Minha parcela terminou",
+            "D139": "Parcela termina e sobra mensal projetada passa de negativa para positiva.",
+            "E139": "Mudança relevante.",
+            "F139": "Destacar alteração de cenário com cautela."
+          },
+          "row": 139
+        },
+        {
+          "cells": {
+            "A140": "CT-139",
+            "B140": "Ativo",
+            "C140": "Minha parcela terminou",
+            "D140": "Parcela termina e sobra permanece negativa.",
+            "E140": "Melhora insuficiente.",
+            "F140": "Mostrar melhora, mas deixar claro que ainda há pressão."
+          },
+          "row": 140
+        },
+        {
+          "cells": {
+            "A141": "CT-140",
+            "B141": "Ativo",
+            "C141": "Minha parcela terminou",
+            "D141": "Parcela termina e cliente tem várias parcelas acabando nos próximos 60 dias.",
+            "E141": "Sequência de liberações.",
+            "F141": "Mostrar visão progressiva se útil."
+          },
+          "row": 141
+        },
+        {
+          "cells": {
+            "A142": "CT-141",
+            "B142": "Ativo",
+            "C142": "Minha parcela terminou",
+            "D142": "Parcela de R$ 1.000 termina após 24 meses.",
+            "E142": "Grande mudança estrutural.",
+            "F142": "Priorizar proatividade e mostrar efeito futuro."
+          },
+          "row": 142
+        },
+        {
+          "cells": {
+            "A143": "CT-142",
+            "B143": "Ativo",
+            "C143": "Minha parcela terminou",
+            "D143": "Parcela de R$ 70 termina após 3 meses.",
+            "E143": "Baixa relevância.",
+            "F143": "Aplicar regra de materialidade para decidir abordagem."
+          },
+          "row": 143
+        },
+        {
+          "cells": {
+            "A144": "CT-143",
+            "B144": "Ativo",
+            "C144": "Minha parcela terminou",
+            "D144": "Última parcela é detectada em compra compartilhada.",
+            "E144": "Contexto desconhecido.",
+            "F144": "Falar apenas do impacto financeiro observado."
+          },
+          "row": 144
+        },
+        {
+          "cells": {
+            "A145": "CT-144",
+            "B145": "Ativo",
+            "C145": "Minha parcela terminou",
+            "D145": "Parcela termina após antecipação das últimas prestações.",
+            "E145": "Evento fora do calendário original.",
+            "F145": "Reconhecer liberação a partir do novo encerramento."
+          },
+          "row": 145
+        },
+        {
+          "cells": {
+            "A146": "CT-145",
+            "B146": "Ativo",
+            "C146": "Minha parcela terminou",
+            "D146": "Parcela termina e valor mensal variou por juros.",
+            "E146": "Compromisso não era fixo.",
+            "F146": "Usar valor efetivamente liberado/esperado."
+          },
+          "row": 146
+        },
+        {
+          "cells": {
+            "A147": "CT-146",
+            "B147": "Ativo",
+            "C147": "Minha parcela terminou",
+            "D147": "Duas parcelas terminam, mas uma assinatura nova começa.",
+            "E147": "Mudanças simultâneas.",
+            "F147": "Calcular folga líquida antes da mensagem."
+          },
+          "row": 147
+        },
+        {
+          "cells": {
+            "A148": "CT-147",
+            "B148": "Ativo",
+            "C148": "Minha parcela terminou",
+            "D148": "Parcela termina e cliente pergunta depois sobre a folga.",
+            "E148": "Ativo seguido de receptivo.",
+            "F148": "Manter contexto da abordagem na conversa."
+          },
+          "row": 148
+        },
+        {
+          "cells": {
+            "A149": "CT-148",
+            "B149": "Ativo",
+            "C149": "Minha parcela terminou",
+            "D149": "Cliente ignora mensagem sobre parcela encerrada.",
+            "E149": "Sem engajamento.",
+            "F149": "Não insistir repetidamente."
+          },
+          "row": 149
+        },
+        {
+          "cells": {
+            "A150": "CT-149",
+            "B150": "Ativo",
+            "C150": "Minha parcela terminou",
+            "D150": "Cliente responde 'quero ver' à mensagem de fim da parcela.",
+            "E150": "Aceite explícito.",
+            "F150": "Continuar para projeção e simulações."
+          },
+          "row": 150
+        },
+        {
+          "cells": {
+            "A151": "CT-150",
+            "B151": "Ativo",
+            "C151": "Minha parcela terminou",
+            "D151": "Cliente responde 'agora não'.",
+            "E151": "Recusa.",
+            "F151": "Encerrar abordagem e preservar autonomia."
+          },
+          "row": 151
+        },
+        {
+          "cells": {
+            "A152": "CT-151",
+            "B152": "Ativo",
+            "C152": "Minha renda aumentou",
+            "D152": "Salário habitual de R$ 5.000 passa para R$ 6.200.",
+            "E152": "Entrada recorrente acima do padrão.",
+            "F152": "Detectar mudança e perguntar se a nova renda será recorrente antes de recalcular cenário."
+          },
+          "row": 152
+        },
+        {
+          "cells": {
+            "A153": "CT-152",
+            "B153": "Ativo",
+            "C153": "Minha renda aumentou",
+            "D153": "Entrada salarial sobe de R$ 4.500 para R$ 5.000.",
+            "E153": "Aumento moderado.",
+            "F153": "Confirmar recorrência e, se confirmado, atualizar projeções."
+          },
+          "row": 153
+        },
+        {
+          "cells": {
+            "A154": "CT-153",
+            "B154": "Ativo",
+            "C154": "Minha renda aumentou",
+            "D154": "Cliente recebe R$ 8.000 após meses recebendo R$ 5.000.",
+            "E154": "Grande desvio.",
+            "F154": "Não assumir aumento: pode ser bônus ou verba extraordinária."
+          },
+          "row": 154
+        },
+        {
+          "cells": {
+            "A155": "CT-154",
+            "B155": "Ativo",
+            "C155": "Minha renda aumentou",
+            "D155": "Duas entradas de salário aparecem no mesmo mês.",
+            "E155": "Possível adiantamento/erro.",
+            "F155": "Não interpretar soma como nova renda recorrente sem confirmação."
+          },
+          "row": 155
+        },
+        {
+          "cells": {
+            "A156": "CT-155",
+            "B156": "Ativo",
+            "C156": "Minha renda aumentou",
+            "D156": "Entrada identificada como bônus anual.",
+            "E156": "Renda extraordinária.",
+            "F156": "Não tratar como aumento permanente."
+          },
+          "row": 156
+        },
+        {
+          "cells": {
+            "A157": "CT-156",
+            "B157": "Ativo",
+            "C157": "Minha renda aumentou",
+            "D157": "Entrada de PLR acima do salário.",
+            "E157": "Receita pontual.",
+            "F157": "Distinguir de renda recorrente."
+          },
+          "row": 157
+        },
+        {
+          "cells": {
+            "A158": "CT-157",
+            "B158": "Ativo",
+            "C158": "Minha renda aumentou",
+            "D158": "Salário aumenta por dois meses consecutivos.",
+            "E158": "Sinal mais forte de recorrência.",
+            "F158": "Ainda confirmar mudança antes de consolidar nova renda."
+          },
+          "row": 158
+        },
+        {
+          "cells": {
+            "A159": "CT-158",
+            "B159": "Ativo",
+            "C159": "Minha renda aumentou",
+            "D159": "Salário aumenta apenas um mês e volta ao normal.",
+            "E159": "Evento temporário.",
+            "F159": "Evitar reclassificação permanente."
+          },
+          "row": 159
+        },
+        {
+          "cells": {
+            "A160": "CT-159",
+            "B160": "Ativo",
+            "C160": "Minha renda aumentou",
+            "D160": "Entrada recorrente muda de R$ 3.800 para R$ 4.200.",
+            "E160": "Aumento de renda.",
+            "F160": "Perguntar se houve mudança permanente."
+          },
+          "row": 160
+        },
+        {
+          "cells": {
+            "A161": "CT-160",
+            "B161": "Ativo",
+            "C161": "Minha renda aumentou",
+            "D161": "Cliente recebe comissão variável maior.",
+            "E161": "Renda variável.",
+            "F161": "Reconhecer volatilidade e não projetar valor integral como fixo."
+          },
+          "row": 161
+        },
+        {
+          "cells": {
+            "A162": "CT-161",
+            "B162": "Ativo",
+            "C162": "Minha renda aumentou",
+            "D162": "Nova entrada mensal de R$ 1.000 aparece além do salário.",
+            "E162": "Possível segunda fonte de renda.",
+            "F162": "Perguntar natureza e recorrência."
+          },
+          "row": 162
+        },
+        {
+          "cells": {
+            "A163": "CT-162",
+            "B163": "Ativo",
+            "C163": "Minha renda aumentou",
+            "D163": "Transferência de R$ 2.000 recebida de terceiro.",
+            "E163": "Entrada não classificada.",
+            "F163": "Não assumir renda."
+          },
+          "row": 163
+        },
+        {
+          "cells": {
+            "A164": "CT-163",
+            "B164": "Ativo",
+            "C164": "Minha renda aumentou",
+            "D164": "Reembolso de R$ 1.500 aumenta entradas do mês.",
+            "E164": "Não é renda nova.",
+            "F164": "Filtrar ou confirmar natureza antes de abordagem."
+          },
+          "row": 164
+        },
+        {
+          "cells": {
+            "A165": "CT-164",
+            "B165": "Ativo",
+            "C165": "Minha renda aumentou",
+            "D165": "Salário líquido sobe após fim de desconto temporário.",
+            "E165": "Renda disponível aumenta.",
+            "F165": "Confirmar se mudança continuará."
+          },
+          "row": 165
+        },
+        {
+          "cells": {
+            "A166": "CT-165",
+            "B166": "Ativo",
+            "C166": "Minha renda aumentou",
+            "D166": "Salário sobe 10%.",
+            "E166": "Mudança moderada.",
+            "F166": "Mostrar efeito somente após confirmação."
+          },
+          "row": 166
+        },
+        {
+          "cells": {
+            "A167": "CT-166",
+            "B167": "Ativo",
+            "C167": "Minha renda aumentou",
+            "D167": "Salário sobe 30%.",
+            "E167": "Mudança material.",
+            "F167": "Priorizar abordagem, mantendo pergunta de confirmação."
+          },
+          "row": 167
+        },
+        {
+          "cells": {
+            "A168": "CT-167",
+            "B168": "Ativo",
+            "C168": "Minha renda aumentou",
+            "D168": "Salário sobe, mas despesas fixas também aumentam.",
+            "E168": "Maior renda não equivale a maior folga.",
+            "F168": "Após confirmação, calcular efeito líquido."
+          },
+          "row": 168
+        },
+        {
+          "cells": {
+            "A169": "CT-168",
+            "B169": "Ativo",
+            "C169": "Minha renda aumentou",
+            "D169": "Salário sobe e cliente está negativado no fluxo.",
+            "E169": "Nova renda melhora cenário.",
+            "F169": "Mostrar impacto sobre projeção sem assumir solução completa."
+          },
+          "row": 169
+        },
+        {
+          "cells": {
+            "A170": "CT-169",
+            "B170": "Ativo",
+            "C170": "Minha renda aumentou",
+            "D170": "Salário sobe e cliente já tem alta sobra.",
+            "E170": "Nova capacidade.",
+            "F170": "Mostrar mudança na margem e oferecer simulação de objetivos."
+          },
+          "row": 170
+        },
+        {
+          "cells": {
+            "A171": "CT-170",
+            "B171": "Ativo",
+            "C171": "Minha renda aumentou",
+            "D171": "Entrada salarial muda de data e valor.",
+            "E171": "Possível alteração operacional.",
+            "F171": "Distinguir timing de aumento real."
+          },
+          "row": 171
+        },
+        {
+          "cells": {
+            "A172": "CT-171",
+            "B172": "Ativo",
+            "C172": "Minha renda aumentou",
+            "D172": "Cliente começa novo emprego e primeira renda é parcial.",
+            "E172": "Valor não representa renda cheia.",
+            "F172": "Perguntar contexto antes de projetar."
+          },
+          "row": 172
+        },
+        {
+          "cells": {
+            "A173": "CT-172",
+            "B173": "Ativo",
+            "C173": "Minha renda aumentou",
+            "D173": "Primeiro salário novo inclui férias/verbas.",
+            "E173": "Entrada atípica.",
+            "F173": "Não usar como baseline."
+          },
+          "row": 173
+        },
+        {
+          "cells": {
+            "A174": "CT-173",
+            "B174": "Ativo",
+            "C174": "Minha renda aumentou",
+            "D174": "Salário habitual aumenta R$ 200.",
+            "E174": "Pequena mudança.",
+            "F174": "Aplicar limiar de materialidade para decidir abordagem."
+          },
+          "row": 174
+        },
+        {
+          "cells": {
+            "A175": "CT-174",
+            "B175": "Ativo",
+            "C175": "Minha renda aumentou",
+            "D175": "Renda dobra por um mês.",
+            "E175": "Anomalia forte.",
+            "F175": "Perguntar origem, sem celebrar como aumento."
+          },
+          "row": 175
+        },
+        {
+          "cells": {
+            "A176": "CT-175",
+            "B176": "Ativo",
+            "C176": "Minha renda aumentou",
+            "D176": "Renda sobe gradualmente por três meses.",
+            "E176": "Tendência.",
+            "F176": "Confirmar se é mudança recorrente/variável."
+          },
+          "row": 176
+        },
+        {
+          "cells": {
+            "A177": "CT-176",
+            "B177": "Ativo",
+            "C177": "Minha renda aumentou",
+            "D177": "Pagamento recorrente de freelancer aparece todo mês.",
+            "E177": "Nova renda potencialmente recorrente.",
+            "F177": "Perguntar estabilidade da fonte."
+          },
+          "row": 177
+        },
+        {
+          "cells": {
+            "A178": "CT-177",
+            "B178": "Ativo",
+            "C178": "Minha renda aumentou",
+            "D178": "Cliente recebe aluguel mensal novo.",
+            "E178": "Nova entrada recorrente.",
+            "F178": "Confirmar natureza e continuidade."
+          },
+          "row": 178
+        },
+        {
+          "cells": {
+            "A179": "CT-178",
+            "B179": "Ativo",
+            "C179": "Minha renda aumentou",
+            "D179": "Renda aumenta, mas uma parcela grande começa.",
+            "E179": "Efeito líquido reduzido.",
+            "F179": "Recalcular contexto completo após confirmação."
+          },
+          "row": 179
+        },
+        {
+          "cells": {
+            "A180": "CT-179",
+            "B180": "Ativo",
+            "C180": "Minha renda aumentou",
+            "D180": "Renda aumenta e parcela termina no mesmo mês.",
+            "E180": "Dois gatilhos positivos.",
+            "F180": "Consolidar abordagem para evitar excesso de mensagens."
+          },
+          "row": 180
+        },
+        {
+          "cells": {
+            "A181": "CT-180",
+            "B181": "Ativo",
+            "C181": "Minha renda aumentou",
+            "D181": "Salário aumenta e gastos também aumentam rapidamente.",
+            "E181": "Lifestyle inflation possível, sem rotular.",
+            "F181": "Mostrar efeito observado e projeção, sem julgamento."
+          },
+          "row": 181
+        },
+        {
+          "cells": {
+            "A182": "CT-181",
+            "B182": "Ativo",
+            "C182": "Minha renda aumentou",
+            "D182": "Salário sobe e cliente possui meta financeira cadastrada.",
+            "E182": "Mudança pode acelerar objetivo.",
+            "F182": "Oferecer simulação relacionada à meta após confirmação."
+          },
+          "row": 182
+        },
+        {
+          "cells": {
+            "A183": "CT-182",
+            "B183": "Ativo",
+            "C183": "Minha renda aumentou",
+            "D183": "Salário sobe e cliente não tem objetivo cadastrado.",
+            "E183": "Sem meta explícita.",
+            "F183": "Perguntar o que deseja priorizar, sem presumir."
+          },
+          "row": 183
+        },
+        {
+          "cells": {
+            "A184": "CT-183",
+            "B184": "Ativo",
+            "C184": "Minha renda aumentou",
+            "D184": "Cliente confirma: 'sim, fui promovido'.",
+            "E184": "Confirmação de recorrência.",
+            "F184": "Atualizar renda base e mostrar novo cenário."
+          },
+          "row": 184
+        },
+        {
+          "cells": {
+            "A185": "CT-184",
+            "B185": "Ativo",
+            "C185": "Minha renda aumentou",
+            "D185": "Cliente responde: 'não, foi bônus'.",
+            "E185": "Entrada pontual.",
+            "F185": "Não alterar renda recorrente; oferecer análise pontual se desejado."
+          },
+          "row": 185
+        },
+        {
+          "cells": {
+            "A186": "CT-185",
+            "B186": "Ativo",
+            "C186": "Minha renda aumentou",
+            "D186": "Cliente responde: 'não sei se vai continuar'.",
+            "E186": "Incerteza.",
+            "F186": "Tratar como variável e usar cenário conservador/alternativo."
+          },
+          "row": 186
+        },
+        {
+          "cells": {
+            "A187": "CT-186",
+            "B187": "Ativo",
+            "C187": "Minha renda aumentou",
+            "D187": "Cliente ignora pergunta sobre nova renda.",
+            "E187": "Sem confirmação.",
+            "F187": "Não atualizar baseline automaticamente."
+          },
+          "row": 187
+        },
+        {
+          "cells": {
+            "A188": "CT-187",
+            "B188": "Ativo",
+            "C188": "Minha renda aumentou",
+            "D188": "Entrada maior ocorre após reajuste coletivo.",
+            "E188": "Possível recorrência.",
+            "F188": "Perguntar/confirmar antes de consolidar."
+          },
+          "row": 188
+        },
+        {
+          "cells": {
+            "A189": "CT-188",
+            "B189": "Ativo",
+            "C189": "Minha renda aumentou",
+            "D189": "Renda aumenta, mas frequência passa de mensal para quinzenal.",
+            "E189": "Mudança de fluxo.",
+            "F189": "Normalizar calendário antes de concluir aumento."
+          },
+          "row": 189
+        },
+        {
+          "cells": {
+            "A190": "CT-189",
+            "B190": "Ativo",
+            "C190": "Minha renda aumentou",
+            "D190": "Dois salários entram por mudança de data entre meses.",
+            "E190": "Efeito calendário.",
+            "F190": "Evitar falso gatilho de aumento."
+          },
+          "row": 190
+        },
+        {
+          "cells": {
+            "A191": "CT-190",
+            "B191": "Ativo",
+            "C191": "Minha renda aumentou",
+            "D191": "Salário cai no mês anterior e volta ao normal.",
+            "E191": "Retorno ao padrão, não aumento.",
+            "F191": "Não disparar mensagem de aumento."
+          },
+          "row": 191
+        },
+        {
+          "cells": {
+            "A192": "CT-191",
+            "B192": "Ativo",
+            "C192": "Minha renda aumentou",
+            "D192": "Entrada acima da média é venda de ativo.",
+            "E192": "Receita extraordinária.",
+            "F192": "Não tratar como renda."
+          },
+          "row": 192
+        },
+        {
+          "cells": {
+            "A193": "CT-192",
+            "B193": "Ativo",
+            "C193": "Minha renda aumentou",
+            "D193": "Entrada é restituição de imposto.",
+            "E193": "Pontual.",
+            "F193": "Excluir de aumento recorrente."
+          },
+          "row": 193
+        },
+        {
+          "cells": {
+            "A194": "CT-193",
+            "B194": "Ativo",
+            "C194": "Minha renda aumentou",
+            "D194": "Entrada é empréstimo recebido.",
+            "E194": "Não é renda.",
+            "F194": "Não classificar como aumento de renda."
+          },
+          "row": 194
+        },
+        {
+          "cells": {
+            "A195": "CT-194",
+            "B195": "Ativo",
+            "C195": "Minha renda aumentou",
+            "D195": "Entrada é resgate de investimento.",
+            "E195": "Movimentação patrimonial.",
+            "F195": "Não tratar como renda nova."
+          },
+          "row": 195
+        },
+        {
+          "cells": {
+            "A196": "CT-195",
+            "B196": "Ativo",
+            "C196": "Minha renda aumentou",
+            "D196": "Salário aumenta após três meses de estabilidade.",
+            "E196": "Sinal claro.",
+            "F196": "Confirmar e recalcular capacidade."
+          },
+          "row": 196
+        },
+        {
+          "cells": {
+            "A197": "CT-196",
+            "B197": "Ativo",
+            "C197": "Minha renda aumentou",
+            "D197": "Renda sobe e comprometimento cai de 70% para 55%.",
+            "E197": "Mudança relevante.",
+            "F197": "Mostrar novo comprometimento após confirmação."
+          },
+          "row": 197
+        },
+        {
+          "cells": {
+            "A198": "CT-197",
+            "B198": "Ativo",
+            "C198": "Minha renda aumentou",
+            "D198": "Renda sobe, mas sobra projetada continua baixa.",
+            "E198": "Melhora limitada.",
+            "F198": "Comunicar efeito real sem exagero."
+          },
+          "row": 198
+        },
+        {
+          "cells": {
+            "A199": "CT-198",
+            "B199": "Ativo",
+            "C199": "Minha renda aumentou",
+            "D199": "Renda sobe e sobra mensal aumenta significativamente.",
+            "E199": "Folga material.",
+            "F199": "Mostrar nova margem e oferecer cenários."
+          },
+          "row": 199
+        },
+        {
+          "cells": {
+            "A200": "CT-199",
+            "B200": "Ativo",
+            "C200": "Minha renda aumentou",
+            "D200": "Cliente confirma aumento e pergunta 'o que muda para mim?'.",
+            "E200": "Ativo vira conversa receptiva.",
+            "F200": "Explicar nova projeção e permitir simulações."
+          },
+          "row": 200
+        },
+        {
+          "cells": {
+            "A201": "CT-200",
+            "B201": "Ativo",
+            "C201": "Minha renda aumentou",
+            "D201": "Cliente pede para não receber esse tipo de alerta.",
+            "E201": "Preferência explícita.",
+            "F201": "Respeitar preferência e cessar abordagem equivalente."
+          },
+          "row": 201
+        },
+        {
+          "cells": {
+            "A202": "CT-201",
+            "B202": "Ativo",
+            "C202": "Minha situação financeira melhorou",
+            "D202": "Sobra mensal passa de negativa para positiva por dois meses.",
+            "E202": "Sinal de recuperação.",
+            "F202": "Reconhecer melhora e explicar os fatores observados."
+          },
+          "row": 202
+        },
+        {
+          "cells": {
+            "A203": "CT-202",
+            "B203": "Ativo",
+            "C203": "Minha situação financeira melhorou",
+            "D203": "Dias com saldo negativo caem de 10 para 2 no mês.",
+            "E203": "Menor pressão de caixa.",
+            "F203": "Mostrar evolução sem atribuir causalidade não comprovada."
+          },
+          "row": 203
+        },
+        {
+          "cells": {
+            "A204": "CT-203",
+            "B204": "Ativo",
+            "C204": "Minha situação financeira melhorou",
+            "D204": "Gastos discricionários caem por três meses e sobra cresce.",
+            "E204": "Tendência consistente.",
+            "F204": "Destacar mudança e projetar continuidade se padrão se mantiver."
+          },
+          "row": 204
+        },
+        {
+          "cells": {
+            "A205": "CT-204",
+            "B205": "Ativo",
+            "C205": "Minha situação financeira melhorou",
+            "D205": "Comprometimento com parcelas cai de 45% para 30%.",
+            "E205": "Menor comprometimento.",
+            "F205": "Mostrar evolução e oferecer próximo passo."
+          },
+          "row": 205
+        },
+        {
+          "cells": {
+            "A206": "CT-205",
+            "B206": "Ativo",
+            "C206": "Minha situação financeira melhorou",
+            "D206": "Cliente deixa de entrar no cheque especial por dois meses.",
+            "E206": "Melhora de liquidez.",
+            "F206": "Reconhecer resultado observado e mostrar tendência."
+          },
+          "row": 206
+        },
+        {
+          "cells": {
+            "A207": "CT-206",
+            "B207": "Ativo",
+            "C207": "Minha situação financeira melhorou",
+            "D207": "Sobra cresce de R$ 100 para R$ 500 e depois R$ 900.",
+            "E207": "Evolução progressiva.",
+            "F207": "Mostrar trajetória e fatores relacionados."
+          },
+          "row": 207
+        },
+        {
+          "cells": {
+            "A208": "CT-207",
+            "B208": "Ativo",
+            "C208": "Minha situação financeira melhorou",
+            "D208": "Despesas caem, mas renda também caiu.",
+            "E208": "Melhora aparente pode ser limitada.",
+            "F208": "Avaliar saldo e comprometimento completos antes de abordar."
+          },
+          "row": 208
+        },
+        {
+          "cells": {
+            "A209": "CT-208",
+            "B209": "Ativo",
+            "C209": "Minha situação financeira melhorou",
+            "D209": "Renda estável e gastos totais caem 15% por três meses.",
+            "E209": "Melhora sustentada.",
+            "F209": "Identificar categorias que contribuíram."
+          },
+          "row": 209
+        },
+        {
+          "cells": {
+            "A210": "CT-209",
+            "B210": "Ativo",
+            "C210": "Minha situação financeira melhorou",
+            "D210": "Parcelas terminam e sobra aumenta.",
+            "E210": "Melhora estrutural.",
+            "F210": "Explicar relação observável entre menor compromisso e sobra."
+          },
+          "row": 210
+        },
+        {
+          "cells": {
+            "A211": "CT-210",
+            "B211": "Ativo",
+            "C211": "Minha situação financeira melhorou",
+            "D211": "Cliente reduz frequência de saldo negativo.",
+            "E211": "Sinal positivo.",
+            "F211": "Quantificar evolução."
+          },
+          "row": 211
+        },
+        {
+          "cells": {
+            "A212": "CT-211",
+            "B212": "Ativo",
+            "C212": "Minha situação financeira melhorou",
+            "D212": "Um único mês melhora muito após mês atípico ruim.",
+            "E212": "Possível reversão à média.",
+            "F212": "Não chamar de recuperação consistente ainda."
+          },
+          "row": 212
+        },
+        {
+          "cells": {
+            "A213": "CT-212",
+            "B213": "Ativo",
+            "C213": "Minha situação financeira melhorou",
+            "D213": "Dois meses positivos após seis meses negativos.",
+            "E213": "Possível recuperação inicial.",
+            "F213": "Abordar com linguagem cautelosa: 'seu cenário vem melhorando'."
+          },
+          "row": 213
+        },
+        {
+          "cells": {
+            "A214": "CT-213",
+            "B214": "Ativo",
+            "C214": "Minha situação financeira melhorou",
+            "D214": "Três meses com sobra positiva crescente.",
+            "E214": "Recuperação consistente.",
+            "F214": "Proativamente mostrar progresso."
+          },
+          "row": 214
+        },
+        {
+          "cells": {
+            "A215": "CT-214",
+            "B215": "Ativo",
+            "C215": "Minha situação financeira melhorou",
+            "D215": "Gastos de restaurante caem, mas mercado sobe.",
+            "E215": "Mudança de composição.",
+            "F215": "Não atribuir melhora a uma categoria isolada sem efeito líquido."
+          },
+          "row": 215
+        },
+        {
+          "cells": {
+            "A216": "CT-215",
+            "B216": "Ativo",
+            "C216": "Minha situação financeira melhorou",
+            "D216": "Cliente reduz novas compras parceladas.",
+            "E216": "Menor criação de compromissos.",
+            "F216": "Mostrar queda no comprometimento futuro."
+          },
+          "row": 216
+        },
+        {
+          "cells": {
+            "A217": "CT-216",
+            "B217": "Ativo",
+            "C217": "Minha situação financeira melhorou",
+            "D217": "Saldo médio diário melhora por três meses.",
+            "E217": "Indicador de liquidez.",
+            "F217": "Usar como sinal complementar."
+          },
+          "row": 217
+        },
+        {
+          "cells": {
+            "A218": "CT-217",
+            "B218": "Ativo",
+            "C218": "Minha situação financeira melhorou",
+            "D218": "Cliente acumula pequena sobra por quatro meses.",
+            "E218": "Consistência.",
+            "F218": "Reconhecer progresso mesmo com valores modestos."
+          },
+          "row": 218
+        },
+        {
+          "cells": {
+            "A219": "CT-218",
+            "B219": "Ativo",
+            "C219": "Minha situação financeira melhorou",
+            "D219": "Sobra melhora por causa de renda extraordinária.",
+            "E219": "Melhora não estrutural.",
+            "F219": "Não classificar como recuperação recorrente."
+          },
+          "row": 219
+        },
+        {
+          "cells": {
+            "A220": "CT-219",
+            "B220": "Ativo",
+            "C220": "Minha situação financeira melhorou",
+            "D220": "Sobra melhora porque salário aumentou permanentemente.",
+            "E220": "Melhora de contexto.",
+            "F220": "Explicar contribuição da renda confirmada."
+          },
+          "row": 220
+        },
+        {
+          "cells": {
+            "A221": "CT-220",
+            "B221": "Ativo",
+            "C221": "Minha situação financeira melhorou",
+            "D221": "Sobra melhora após fim de grande parcela.",
+            "E221": "Mudança identificável.",
+            "F221": "Mostrar impacto do compromisso encerrado."
+          },
+          "row": 221
+        },
+        {
+          "cells": {
+            "A222": "CT-221",
+            "B222": "Ativo",
+            "C222": "Minha situação financeira melhorou",
+            "D222": "Cliente reduz gastos variáveis 20% e mantém fixos estáveis.",
+            "E222": "Melhora comportamental observável.",
+            "F222": "Mostrar diferença em números sem moralizar."
+          },
+          "row": 222
+        },
+        {
+          "cells": {
+            "A223": "CT-222",
+            "B223": "Ativo",
+            "C223": "Minha situação financeira melhorou",
+            "D223": "Cliente teve menos imprevistos no mês.",
+            "E223": "Melhora pode não ser controlável.",
+            "F223": "Evitar atribuir a comportamento do cliente."
+          },
+          "row": 223
+        },
+        {
+          "cells": {
+            "A224": "CT-223",
+            "B224": "Ativo",
+            "C224": "Minha situação financeira melhorou",
+            "D224": "Saldo negativo deixa de ocorrer, mas margem ainda é pequena.",
+            "E224": "Recuperação inicial.",
+            "F224": "Reconhecer melhora e deixar claro que folga ainda é limitada."
+          },
+          "row": 224
+        },
+        {
+          "cells": {
+            "A225": "CT-224",
+            "B225": "Ativo",
+            "C225": "Minha situação financeira melhorou",
+            "D225": "Cliente mantém saldo positivo e cria sobra de R$ 300.",
+            "E225": "Mudança positiva.",
+            "F225": "Mostrar nova margem."
+          },
+          "row": 225
+        },
+        {
+          "cells": {
+            "A226": "CT-225",
+            "B226": "Ativo",
+            "C226": "Minha situação financeira melhorou",
+            "D226": "Cliente passa de déficit de R$ 500 para equilíbrio.",
+            "E226": "Primeiro estágio de recuperação.",
+            "F226": "Valorizar evolução sem dizer que situação está resolvida."
+          },
+          "row": 226
+        },
+        {
+          "cells": {
+            "A227": "CT-226",
+            "B227": "Ativo",
+            "C227": "Minha situação financeira melhorou",
+            "D227": "Cliente passa de equilíbrio para sobra de R$ 700.",
+            "E227": "Segundo estágio.",
+            "F227": "Mostrar progresso e oferecer simulação de objetivo."
+          },
+          "row": 227
+        },
+        {
+          "cells": {
+            "A228": "CT-227",
+            "B228": "Ativo",
+            "C228": "Minha situação financeira melhorou",
+            "D228": "Comprometimento cai porque duas parcelas terminam.",
+            "E228": "Menor pressão futura.",
+            "F228": "Explicar efeito nas próximas projeções."
+          },
+          "row": 228
+        },
+        {
+          "cells": {
+            "A229": "CT-228",
+            "B229": "Ativo",
+            "C229": "Minha situação financeira melhorou",
+            "D229": "Gastos totais caem, mas contas essenciais estão atrasadas.",
+            "E229": "Falso positivo possível.",
+            "F229": "Não classificar como melhora sem considerar compromissos pendentes."
+          },
+          "row": 229
+        },
+        {
+          "cells": {
+            "A230": "CT-229",
+            "B230": "Ativo",
+            "C230": "Minha situação financeira melhorou",
+            "D230": "Saldo aumenta por empréstimo recebido.",
+            "E230": "Não é recuperação.",
+            "F230": "Excluir movimentação de crédito como evidência positiva isolada."
+          },
+          "row": 230
+        },
+        {
+          "cells": {
+            "A231": "CT-230",
+            "B231": "Ativo",
+            "C231": "Minha situação financeira melhorou",
+            "D231": "Saldo aumenta por resgate de investimento.",
+            "E231": "Movimentação patrimonial.",
+            "F231": "Não tratar como melhora de geração de sobra."
+          },
+          "row": 231
+        },
+        {
+          "cells": {
+            "A232": "CT-231",
+            "B232": "Ativo",
+            "C232": "Minha situação financeira melhorou",
+            "D232": "Cliente reduz uso de limite da conta progressivamente.",
+            "E232": "Menor dependência de crédito.",
+            "F232": "Mostrar tendência."
+          },
+          "row": 232
+        },
+        {
+          "cells": {
+            "A233": "CT-232",
+            "B233": "Ativo",
+            "C233": "Minha situação financeira melhorou",
+            "D233": "Cliente quita saldo negativo e permanece positivo.",
+            "E233": "Mudança relevante.",
+            "F233": "Reconhecer melhora após consistência mínima."
+          },
+          "row": 233
+        },
+        {
+          "cells": {
+            "A234": "CT-233",
+            "B234": "Ativo",
+            "C234": "Minha situação financeira melhorou",
+            "D234": "Cliente reduz parcelas abertas de 8 para 4.",
+            "E234": "Menor complexidade/comprometimento.",
+            "F234": "Mostrar redução de obrigações futuras."
+          },
+          "row": 234
+        },
+        {
+          "cells": {
+            "A235": "CT-234",
+            "B235": "Ativo",
+            "C235": "Minha situação financeira melhorou",
+            "D235": "Valor mensal de parcelas cai R$ 800.",
+            "E235": "Folga estrutural.",
+            "F235": "Mostrar impacto na sobra projetada."
+          },
+          "row": 235
+        },
+        {
+          "cells": {
+            "A236": "CT-235",
+            "B236": "Ativo",
+            "C236": "Minha situação financeira melhorou",
+            "D236": "Sobra melhora apesar de renda estável.",
+            "E236": "Mudança vem das despesas.",
+            "F236": "Identificar fatores de gasto."
+          },
+          "row": 236
+        },
+        {
+          "cells": {
+            "A237": "CT-236",
+            "B237": "Ativo",
+            "C237": "Minha situação financeira melhorou",
+            "D237": "Sobra melhora apesar de pequeno aumento de fixos.",
+            "E237": "Redução de outros gastos compensou.",
+            "F237": "Explicar composição."
+          },
+          "row": 237
+        },
+        {
+          "cells": {
+            "A238": "CT-237",
+            "B238": "Ativo",
+            "C238": "Minha situação financeira melhorou",
+            "D238": "Cliente mantém melhora por 90 dias.",
+            "E238": "Sinal robusto.",
+            "F238": "Abordar com confiança proporcional à evidência."
+          },
+          "row": 238
+        },
+        {
+          "cells": {
+            "A239": "CT-238",
+            "B239": "Ativo",
+            "C239": "Minha situação financeira melhorou",
+            "D239": "Melhora ocorre há apenas 15 dias.",
+            "E239": "Janela curta.",
+            "F239": "Não disparar mensagem de recuperação consistente."
+          },
+          "row": 239
+        },
+        {
+          "cells": {
+            "A240": "CT-239",
+            "B240": "Ativo",
+            "C240": "Minha situação financeira melhorou",
+            "D240": "Cliente volta ao padrão saudável após mês de viagem.",
+            "E240": "Normalização, não necessariamente recuperação.",
+            "F240": "Contextualizar histórico antes de abordar."
+          },
+          "row": 240
+        },
+        {
+          "cells": {
+            "A241": "CT-240",
+            "B241": "Ativo",
+            "C241": "Minha situação financeira melhorou",
+            "D241": "Cliente reduz gasto total porque mês tem menos dias registrados.",
+            "E241": "Dados incompletos.",
+            "F241": "Não concluir recuperação sem período comparável."
+          },
+          "row": 241
+        },
+        {
+          "cells": {
+            "A242": "CT-241",
+            "B242": "Ativo",
+            "C242": "Minha situação financeira melhorou",
+            "D242": "Dados de um mês estão faltando.",
+            "E242": "Histórico incompleto.",
+            "F242": "Evitar inferência de tendência."
+          },
+          "row": 242
+        },
+        {
+          "cells": {
+            "A243": "CT-242",
+            "B243": "Ativo",
+            "C243": "Minha situação financeira melhorou",
+            "D243": "Cliente tem melhora em 2 de 3 indicadores.",
+            "E243": "Sinal misto.",
+            "F243": "Explicar quais melhoraram e qual ainda exige atenção."
+          },
+          "row": 243
+        },
+        {
+          "cells": {
+            "A244": "CT-243",
+            "B244": "Ativo",
+            "C244": "Minha situação financeira melhorou",
+            "D244": "Cliente tem sobra maior, mas comprometimento futuro aumentou.",
+            "E244": "Melhora presente com risco futuro.",
+            "F244": "Não comunicar apenas boa notícia; contextualizar."
+          },
+          "row": 244
+        },
+        {
+          "cells": {
+            "A245": "CT-244",
+            "B245": "Ativo",
+            "C245": "Minha situação financeira melhorou",
+            "D245": "Cliente tem menos gastos e menos renda, mantendo mesma sobra.",
+            "E245": "Sem melhora líquida.",
+            "F245": "Não disparar recuperação."
+          },
+          "row": 245
+        },
+        {
+          "cells": {
+            "A246": "CT-245",
+            "B246": "Ativo",
+            "C246": "Minha situação financeira melhorou",
+            "D246": "Cliente melhora saldo e reduz parcelas simultaneamente.",
+            "E246": "Sinal consistente.",
+            "F246": "Mostrar ambos como fatores observados."
+          },
+          "row": 246
+        },
+        {
+          "cells": {
+            "A247": "CT-246",
+            "B247": "Ativo",
+            "C247": "Minha situação financeira melhorou",
+            "D247": "Cliente mantém gasto estável e renda confirmada aumenta.",
+            "E247": "Melhora por renda.",
+            "F247": "Explicar origem da evolução."
+          },
+          "row": 247
+        },
+        {
+          "cells": {
+            "A248": "CT-247",
+            "B248": "Ativo",
+            "C248": "Minha situação financeira melhorou",
+            "D248": "Cliente responde à abordagem: 'o que eu fiz diferente?'.",
+            "E248": "Quer explicação causal.",
+            "F248": "Apontar mudanças observadas, evitando afirmar causalidade além dos dados."
+          },
+          "row": 248
+        },
+        {
+          "cells": {
+            "A249": "CT-248",
+            "B249": "Ativo",
+            "C249": "Minha situação financeira melhorou",
+            "D249": "Cliente responde: 'como mantenho isso?'.",
+            "E249": "Quer continuidade.",
+            "F249": "Oferecer simulações e sinais a acompanhar, preservando autonomia."
+          },
+          "row": 249
+        },
+        {
+          "cells": {
+            "A250": "CT-249",
+            "B250": "Ativo",
+            "C250": "Minha situação financeira melhorou",
+            "D250": "Cliente responde: 'quero definir uma meta'.",
+            "E250": "Evolução vira objetivo.",
+            "F250": "Conduzir para definição/simulação de meta."
+          },
+          "row": 250
+        },
+        {
+          "cells": {
+            "A251": "CT-250",
+            "B251": "Ativo",
+            "C251": "Minha situação financeira melhorou",
+            "D251": "Cliente ignora mensagem de evolução.",
+            "E251": "Sem interesse.",
+            "F251": "Não insistir; manter abordagem não intrusiva."
+          },
+          "row": 251
+        }
+      ],
+      "Resumo": [
+        {
+          "cells": {
+            "A1": "Tipo",
+            "B1": "Cenário",
+            "C1": "Qtd. casos",
+            "D1": "Papel na experiência"
+          },
+          "row": 1
+        },
+        {
+          "cells": {
+            "A2": "Receptivo",
+            "B2": "Até o próximo salário dá?",
+            "C2": "50",
+            "D2": "Cliente inicia; ITA projeta e simula."
+          },
+          "row": 2
+        },
+        {
+          "cells": {
+            "A3": "Receptivo",
+            "B3": "Por que meu dinheiro está acabando tão rápido?",
+            "C3": "50",
+            "D3": "Cliente inicia; ITA diagnostica e explica."
+          },
+          "row": 3
+        },
+        {
+          "cells": {
+            "A4": "Ativo",
+            "B4": "Minha parcela terminou",
+            "C4": "50",
+            "D4": "ITA detecta fim de compromisso e inicia abordagem."
+          },
+          "row": 4
+        },
+        {
+          "cells": {
+            "A5": "Ativo",
+            "B5": "Minha renda aumentou",
+            "C5": "50",
+            "D5": "ITA detecta mudança de entrada, confirma recorrência e orienta."
+          },
+          "row": 5
+        },
+        {
+          "cells": {
+            "A6": "Ativo",
+            "B6": "Minha situação financeira melhorou",
+            "C6": "50",
+            "D6": "ITA detecta tendência de recuperação e inicia abordagem."
+          },
+          "row": 6
+        }
+      ]
+    }
+  }
+}
