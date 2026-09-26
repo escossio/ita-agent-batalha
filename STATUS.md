@@ -12,9 +12,9 @@ Voz e Tom: **SOURCE_PENDING_LOCAL_COPY**, dependência documental não bloqueant
 | Etapa | Estado | Evidência |
 | --- | --- | --- |
 | 1 | Gate estrutural aprovado com pendência documental | Três fontes congeladas; hashes/ZIP/XML/sanitização conferidos; manifesto atualizado conforme instrução do usuário |
-| 2 | Próxima | Governança ainda não aplicada |
+| 2 | Em andamento | Inspeção da governança de referência concluída; preparando PR e checks |
 | 3–10 | Não iniciadas | Aguardar gates anteriores; Voz e Tom não bloqueia partes independentes |
-| 11–18 | Definições pendentes | Não constam do briefing/workspace; solicitadas ao usuário |
+| 11–18 | Planejadas, não iniciadas | Definições recebidas e registradas no plano oficial |
 
 Originais preservados: XLSX byte a byte; HTML original privado e cópia pública sanitizada. Histórico de recepção em docs/source/INTAKE_REVIEW.md. Etapas anteriores de acesso remoto são históricas e não geram dependência atual.
 
@@ -25,5 +25,5 @@ Manifesto e hashes das três fontes locais aprovados; fonte ausente permanece se
 ## Pendências documentais
 
 - Cópia local de Voz e Tom, não bloqueante para estrutura.
-- Definição das etapas 11–18; não inventar escopo.
+- Aplicar 11–18 somente após os respectivos gates anteriores.
 - CT-150 determina encerrar abordagem para “agora não”; a contraparte atribuída a Voz e Tom continua não verificada.
