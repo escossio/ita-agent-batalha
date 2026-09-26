@@ -1,0 +1,76 @@
+{
+  "$defs": {
+    "ProductEligibility": {
+      "additionalProperties": false,
+      "properties": {
+        "product": {
+          "enum": [
+            "credit",
+            "renegotiation",
+            "financing",
+            "consortium",
+            "investment"
+          ],
+          "title": "Product",
+          "type": "string"
+        },
+        "source": {
+          "const": "DEMO_FIXTURE",
+          "title": "Source",
+          "type": "string"
+        },
+        "status": {
+          "enum": [
+            "eligible",
+            "ineligible",
+            "unknown"
+          ],
+          "title": "Status",
+          "type": "string"
+        }
+      },
+      "required": [
+        "product",
+        "status",
+        "source"
+      ],
+      "title": "ProductEligibility",
+      "type": "object"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "assessed_at": {
+      "maxLength": 32,
+      "title": "Assessed At",
+      "type": "string"
+    },
+    "customer_id": {
+      "pattern": "^[a-zA-Z0-9][a-zA-Z0-9_-]{0,63}$",
+      "title": "Customer Id",
+      "type": "string"
+    },
+    "products": {
+      "items": {
+        "$ref": "#/$defs/ProductEligibility"
+      },
+      "maxItems": 5,
+      "title": "Products",
+      "type": "array"
+    },
+    "schema_version": {
+      "const": "1.0",
+      "title": "Schema Version",
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "customer_id",
+    "assessed_at",
+    "products"
+  ],
+  "title": "Eligibility",
+  "type": "object"
+}

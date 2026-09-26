@@ -1,0 +1,630 @@
+{
+  "$defs": {
+    "Commitment": {
+      "additionalProperties": false,
+      "properties": {
+        "amount_cents": {
+          "maximum": 1000000000000,
+          "minimum": 0,
+          "title": "Amount Cents",
+          "type": "integer"
+        },
+        "category": {
+          "enum": [
+            "bill",
+            "installment",
+            "subscription",
+            "recurring",
+            "variable"
+          ],
+          "title": "Category",
+          "type": "string"
+        },
+        "certainty": {
+          "enum": [
+            "confirmed",
+            "estimated"
+          ],
+          "title": "Certainty",
+          "type": "string"
+        },
+        "due_on": {
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+          "title": "Due On",
+          "type": "string"
+        },
+        "entry_id": {
+          "pattern": "^[a-zA-Z0-9][a-zA-Z0-9_-]{0,63}$",
+          "title": "Entry Id",
+          "type": "string"
+        },
+        "installment_count": {
+          "anyOf": [
+            {
+              "maximum": 600,
+              "minimum": 1,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Installment Count"
+        },
+        "installment_number": {
+          "anyOf": [
+            {
+              "maximum": 600,
+              "minimum": 1,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Installment Number"
+        }
+      },
+      "required": [
+        "entry_id",
+        "due_on",
+        "amount_cents",
+        "category",
+        "certainty"
+      ],
+      "title": "Commitment",
+      "type": "object"
+    },
+    "FinancialSnapshot": {
+      "additionalProperties": false,
+      "properties": {
+        "as_of": {
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+          "title": "As Of",
+          "type": "string"
+        },
+        "balance_cents": {
+          "maximum": 1000000000000,
+          "minimum": -1000000000000,
+          "title": "Balance Cents",
+          "type": "integer"
+        },
+        "commitments": {
+          "items": {
+            "$ref": "#/$defs/Commitment"
+          },
+          "maxItems": 1000,
+          "title": "Commitments",
+          "type": "array"
+        },
+        "currency": {
+          "const": "BRL",
+          "title": "Currency",
+          "type": "string"
+        },
+        "customer_id": {
+          "pattern": "^[a-zA-Z0-9][a-zA-Z0-9_-]{0,63}$",
+          "title": "Customer Id",
+          "type": "string"
+        },
+        "data_complete": {
+          "title": "Data Complete",
+          "type": "boolean"
+        },
+        "history": {
+          "anyOf": [
+            {
+              "items": {
+                "$ref": "#/$defs/HistoricalPeriod"
+              },
+              "maxItems": 36,
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "History"
+        },
+        "kind": {
+          "const": "financial_snapshot",
+          "title": "Kind",
+          "type": "string"
+        },
+        "mode": {
+          "const": "DEMO",
+          "title": "Mode",
+          "type": "string"
+        },
+        "next_income": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Income"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "provenance": {
+          "const": "DEMO_FIXTURE",
+          "title": "Provenance",
+          "type": "string"
+        },
+        "schema_version": {
+          "const": "1.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "snapshot_id": {
+          "pattern": "^[a-zA-Z0-9][a-zA-Z0-9_-]{0,63}$",
+          "title": "Snapshot Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "schema_version",
+        "kind",
+        "snapshot_id",
+        "customer_id",
+        "mode",
+        "as_of",
+        "currency",
+        "balance_cents",
+        "next_income",
+        "commitments",
+        "history",
+        "data_complete",
+        "provenance"
+      ],
+      "title": "FinancialSnapshot",
+      "type": "object"
+    },
+    "HistoricalPeriod": {
+      "additionalProperties": false,
+      "properties": {
+        "committed_cents": {
+          "maximum": 1000000000000,
+          "minimum": 0,
+          "title": "Committed Cents",
+          "type": "integer"
+        },
+        "complete": {
+          "title": "Complete",
+          "type": "boolean"
+        },
+        "income_cents": {
+          "maximum": 1000000000000,
+          "minimum": 0,
+          "title": "Income Cents",
+          "type": "integer"
+        },
+        "installment_cents": {
+          "maximum": 1000000000000,
+          "minimum": 0,
+          "title": "Installment Cents",
+          "type": "integer"
+        },
+        "month": {
+          "pattern": "^\\d{4}-(0[1-9]|1[0-2])$",
+          "title": "Month",
+          "type": "string"
+        },
+        "negative_days": {
+          "maximum": 31,
+          "minimum": 0,
+          "title": "Negative Days",
+          "type": "integer"
+        },
+        "variable_cents": {
+          "maximum": 1000000000000,
+          "minimum": 0,
+          "title": "Variable Cents",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "month",
+        "income_cents",
+        "committed_cents",
+        "variable_cents",
+        "installment_cents",
+        "negative_days",
+        "complete"
+      ],
+      "title": "HistoricalPeriod",
+      "type": "object"
+    },
+    "Income": {
+      "additionalProperties": false,
+      "properties": {
+        "amount_cents": {
+          "maximum": 1000000000000,
+          "minimum": 0,
+          "title": "Amount Cents",
+          "type": "integer"
+        },
+        "certainty": {
+          "enum": [
+            "confirmed",
+            "estimated"
+          ],
+          "title": "Certainty",
+          "type": "string"
+        },
+        "due_on": {
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+          "title": "Due On",
+          "type": "string"
+        },
+        "recurring_confirmed": {
+          "title": "Recurring Confirmed",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "due_on",
+        "amount_cents",
+        "recurring_confirmed",
+        "certainty"
+      ],
+      "title": "Income",
+      "type": "object"
+    },
+    "Projection": {
+      "additionalProperties": false,
+      "properties": {
+        "as_of": {
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+          "title": "As Of",
+          "type": "string"
+        },
+        "base_closing_cents": {
+          "maximum": 1000000000000,
+          "minimum": -1000000000000,
+          "title": "Base Closing Cents",
+          "type": "integer"
+        },
+        "closing_cents": {
+          "maximum": 1000000000000,
+          "minimum": -1000000000000,
+          "title": "Closing Cents",
+          "type": "integer"
+        },
+        "commitments_cents": {
+          "maximum": 1000000000000,
+          "minimum": 0,
+          "title": "Commitments Cents",
+          "type": "integer"
+        },
+        "currency": {
+          "const": "BRL",
+          "title": "Currency",
+          "type": "string"
+        },
+        "customer_id": {
+          "pattern": "^[a-zA-Z0-9][a-zA-Z0-9_-]{0,63}$",
+          "title": "Customer Id",
+          "type": "string"
+        },
+        "estimates_cents": {
+          "maximum": 1000000000000,
+          "minimum": 0,
+          "title": "Estimates Cents",
+          "type": "integer"
+        },
+        "kind": {
+          "const": "projection",
+          "title": "Kind",
+          "type": "string"
+        },
+        "lowest_balance_cents": {
+          "maximum": 1000000000000,
+          "minimum": -1000000000000,
+          "title": "Lowest Balance Cents",
+          "type": "integer"
+        },
+        "opening_cents": {
+          "maximum": 1000000000000,
+          "minimum": -1000000000000,
+          "title": "Opening Cents",
+          "type": "integer"
+        },
+        "proposed_spend_cents": {
+          "maximum": 1000000000000,
+          "minimum": 0,
+          "title": "Proposed Spend Cents",
+          "type": "integer"
+        },
+        "snapshot_id": {
+          "pattern": "^[a-zA-Z0-9][a-zA-Z0-9_-]{0,63}$",
+          "title": "Snapshot Id",
+          "type": "string"
+        },
+        "uncertain": {
+          "title": "Uncertain",
+          "type": "boolean"
+        },
+        "until": {
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+          "title": "Until",
+          "type": "string"
+        },
+        "warnings": {
+          "items": {
+            "enum": [
+              "ALLOWED",
+              "DEFAULT_DENY",
+              "NO_CONSENT",
+              "HUMAN_REQUESTED",
+              "PERSON_SAFETY",
+              "UNKNOWN_CONTEXT",
+              "FINANCIAL_DISTRESS",
+              "INELIGIBLE",
+              "PRODUCT_BLOCKED",
+              "TOOL_NOT_ALLOWED",
+              "INVALID_INPUT",
+              "MISSING_DATA",
+              "UNCERTAIN_DATA",
+              "DEPENDENCY_FAILURE",
+              "TIMEOUT",
+              "INVALID_OUTPUT",
+              "USER_DECLINED"
+            ],
+            "type": "string"
+          },
+          "maxItems": 10,
+          "title": "Warnings",
+          "type": "array"
+        }
+      },
+      "required": [
+        "kind",
+        "customer_id",
+        "currency",
+        "snapshot_id",
+        "as_of",
+        "until",
+        "opening_cents",
+        "commitments_cents",
+        "estimates_cents",
+        "proposed_spend_cents",
+        "base_closing_cents",
+        "closing_cents",
+        "lowest_balance_cents",
+        "uncertain",
+        "warnings"
+      ],
+      "title": "Projection",
+      "type": "object"
+    },
+    "ToolError": {
+      "additionalProperties": false,
+      "properties": {
+        "code": {
+          "enum": [
+            "POLICY_DENIED",
+            "POLICY_UNAVAILABLE",
+            "INVALID_INPUT",
+            "INVALID_OUTPUT",
+            "MISSING_DATA",
+            "DEPENDENCY_UNAVAILABLE",
+            "TIMEOUT",
+            "NOT_IMPLEMENTED"
+          ],
+          "title": "Code",
+          "type": "string"
+        },
+        "retryable": {
+          "title": "Retryable",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "code",
+        "retryable"
+      ],
+      "title": "ToolError",
+      "type": "object"
+    },
+    "ToolResult": {
+      "additionalProperties": false,
+      "properties": {
+        "correlation_id": {
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+          "title": "Correlation Id",
+          "type": "string"
+        },
+        "customer_id": {
+          "pattern": "^[a-zA-Z0-9][a-zA-Z0-9_-]{0,63}$",
+          "title": "Customer Id",
+          "type": "string"
+        },
+        "data": {
+          "anyOf": [
+            {
+              "discriminator": {
+                "mapping": {
+                  "financial_snapshot": "#/$defs/FinancialSnapshot",
+                  "projection": "#/$defs/Projection"
+                },
+                "propertyName": "kind"
+              },
+              "oneOf": [
+                {
+                  "$ref": "#/$defs/FinancialSnapshot"
+                },
+                {
+                  "$ref": "#/$defs/Projection"
+                }
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Data"
+        },
+        "duration_ms": {
+          "maximum": 3600000,
+          "minimum": 0,
+          "title": "Duration Ms",
+          "type": "integer"
+        },
+        "error": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ToolError"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "request_id": {
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+          "title": "Request Id",
+          "type": "string"
+        },
+        "schema_version": {
+          "const": "1.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "status": {
+          "enum": [
+            "ok",
+            "error",
+            "denied",
+            "timeout"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "tool": {
+          "enum": [
+            "data.snapshot",
+            "finance.project"
+          ],
+          "title": "Tool",
+          "type": "string"
+        }
+      },
+      "required": [
+        "schema_version",
+        "request_id",
+        "correlation_id",
+        "customer_id",
+        "tool",
+        "status",
+        "duration_ms",
+        "data",
+        "error"
+      ],
+      "title": "ToolResult",
+      "type": "object"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "correlation_id": {
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+      "title": "Correlation Id",
+      "type": "string"
+    },
+    "customer_id": {
+      "pattern": "^[a-zA-Z0-9][a-zA-Z0-9_-]{0,63}$",
+      "title": "Customer Id",
+      "type": "string"
+    },
+    "financial_result": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Projection"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "intent": {
+      "enum": [
+        "project_cashflow",
+        "unknown",
+        "end_conversation",
+        "handoff"
+      ],
+      "title": "Intent",
+      "type": "string"
+    },
+    "message": {
+      "maxLength": 2000,
+      "minLength": 1,
+      "title": "Message",
+      "type": "string"
+    },
+    "mode": {
+      "const": "DEMO",
+      "title": "Mode",
+      "type": "string"
+    },
+    "policy_decision_id": {
+      "anyOf": [
+        {
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Policy Decision Id"
+    },
+    "requires_human": {
+      "title": "Requires Human",
+      "type": "boolean"
+    },
+    "schema_version": {
+      "const": "1.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "status": {
+      "enum": [
+        "ok",
+        "needs_data",
+        "denied",
+        "handoff",
+        "error"
+      ],
+      "title": "Status",
+      "type": "string"
+    },
+    "tool_results": {
+      "items": {
+        "$ref": "#/$defs/ToolResult"
+      },
+      "maxItems": 10,
+      "title": "Tool Results",
+      "type": "array"
+    }
+  },
+  "required": [
+    "schema_version",
+    "correlation_id",
+    "customer_id",
+    "mode",
+    "status",
+    "intent",
+    "message",
+    "policy_decision_id",
+    "financial_result",
+    "tool_results",
+    "requires_human"
+  ],
+  "title": "AgentResponse",
+  "type": "object"
+}

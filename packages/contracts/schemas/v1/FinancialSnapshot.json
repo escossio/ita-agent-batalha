@@ -1,0 +1,276 @@
+{
+  "$defs": {
+    "Commitment": {
+      "additionalProperties": false,
+      "properties": {
+        "amount_cents": {
+          "maximum": 1000000000000,
+          "minimum": 0,
+          "title": "Amount Cents",
+          "type": "integer"
+        },
+        "category": {
+          "enum": [
+            "bill",
+            "installment",
+            "subscription",
+            "recurring",
+            "variable"
+          ],
+          "title": "Category",
+          "type": "string"
+        },
+        "certainty": {
+          "enum": [
+            "confirmed",
+            "estimated"
+          ],
+          "title": "Certainty",
+          "type": "string"
+        },
+        "due_on": {
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+          "title": "Due On",
+          "type": "string"
+        },
+        "entry_id": {
+          "pattern": "^[a-zA-Z0-9][a-zA-Z0-9_-]{0,63}$",
+          "title": "Entry Id",
+          "type": "string"
+        },
+        "installment_count": {
+          "anyOf": [
+            {
+              "maximum": 600,
+              "minimum": 1,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Installment Count"
+        },
+        "installment_number": {
+          "anyOf": [
+            {
+              "maximum": 600,
+              "minimum": 1,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Installment Number"
+        }
+      },
+      "required": [
+        "entry_id",
+        "due_on",
+        "amount_cents",
+        "category",
+        "certainty"
+      ],
+      "title": "Commitment",
+      "type": "object"
+    },
+    "HistoricalPeriod": {
+      "additionalProperties": false,
+      "properties": {
+        "committed_cents": {
+          "maximum": 1000000000000,
+          "minimum": 0,
+          "title": "Committed Cents",
+          "type": "integer"
+        },
+        "complete": {
+          "title": "Complete",
+          "type": "boolean"
+        },
+        "income_cents": {
+          "maximum": 1000000000000,
+          "minimum": 0,
+          "title": "Income Cents",
+          "type": "integer"
+        },
+        "installment_cents": {
+          "maximum": 1000000000000,
+          "minimum": 0,
+          "title": "Installment Cents",
+          "type": "integer"
+        },
+        "month": {
+          "pattern": "^\\d{4}-(0[1-9]|1[0-2])$",
+          "title": "Month",
+          "type": "string"
+        },
+        "negative_days": {
+          "maximum": 31,
+          "minimum": 0,
+          "title": "Negative Days",
+          "type": "integer"
+        },
+        "variable_cents": {
+          "maximum": 1000000000000,
+          "minimum": 0,
+          "title": "Variable Cents",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "month",
+        "income_cents",
+        "committed_cents",
+        "variable_cents",
+        "installment_cents",
+        "negative_days",
+        "complete"
+      ],
+      "title": "HistoricalPeriod",
+      "type": "object"
+    },
+    "Income": {
+      "additionalProperties": false,
+      "properties": {
+        "amount_cents": {
+          "maximum": 1000000000000,
+          "minimum": 0,
+          "title": "Amount Cents",
+          "type": "integer"
+        },
+        "certainty": {
+          "enum": [
+            "confirmed",
+            "estimated"
+          ],
+          "title": "Certainty",
+          "type": "string"
+        },
+        "due_on": {
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+          "title": "Due On",
+          "type": "string"
+        },
+        "recurring_confirmed": {
+          "title": "Recurring Confirmed",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "due_on",
+        "amount_cents",
+        "recurring_confirmed",
+        "certainty"
+      ],
+      "title": "Income",
+      "type": "object"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "as_of": {
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+      "title": "As Of",
+      "type": "string"
+    },
+    "balance_cents": {
+      "maximum": 1000000000000,
+      "minimum": -1000000000000,
+      "title": "Balance Cents",
+      "type": "integer"
+    },
+    "commitments": {
+      "items": {
+        "$ref": "#/$defs/Commitment"
+      },
+      "maxItems": 1000,
+      "title": "Commitments",
+      "type": "array"
+    },
+    "currency": {
+      "const": "BRL",
+      "title": "Currency",
+      "type": "string"
+    },
+    "customer_id": {
+      "pattern": "^[a-zA-Z0-9][a-zA-Z0-9_-]{0,63}$",
+      "title": "Customer Id",
+      "type": "string"
+    },
+    "data_complete": {
+      "title": "Data Complete",
+      "type": "boolean"
+    },
+    "history": {
+      "anyOf": [
+        {
+          "items": {
+            "$ref": "#/$defs/HistoricalPeriod"
+          },
+          "maxItems": 36,
+          "type": "array"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "History"
+    },
+    "kind": {
+      "const": "financial_snapshot",
+      "title": "Kind",
+      "type": "string"
+    },
+    "mode": {
+      "const": "DEMO",
+      "title": "Mode",
+      "type": "string"
+    },
+    "next_income": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Income"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "provenance": {
+      "const": "DEMO_FIXTURE",
+      "title": "Provenance",
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "1.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "snapshot_id": {
+      "pattern": "^[a-zA-Z0-9][a-zA-Z0-9_-]{0,63}$",
+      "title": "Snapshot Id",
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "kind",
+    "snapshot_id",
+    "customer_id",
+    "mode",
+    "as_of",
+    "currency",
+    "balance_cents",
+    "next_income",
+    "commitments",
+    "history",
+    "data_complete",
+    "provenance"
+  ],
+  "title": "FinancialSnapshot",
+  "type": "object"
+}

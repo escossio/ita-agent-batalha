@@ -1,0 +1,157 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "component": {
+      "enum": [
+        "api",
+        "agent",
+        "policy",
+        "tool-broker",
+        "finance",
+        "data"
+      ],
+      "title": "Component",
+      "type": "string"
+    },
+    "correlation_id": {
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+      "title": "Correlation Id",
+      "type": "string"
+    },
+    "duration_ms": {
+      "anyOf": [
+        {
+          "maximum": 3600000,
+          "minimum": 0,
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Duration Ms"
+    },
+    "event": {
+      "enum": [
+        "request_received",
+        "intent_identified",
+        "policy_requested",
+        "policy_decided",
+        "tool_requested",
+        "tool_authorized",
+        "tool_blocked",
+        "tool_completed",
+        "calculation_started",
+        "calculation_completed",
+        "model_started",
+        "model_completed",
+        "response_validated",
+        "handoff_requested",
+        "request_completed",
+        "error"
+      ],
+      "title": "Event",
+      "type": "string"
+    },
+    "event_id": {
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+      "title": "Event Id",
+      "type": "string"
+    },
+    "occurred_at": {
+      "maxLength": 32,
+      "title": "Occurred At",
+      "type": "string"
+    },
+    "payload_digest": {
+      "anyOf": [
+        {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Payload Digest"
+    },
+    "reason": {
+      "anyOf": [
+        {
+          "enum": [
+            "ALLOWED",
+            "DEFAULT_DENY",
+            "NO_CONSENT",
+            "HUMAN_REQUESTED",
+            "PERSON_SAFETY",
+            "UNKNOWN_CONTEXT",
+            "FINANCIAL_DISTRESS",
+            "INELIGIBLE",
+            "PRODUCT_BLOCKED",
+            "TOOL_NOT_ALLOWED",
+            "INVALID_INPUT",
+            "MISSING_DATA",
+            "UNCERTAIN_DATA",
+            "DEPENDENCY_FAILURE",
+            "TIMEOUT",
+            "INVALID_OUTPUT",
+            "USER_DECLINED"
+          ],
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Reason"
+    },
+    "schema_version": {
+      "const": "1.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "status": {
+      "enum": [
+        "started",
+        "ok",
+        "denied",
+        "error",
+        "timeout",
+        "handoff"
+      ],
+      "title": "Status",
+      "type": "string"
+    },
+    "tool": {
+      "anyOf": [
+        {
+          "enum": [
+            "data.snapshot",
+            "finance.project"
+          ],
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Tool"
+    }
+  },
+  "required": [
+    "schema_version",
+    "event_id",
+    "correlation_id",
+    "occurred_at",
+    "component",
+    "event",
+    "status"
+  ],
+  "title": "AuditEvent",
+  "type": "object"
+}

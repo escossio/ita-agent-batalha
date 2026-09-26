@@ -7,5 +7,8 @@
 !packages/
 !packages/runtime/
 !packages/runtime/**
+!packages/contracts/
+!packages/contracts/**
+!requirements.txt
 !services/
 !services/**
