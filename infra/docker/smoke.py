@@ -61,6 +61,31 @@ with urllib.request.urlopen(req, timeout=5) as response:
     assert response.headers["X-Correlation-ID"] == cid
 """
     compose("exec", "-T", "tool-broker", "python", "-c", finance_probe)
+    broker_probe = """
+import json
+import urllib.request
+from uuid import uuid4
+cid = str(uuid4())
+for customer, expected in (("demo-customer", "ok"), ("demo-denied", "denied")):
+    value = dict(schema_version="1.0", request_id=str(uuid4()), correlation_id=cid,
+        customer_id=customer, tool="finance.project",
+        arguments=dict(kind="projection", proposed_spend_cents=50000), policy_decision_id=cid)
+    req = urllib.request.Request("http://tool-broker:8080/v1/execute", data=json.dumps(value).encode(),
+        headers={"Content-Type": "application/json", "X-Correlation-ID": cid})
+    with urllib.request.urlopen(req, timeout=8) as response:
+        result = json.load(response)
+        assert result["status"] == expected, result
+        assert result["correlation_id"] == cid
+        if expected == "ok":
+            assert result["data"]["closing_cents"] == 60000
+            assert result["data"]["uncertain"]
+        else:
+            assert result["data"] is None
+"""
+    compose("exec", "-T", "agent", "python", "-c", broker_probe)
+    broker_logs = compose("logs", "--no-color", "tool-broker")
+    assert '"event": "tool_authorized"' in broker_logs
+    assert '"event": "tool_blocked"' in broker_logs
     # Probe actual container IPs as well as DNS, so lack of discovery alone is not proof.
     for target, port in (("postgres", 5432), ("finance", 8080), ("data", 8080)):
         info = json.loads(subprocess.check_output(["docker", "inspect", compose("ps", "-q", target)]))[0]

@@ -1,0 +1,35 @@
+[
+  {
+    "schema_version": "1.0",
+    "customer_id": "demo-customer",
+    "mode": "DEMO",
+    "consent_to_analysis": true,
+    "financial_level": "stable",
+    "emotional_state": "neutral",
+    "human_requested": false,
+    "contact_permission": false,
+    "provenance": "DEMO_FIXTURE"
+  },
+  {
+    "schema_version": "1.0",
+    "customer_id": "demo-denied",
+    "mode": "DEMO",
+    "consent_to_analysis": false,
+    "financial_level": "stable",
+    "emotional_state": "neutral",
+    "human_requested": false,
+    "contact_permission": false,
+    "provenance": "DEMO_FIXTURE"
+  },
+  {
+    "schema_version": "1.0",
+    "customer_id": "demo-crisis",
+    "mode": "DEMO",
+    "consent_to_analysis": true,
+    "financial_level": "stable",
+    "emotional_state": "crisis",
+    "human_requested": false,
+    "contact_permission": false,
+    "provenance": "DEMO_FIXTURE"
+  }
+]

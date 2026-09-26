@@ -11,3 +11,5 @@ contratos na 4 e enforcement de execução nas etapas 7–10. Não confundir pre
 
 Segredos externos ao Git. Logs sem credenciais/conteúdo privado. Fixtures são DEMO e não contratos reais Itaú.
 O repositório é público: revisão de árvore, histórico e XLSX expandido antes de cada push.
+
+Etapa 9: enforcement estático e de rede certificado; Broker reautoriza com contexto DEMO do servidor e aplica schemas/timeout/auditoria. Tentativas de decisão forjada, acesso direto, cliente trocado e ferramenta não permitida têm testes. A semântica financeira do contrato rejeita resultados incoerentes. A identidade atual é exclusivamente DEMO; não representa autenticação bancária real.
