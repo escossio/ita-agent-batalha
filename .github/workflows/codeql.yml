@@ -22,7 +22,7 @@ jobs:
           persist-credentials: false
       - uses: github/codeql-action/init@4bd7200e1f146b1c937cae12d258b50f41a53cf8
         with:
-          languages: python
+          languages: python,javascript-typescript
           build-mode: none
           config-file: ./.github/codeql-config.yml
       - uses: github/codeql-action/analyze@4bd7200e1f146b1c937cae12d258b50f41a53cf8

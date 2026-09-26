@@ -2,7 +2,7 @@
 set -euo pipefail
 cd "$(dirname "$0")/.."
 case "${1:-}" in
-  lint) python3 -m ruff check .; git diff --check ;;
+  lint) python3 -m ruff check .; node --check services/web/static/app.js; git diff --check ;;
   unit-contract)
     python3 -m unittest discover -s tests -v
     python3 scripts/export_contracts.py --check

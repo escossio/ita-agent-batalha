@@ -6,6 +6,7 @@ from .providers import configured_provider
 
 
 class AgentTransport(HttpTransport):
+    TIMEOUT = 6
     ROUTES = {"authorize": "http://policy:8080/v1/authorize", "execute": "http://tool-broker:8080/v1/execute"}
 
 

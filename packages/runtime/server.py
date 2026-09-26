@@ -12,7 +12,7 @@ def event(service: str, name: str, **fields) -> None:
     print(json.dumps({"service": service, "event": name, **fields}), flush=True)
 
 
-def serve(service: str, routes=None) -> None:
+def serve(service: str, routes=None, pages=None, health=None) -> None:
     class Handler(BaseHTTPRequestHandler):
         server_version = "ITA"
         sys_version = ""
@@ -70,9 +70,13 @@ def serve(service: str, routes=None) -> None:
                 self.send_error(400, "invalid correlation ID")
                 return
             if self.path == "/healthz":
-                status = 200
+                healthy = health() if health else True
+                status = 200 if healthy else 503
                 content_type = "application/json"
-                body = json.dumps({"service": service, "status": "ok", "mode": "FOUNDATION"}).encode()
+                body = json.dumps({"service": service, "status": "ok" if healthy else "unavailable", "mode": "DEMO"}).encode()
+            elif self.path in (pages or {}):
+                status = 200
+                content_type, body = pages[self.path]
             elif service == "web" and self.path == "/":
                 status = 200
                 content_type = "text/html; charset=utf-8"
@@ -86,7 +90,7 @@ def serve(service: str, routes=None) -> None:
             self.send_header("Content-Length", str(len(body)))
             self.send_header("X-Correlation-ID", correlation_id)
             self.send_header("X-Content-Type-Options", "nosniff")
-            self.send_header("Content-Security-Policy", "default-src 'none'; frame-ancestors 'none'")
+            self.send_header("Content-Security-Policy", "default-src 'self'; object-src 'none'; base-uri 'none'; frame-ancestors 'none'")
             self.end_headers()
             self.wfile.write(body)
             event(service, "request.completed", correlation_id=correlation_id, status=status,

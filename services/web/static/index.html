@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="pt-BR">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>ITA · Seu próximo passo</title><link rel="stylesheet" href="/style.css"><script src="/app.js" defer></script></head>
+<body><header><a class="brand" href="/">ita<span>seu próximo passo</span></a><span class="badge">DEMO · dados sintéticos</span></header>
+<main><p class="eyebrow">CLAREZA PARA DECIDIR</p><h1>Até o próximo<br>salário dá?</h1><p class="lead">Olhe o caminho até a próxima renda, considerando seus compromissos e o gasto que você está planejando.</p>
+<div class="layout"><section class="card"><h2>Vamos olhar juntos</h2><form id="chat">
+<label for="question">O que você quer entender?</label><textarea id="question" maxlength="2000" required>Até o próximo salário dá?</textarea>
+<label for="amount">Gasto que está planejando (R$)</label><input id="amount" type="text" inputmode="decimal" value="500,00" pattern="(0|[1-9][0-9]{0,9})([.,][0-9]{1,2})?" required>
+<label for="case">Exemplo da demonstração</label><select id="case"><option value="standard">Analisar meu planejamento</option><option value="denied">Análise sem autorização</option><option value="crisis">Apoio humano</option></select>
+<label class="consent"><input id="consent" type="checkbox" checked> Autorizo a análise destes dados de demonstração.</label>
+<button id="submit" type="submit">Ver meu planejamento <span aria-hidden="true">→</span></button></form></section>
+<section class="card result" aria-live="polite"><span class="eyebrow">SUA VISÃO DO PERÍODO</span><h2 id="result-title">Uma decisão com mais contexto.</h2><p id="answer">Envie sua pergunta para consultar a projeção. Nenhum valor é calculado nesta página.</p><p id="provider" class="muted"></p><details id="evidence" hidden><summary>Como chegamos à resposta</summary><pre id="trace"></pre></details></section></div>
+<p class="footnote">Esta demonstração não movimenta dinheiro e não oferece produtos reais. A decisão final continua com você.</p></main></body></html>

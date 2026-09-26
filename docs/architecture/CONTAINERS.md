@@ -2,13 +2,13 @@
 
 | Serviço | Papel nesta etapa | Redes de acesso |
 | --- | --- | --- |
-| web | Página de fundação DEMO e saúde | entrada e api |
-| api | Saúde; futura validação de entrada | web e agent |
+| web | UI DEMO e proxy para API | entrada e api |
+| api | Validação de entrada/contexto DEMO | web e agent |
 | agent | Orquestrador com provider mock/Vertex | api, policy, broker |
 | policy | Policy Engine independente | agent e broker |
 | tool-broker | Execução autorizada e auditada | agent, policy, finance, data |
 | finance | Cálculos determinísticos | broker |
-| data | Adaptador de fixture DEMO; persistência na etapa 11 | broker e postgres |
+| data | PostgreSQL com seed DEMO explícito | broker e postgres |
 | postgres | Banco DEMO, usuário de aplicação sem superuser | somente data |
 | observability | Saúde; reserva para telemetria | rede isolada |
 | secrets-init | Job de inicialização de secrets | sem rede |
@@ -49,4 +49,4 @@ Falha real de teste não é mascarada por retry; falha de transporte permite out
 Saída local em `.artifacts/` (ignorada no Git); evidência pública registra SHA/status, sem hosts/IPs privados.
 GitHub Actions também executa a certificação em runner hospedado; o status `distributed-foundation` comprova o worker coordenado pelo AGT.
 
-O HTML original arquivado não é servido. Ainda não existe vertical slice pela Web ou autenticação bancária real. Agent, Policy, Broker e Finance possuem interfaces internas certificadas com mock explícito.
+O HTML original arquivado não é servido. Vertical slice pela Web disponível desde a etapa 11; não existe autenticação bancária real. Agent, Policy, Broker e Finance possuem interfaces internas certificadas com mock explícito.
