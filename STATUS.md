@@ -21,8 +21,8 @@ Voz e Tom: **SOURCE_PENDING_LOCAL_COPY**, dependência documental não bloqueant
 | 8 | Concluída | PR #7; SHA e7f10e7, 55 testes/CI/worker aprovados; merge e5401f3 |
 | 9 | Concluída | PR #8; SHA 6313b9b aprovado em CI/worker; 66 testes; merge 78845aa |
 | 10 | Concluída com mock autorizado | PR #10; SHA 7c6e99f; 76 testes/CI/worker aprovados; merge 40e0ca8. Vertex real aguarda ADC externo |
-| 11 | Em validação | Web/API e PostgreSQL conectados à arquitetura; integração completa somente em workers |
-| 12 | Não iniciada | Aguarda gate 11 |
+| 11 | Concluída | PR #11; SHA 06667df; 78 testes e integração PostgreSQL/Web em CI/worker; merge 40ea31b |
+| 12 | Em validação | Testes adversariais e outages reais em worker; aguarda certificação |
 | 13 | Não iniciada | Dataset íntegro; runner de eval funcional ainda não implementado |
 | 14 | Não iniciada | Aguarda gate 13 |
 | 15 | Não iniciada | Auditoria básica existente; observabilidade completa aguarda gate 14 |
@@ -105,3 +105,9 @@ Etapa 10: 76 testes curtos aprovados; Compose base e override Vertex validados s
 ## Etapa 11 — vertical slice
 
 Web apresenta pergunta/gasto, API valida e converte representação monetária sem float, Agent coordena Policy/Broker, Finance calcula e Data consulta PostgreSQL. Fixture é seed explícito, não fallback. Integração altera saldo no banco e verifica mudança da resposta pela Web. Configuração alterada: Dockerfile, requirements-data.txt, .dockerignore, workflow CodeQL (inclui JavaScript) e verify.sh. Original HTML permanece arquivado e intacto.
+
+## Etapa 12 — testes adversariais
+
+Threat model atualizado com controles/evidências e limites do mock. Testes cobrem falha de autorização/validação/ferramenta, ausência/incerteza, injeção, exfiltração, invenção financeira, produtos, humano e bypass. Worker derruba Policy/Broker/Finance/Data/PostgreSQL um a um, exige fail closed e verifica recuperação da jornada. Nenhuma falha é convertida em PASS por fallback.
+
+Correção de teste na etapa 12: o transporte simulado agora converte MissingData no mesmo erro estruturado MISSING_DATA do HTTP real. A falha não foi ignorada; regressão repetida após a correção.
