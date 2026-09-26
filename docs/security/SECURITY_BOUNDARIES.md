@@ -1,0 +1,13 @@
+# Fronteiras obrigatórias
+
+Browser é entrada não confiável. API valida identidade/contexto e limites; Agent não autoriza ações.
+Policy é a autoridade independente, default deny; Broker revalida a autorização no servidor.
+Somente Data Access pode receber credencial PostgreSQL. Finance produz cálculos determinísticos.
+Agent não acessa DB, SQL, shell ou ferramentas diretamente. Resposta de LLM é dado não confiável.
+Ausência/erro em autorização ou schema bloqueia execução; falha de cálculo/tool não produz números inventados.
+
+Na etapa 2, essas fronteiras são exigências e checks estáticos; enforcement de rede será validado na etapa 3,
+contratos na 4 e enforcement de execução nas etapas 7–10. Não confundir preparação com implementação concluída.
+
+Segredos externos ao Git. Logs sem credenciais/conteúdo privado. Fixtures são DEMO e não contratos reais Itaú.
+O repositório é público: revisão de árvore, histórico e XLSX expandido antes de cada push.

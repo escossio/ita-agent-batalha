@@ -1,0 +1,5 @@
+name: ITA Python
+paths-ignore:
+  - docs/source
+# Fontes arquivadas não são runtime. Seu conteúdo é revisado no secret-scan,
+# incluindo os XMLs de XLSX; o risco DOM do HTML está documentado.
