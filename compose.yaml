@@ -1,0 +1,4 @@
+# Marcador da estrutura inicial da etapa 1; não é uma stack executável.
+# Definir serviços e redes somente na etapa 3 após validar as etapas 1 e 2.
+name: ita-agent-batalha
+services: {}

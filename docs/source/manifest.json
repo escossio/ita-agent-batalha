@@ -1,0 +1,11 @@
+{
+  "manifest_version": "1.0",
+  "inventory_date": "2026-09-26",
+  "status": "blocked_missing_sources",
+  "sources": [
+    {"id": "decision_rules", "expected_name": "ITA_arvore_decisao_regras_produtos.xlsx", "status": "missing", "origin": null, "captured_at": null, "path": null, "size_bytes": null, "sha256": null},
+    {"id": "evaluation_scenarios", "expected_name": "cenarios_treinamento_ITA_250.xlsx", "status": "missing", "origin": null, "captured_at": null, "path": null, "size_bytes": null, "sha256": null},
+    {"id": "journey_prototype", "expected_name": "prototipo_IAI_ITA_jornada.html", "status": "missing", "origin": null, "captured_at": null, "path": null, "size_bytes": null, "sha256": null},
+    {"id": "voice_and_tone", "expected_name": "Ita: Voz e Tom", "status": "missing", "origin": null, "captured_at": null, "path": null, "size_bytes": null, "sha256": null}
+  ]
+}
