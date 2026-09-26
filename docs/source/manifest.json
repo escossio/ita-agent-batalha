@@ -1,11 +1,50 @@
 {
   "manifest_version": "1.0",
   "inventory_date": "2026-09-26",
-  "status": "blocked_missing_sources",
+  "status": "blocked_invalid_and_missing_sources",
   "sources": [
-    {"id": "decision_rules", "expected_name": "ITA_arvore_decisao_regras_produtos.xlsx", "status": "missing", "origin": null, "captured_at": null, "path": null, "size_bytes": null, "sha256": null},
-    {"id": "evaluation_scenarios", "expected_name": "cenarios_treinamento_ITA_250.xlsx", "status": "missing", "origin": null, "captured_at": null, "path": null, "size_bytes": null, "sha256": null},
-    {"id": "journey_prototype", "expected_name": "prototipo_IAI_ITA_jornada.html", "status": "missing", "origin": null, "captured_at": null, "path": null, "size_bytes": null, "sha256": null},
-    {"id": "voice_and_tone", "expected_name": "Ita: Voz e Tom", "status": "missing", "origin": null, "captured_at": null, "path": null, "size_bytes": null, "sha256": null}
+    {
+      "id": "decision_rules",
+      "expected_name": "ITA_arvore_decisao_regras_produtos.xlsx",
+      "status": "received_invalid",
+      "origin": "Pasta docs/source/ indicada pelo usuário; proveniência anterior não informada.",
+      "captured_at": "2026-09-26T21:40:30Z",
+      "path": null,
+      "size_bytes": 12624,
+      "sha256": "31e653e975cd64d8cfa51a629d749e23eb2c08a777e35227594f9da65249c331",
+      "integrity": "failed_zip_validation",
+      "publication_status": "not_published",
+      "review": "docs/source/INTAKE_REVIEW.md"
+    },
+    {
+      "id": "evaluation_scenarios",
+      "expected_name": "cenarios_treinamento_ITA_250.xlsx",
+      "status": "missing",
+      "origin": null,
+      "captured_at": null,
+      "path": null,
+      "size_bytes": null,
+      "sha256": null
+    },
+    {
+      "id": "journey_prototype",
+      "expected_name": "prototipo_IAI_ITA_jornada.html",
+      "status": "missing",
+      "origin": null,
+      "captured_at": null,
+      "path": null,
+      "size_bytes": null,
+      "sha256": null
+    },
+    {
+      "id": "voice_and_tone",
+      "expected_name": "Ita: Voz e Tom",
+      "status": "missing",
+      "origin": null,
+      "captured_at": null,
+      "path": null,
+      "size_bytes": null,
+      "sha256": null
+    }
   ]
 }

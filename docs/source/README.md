@@ -3,6 +3,8 @@
 Nenhuma das quatro fontes foi incorporada. Não há arquivos fictícios substituindo originais.
 O inventário está em `manifest.json`; valores nulos significam evidência ainda não obtida.
 
+Em 2026-09-26, a pasta indicada pelo usuário continha `ITA_arvore_decisao_regras_produtos.xlsx` (12.624 bytes), mas o ZIP interno falhou na validação. Original preservado sem alterações e cópia privada conferida fora do Git; arquivo excluído localmente do staging automático até substituição por cópia íntegra e revisão. As demais três fontes continuam ausentes. Detalhes em [INTAKE_REVIEW.md](INTAKE_REVIEW.md).
+
 Para concluir a etapa 1:
 
 1. Obter os dois XLSX, o HTML e o documento Voz e Tom em origem confirmada.

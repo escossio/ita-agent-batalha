@@ -2,7 +2,7 @@
 
 Fundação do agente financeiro ITA. Repositório público: <https://github.com/escossio/ita-agent-batalha>.
 
-**Estado: etapa 1 parcial, bloqueada pela ausência das quatro fontes. Não há aplicação executável.**
+**Estado: etapa 1 parcial, bloqueada: uma fonte recebida com integridade inválida e três ausentes. Não há aplicação executável.**
 
 A sequência oficial está em [IMPLEMENTATION_ORDER.md](docs/architecture/IMPLEMENTATION_ORDER.md).
 O estado verificável e as pendências estão em [STATUS.md](STATUS.md).
@@ -10,11 +10,11 @@ As etapas 2–10 não foram iniciadas: sua execução depende da validação da 
 
 ## Documentos-fonte
 
-Os nomes abaixo foram fornecidos no briefing de implantação. Os arquivos e links de origem ainda não foram disponibilizados/localizados. Esta tabela é um inventário pendente, não comprovação de incorporação.
+Os nomes abaixo foram fornecidos no briefing de implantação. O usuário indicou a pasta local `docs/source/`; nela foi recebida somente a planilha de regras, com integridade inválida. Nenhuma fonte está aprovada ou incorporada ao Git.
 
 | Fonte esperada | Origem confirmada | Função | Captura |
 | --- | --- | --- | --- |
-| `ITA_arvore_decisao_regras_produtos.xlsx` | Pendente | Regras, árvore decisória e restrições de produtos | Pendente |
+| `ITA_arvore_decisao_regras_produtos.xlsx` | Pasta local indicada pelo usuário | Regras, árvore decisória e restrições de produtos | 2026-09-26; ZIP inválido, não publicada |
 | `cenarios_treinamento_ITA_250.xlsx` | Pendente | Fonte de 250 cenários de avaliação/regressão; não treinamento automático de modelo | Pendente |
 | `prototipo_IAI_ITA_jornada.html` | Pendente | Referência de jornada e interação | Pendente |
 | `Ita: Voz e Tom` | Pendente; pode ser Google Docs | Diretrizes de linguagem e comportamento a classificar na etapa 5 | Pendente |
@@ -33,7 +33,7 @@ packages/             # reservado
 config/               # reservado
 evals/                # reservado
 docs/
-  source/             # inventário; fontes ainda ausentes
+  source/             # inventário; nenhuma fonte aprovada
   architecture/       # ordem oficial de implementação
   adr/                # reservado
   security/           # evidência da revisão antes da publicação

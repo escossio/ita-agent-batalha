@@ -3,13 +3,13 @@
 Data: 2026-09-26. Repositório: <https://github.com/escossio/ita-agent-batalha>.
 Branch local: `main`. Para o SHA exato deste checkpoint, executar `git rev-parse HEAD`.
 
-**Etapa 1 parcial e bloqueada: nenhuma das quatro fontes foi localizada ou incorporada.**
+**Etapa 1 parcial e bloqueada: uma fonte recebida com integridade inválida, três ausentes e nenhuma incorporada.**
 O repositório público foi criado vazio e conferido pela API. Workspace isolado e identidade Git local noreply preparados.
 Estrutura inicial, inventário e sequência oficial 1 → 10 registrados. Nenhum arquivo preexistente de outro projeto foi alterado.
 
 | Etapa | Estado | Evidência / impedimento |
 | --- | --- | --- |
-| 1 — Repositório e fontes | Parcial / bloqueada | Repositório criado; estrutura inicial e `docs/source/manifest.json`; 0/4 fontes recebidas |
+| 1 — Repositório e fontes | Parcial / bloqueada | Repositório criado; 1/4 fontes recebidas, ZIP inválido; 0/4 aprovadas/incorporadas |
 | 2 — Governança | Bloqueada, não iniciada | Gate da etapa 1 não aprovado |
 | 3 — Containers | Bloqueada, não iniciada | Depende da etapa 2 |
 | 4 — Contratos | Bloqueada, não iniciada | Depende da etapa 3 |
@@ -20,7 +20,14 @@ Estrutura inicial, inventário e sequência oficial 1 → 10 registrados. Nenhum
 | 9 — Tool Broker | Bloqueada, não iniciada | Depende da etapa 8 |
 | 10 — Agent | Bloqueada, não iniciada | Depende da etapa 9 |
 
-## Validações executadas
+## Recebimento de fonte após o bootstrap
+
+- Usuário indicou `docs/source/`; encontrada somente a planilha de regras, com 12.624 bytes e hash estável.
+- Validação ZIP falhou: 11 das 19 entradas ilegíveis; offsets negativos e cabeçalhos inválidos. Registro em `docs/source/INTAKE_REVIEW.md`.
+- Arquivo original preservado, backup privado com hash conferido e exclusão local em `.git/info/exclude`; fonte inválida não será publicada.
+- Manifesto atualizado para `received_invalid`; três fontes permanecem `missing`. Não houve transformação, reparo ou avanço de etapa.
+
+## Validações do bootstrap anterior (histórico)
 
 - Conta GitHub confirmada: `escossio`; nome preferencial inexistente antes da criação; repositório criado PUBLIC.
 - Git local 2.47.3, GitHub CLI 2.46.0 e Docker Compose 2.26.1 disponíveis; coordenador `andy-ci-distributed` localizado, não executado.
@@ -44,10 +51,9 @@ Estrutura inicial, inventário e sequência oficial 1 → 10 registrados. Nenhum
 
 ## Pendência para retomar
 
-Obter localização/acesso a `ITA_arvore_decisao_regras_produtos.xlsx`, `cenarios_treinamento_ITA_250.xlsx`,
-`prototipo_IAI_ITA_jornada.html` e `Ita: Voz e Tom`. Busca por nomes no Drive conectado retornou zero correspondências;
-busca local nos diretórios de trabalho/downloads inspecionados também não localizou esses arquivos.
-Isso não demonstra inexistência em outros locais ou contas. Localização solicitada ao usuário.
+Receber uma nova cópia íntegra de `ITA_arvore_decisao_regras_produtos.xlsx` e obter
+`cenarios_treinamento_ITA_250.xlsx`, `prototipo_IAI_ITA_jornada.html` e `Ita: Voz e Tom`.
+A pasta indicada contém apenas a planilha inválida além dos documentos de inventário. As buscas anteriores no Drive não localizaram as fontes.
 
 Retomar a etapa 1: revisar dados/metadados, preservar originais, sanitizar cópias se necessário, registrar proveniência/hash,
 incorporar as quatro fontes, atualizar README/STATUS, validar e fazer checkpoint. Só então iniciar a etapa 2.
@@ -55,5 +61,5 @@ incorporar as quatro fontes, atualizar README/STATUS, validar e fazer checkpoint
 ## Divergências e riscos
 
 O conflito “agora não” foi informado no briefing, mas não verificado nas fontes indisponíveis. Nenhuma decisão de policy foi tomada.
-O conteúdo das fontes não pôde ser avaliado quanto a segredos/dados pessoais/bancários; sua publicação continua pendente de revisão.
+O ZIP inválido impede revisar integralmente a planilha recebida quanto a segredos/dados pessoais/bancários; sua publicação continua bloqueada. As demais fontes não foram recebidas.
 A proteção de main ainda não foi aplicada, pois a etapa 2 está bloqueada. Este checkpoint é bootstrap documental, não fundação concluída.

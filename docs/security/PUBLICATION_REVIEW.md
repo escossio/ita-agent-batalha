@@ -1,6 +1,6 @@
 # Revisão do checkpoint documental — 2026-09-26
 
-Escopo: arquivos novos desta etapa 1 parcial. Nenhuma fonte original recebida; nenhuma configuração do laboratório copiada.
+Escopo inicial: arquivos novos da etapa 1 parcial antes do recebimento das fontes; nenhuma configuração do laboratório copiada. O recebimento posterior está registrado abaixo.
 Este registro não substitui o threat model e as fronteiras de segurança a implementar nas etapas posteriores.
 
 ## Revisão anterior ao primeiro push
@@ -32,6 +32,10 @@ Se houver achado, não publicar: preservar original fora do Git público e revis
 
 ## Limitações
 
-- As quatro fontes seguem ausentes; não podem ser classificadas como seguras.
+- Nenhuma das quatro fontes foi aprovada: uma recebida com ZIP inválido e três ausentes.
 - Não há branch protection ou checks públicos configurados nesta etapa.
 - A revisão é manual/local e não constitui pipeline de certificação da etapa 2.
+
+## Recebimento posterior — planilha inválida
+
+A planilha de regras recebida em 2026-09-26 falhou na validação do ZIP interno. Não foi possível revisar todo o conteúdo; isso bloqueia sua publicação mesmo sem evidência confirmada de segredo. Original preservado, backup privado conferido e arquivo mantido fora do índice/histórico. Publicar somente atualização documental do recebimento, após varredura de árvore/histórico. Detalhes e hash em `docs/source/INTAKE_REVIEW.md`.
