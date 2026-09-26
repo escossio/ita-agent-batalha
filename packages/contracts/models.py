@@ -215,6 +215,23 @@ class Projection(Record):
     warnings: Annotated[list[Reason], Field(max_length=10)]
 
 
+    @model_validator(mode="after")
+    def financial_consistency(self):
+        if self.until <= self.as_of:
+            raise ValueError("invalid projection horizon")
+        if self.base_closing_cents != self.opening_cents - self.commitments_cents - self.estimates_cents:
+            raise ValueError("inconsistent base projection")
+        if self.closing_cents != self.base_closing_cents - self.proposed_spend_cents:
+            raise ValueError("inconsistent spending projection")
+        if self.lowest_balance_cents != self.closing_cents:
+            raise ValueError("invalid lowest balance for outflow-only horizon")
+        if self.estimates_cents and not self.uncertain:
+            raise ValueError("estimates cannot be certain")
+        if self.uncertain != ("UNCERTAIN_DATA" in self.warnings):
+            raise ValueError("uncertainty must be explicit")
+        return self
+
+
 class ToolError(Record):
     code: Literal["POLICY_DENIED", "POLICY_UNAVAILABLE", "INVALID_INPUT", "INVALID_OUTPUT", "MISSING_DATA", "DEPENDENCY_UNAVAILABLE", "TIMEOUT", "NOT_IMPLEMENTED"]
     retryable: bool

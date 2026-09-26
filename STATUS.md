@@ -18,8 +18,9 @@ Voz e Tom: **SOURCE_PENDING_LOCAL_COPY**, dependência documental não bloqueant
 | 5 | Concluída | PR #4; SHA 0403328, CI/worker aprovados; merge f0e5461 |
 | 6 | Concluída | PR #5; SHA 9c585df aprovado em CI/worker; merge 96f1b54 |
 | 7 | Concluída | PR #6; SHA dd04465 aprovado em CI/worker, inclusive Policy HTTP; merge 5a0fa23 |
-| 8 | Em validação | Motor determinístico, fixtures DEMO e testes; aguarda CI/worker |
-| 9–10 | Não iniciadas | Aguardar gates anteriores |
+| 8 | Concluída | PR #7; SHA e7f10e7, 55 testes/CI/worker aprovados; merge e5401f3 |
+| 9 | Em validação | Broker com reautorização independente, schemas, timeout e auditoria; aguarda CI/worker |
+| 10 | Não iniciada | Aguardar gate 9 |
 | 11–18 | Planejadas, não iniciadas | Definições recebidas e registradas no plano oficial |
 
 Originais preservados: XLSX byte a byte; HTML original privado e cópia pública sanitizada. Histórico de recepção em docs/source/INTAKE_REVIEW.md. Etapas anteriores de acesso remoto são históricas e não geram dependência atual.
@@ -71,3 +72,7 @@ Validação da etapa 7: 43 testes curtos e lint/arquitetura/scans aprovados; smo
 ## Etapa 8 — Finance Engine
 
 Projeção em centavos, categorias de compromissos, histórico, simulação de gasto e custos com taxa verificada. MissingData não gera número. Fixtures sintéticas DEMO, sem contratos reais presumidos. Smoke de worker chama Finance por HTTP a partir da rede do Broker.
+
+## Etapa 9 — Tool Broker
+
+66 testes curtos aprovados. Grants/decision_id do chamador não autorizam; Policy carrega contexto DEMO do servidor. Leitura dependente de dados exige autorização própria. Contrato Projection reforçado na origem para rejeitar números internamente incoerentes. HTTP tem destinos fixos, sem redirects/proxy; logs de auditoria sem payload financeiro. Data usa adaptador de fixture explícito nesta etapa, sem fallback; persistência PostgreSQL pertence à vertical slice (11). Smoke distribuído inclui Broker → Policy → Data/Finance e caso negado.

@@ -5,16 +5,12 @@ import json
 from pathlib import Path
 from uuid import uuid4
 
-from packages.contracts.models import PolicyDecision, ToolRequest
+from packages.contracts.models import PolicyDecision
+from packages.contracts.digests import request_digest
 from .models import Facts, PolicyInput, PolicyLimits
 
 PRODUCTS = ["credit", "renegotiation", "financing", "consortium", "investment"]
 ACTIONS = ["read_snapshot", "project_cashflow", "compare_products", "end_conversation", "handoff"]
-
-
-def request_digest(request: ToolRequest) -> str:
-    data = request.model_dump(exclude={"policy_decision_id"})
-    return hashlib.sha256(json.dumps(data, sort_keys=True, separators=(",", ":"), ensure_ascii=False).encode()).hexdigest()
 
 
 def matching_rules(facts: Facts, rules: list[dict]) -> list[str]:
