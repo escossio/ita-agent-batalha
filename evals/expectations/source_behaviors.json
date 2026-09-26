@@ -1,0 +1,3005 @@
+{
+  "expectations": [
+    {
+      "behavior": "Projetar saldo até a próxima renda com e sem a compra, explicar impacto e permitir simulação de outro valor.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-001",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 2,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Considerar compromissos futuros e gasto esperado; mostrar cenário base versus cenário com a viagem.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-002",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 3,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Calcular saldo projetado até próxima renda e comunicar margem restante.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-003",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 4,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Mostrar impacto no caixa de curto prazo e alternativas de valor/data, sem decidir pelo cliente.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-004",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 5,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Descontar compromissos previstos e estimar gastos até a próxima renda.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-005",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 6,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Projetar impacto do gasto no período restante até a renda.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-006",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 7,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Comparar saldo projetado com e sem a compra e explicar eventual aperto.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-007",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 8,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Considerar compromissos conhecidos e padrão variável dos próximos 12 dias.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-008",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 9,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Informar saldo projetado pós-gasto e principais compromissos considerados.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-009",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 10,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Mostrar impacto proporcional e evitar alarmismo.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-010",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 11,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Explicar margem projetada e risco de faltar caixa para compromissos esperados.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-011",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 12,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Simular gasto e mostrar impacto, respeitando decisão do cliente.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-012",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 13,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Incluir gasto hipotético na projeção e comparar cenários.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-013",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 14,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Calcular faixa compatível com compromissos e mostrar margem.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-014",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 15,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Projetar trajetória do saldo e indicar se/quando pode ficar negativo.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-015",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 16,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Estimar margem após compromissos e gastos esperados; apresentar como referência, não autorização.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-016",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 17,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Projetar e explicar efeito sobre a sobra.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-017",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 18,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Usar compromissos certos e estimativa de variáveis, deixando claro o que é estimativa.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-018",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 19,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Mostrar que saldo em conta não equivale a dinheiro livre e quantificar compromissos.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-019",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 20,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Simular saldo futuro e permitir testar outra data/valor.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-020",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 21,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Projetar efeito simples e contextualizado.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-021",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 22,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Simular os dois momentos e explicar diferenças sem escolher pelo cliente.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-022",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 23,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Simular ambos no fluxo e mostrar saldo projetado.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-023",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 24,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Validar contra compromissos antes de tratar o valor como disponível.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-024",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 25,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Projetar impacto e alternativas de timing.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-025",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 26,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Calcular cenário completo até próxima renda.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-026",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 27,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Não se deixar influenciar pela urgência; analisar somente impacto financeiro.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-027",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 28,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Adicionar ao gasto esperado e mostrar nova projeção.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-028",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 29,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Comparar cenário atual, compra agora e eventualmente compra após renda.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-029",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 30,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Checar compromissos conhecidos e projetar cobertura.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-030",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 31,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Calcular saldo disponível estimado após compromissos e variáveis.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-031",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 32,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Avaliar proporção e compromissos; explicar margem futura.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-032",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 33,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Somar hipóteses e projetar impacto conjunto.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-033",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 34,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Projetar fluxo temporal e informar menor saldo previsto.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-034",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 35,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Projetar gasto acumulado versus dias restantes e compromissos.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-035",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 36,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Estimar margem depois dos compromissos e comunicar faixa.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-036",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 37,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Simular impacto sem classificar gasto como bom/ruim.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-037",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 38,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Projetar fluxo e apontar eventual insuficiência com alternativas de timing se aplicável.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-038",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 39,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Projetar por data e identificar eventual cruzamento de zero.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-039",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 40,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Testar se saldo projetado respeita a margem escolhida.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-040",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 41,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Traduzir em números: sobra e compromissos, e perguntar/usar margem objetiva.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-041",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 42,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Projetar ambos nas respectivas datas.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-042",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 43,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Priorizar compromisso certo na projeção.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-043",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 44,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Comparar comprar agora versus após a entrada.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-044",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 45,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Calcular saldo projetado imediatamente antes da renda.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-045",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 46,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Cruzar informação do cliente com dados e projetar sobra.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-046",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 47,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Validar se o teto mantém cenário sustentável.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-047",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 48,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Responder com impacto contextual, não apenas sim/não.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-048",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 49,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Considerar estimativa de mercado até a próxima renda.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-049",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 50,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Calcular margem estimada e explicitar incertezas dos gastos variáveis.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-050",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 51,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Comparar mês atual com histórico e destacar fatores de maior impacto.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-051",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 52,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Comparar categorias e quantificar diferenças relevantes.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-052",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 53,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Explicar variações de renda, fixos, variáveis e novas parcelas.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-053",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 54,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Identificar mudanças relevantes versus padrão histórico.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-054",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 55,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Comparar total e categorias com média histórica pessoal.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-055",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 56,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Identificar principais compras/categorias e novas parcelas relacionadas.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-056",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 57,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Rankear impactos em valor, sem julgamento moral.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-057",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 58,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Isolar aumento de despesas e compromissos.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-058",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 59,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Comparar alimentação com histórico pessoal e mostrar variação.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-059",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 60,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Identificar transações e padrões que explicam a queda.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-060",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 61,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Mostrar mudanças em ritmo de gasto e compromissos.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-061",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 62,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Detectar valores/categorias fora da faixa habitual.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-062",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 63,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Comparar valor total mensal de parcelas com meses anteriores.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-063",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 64,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Comparar restaurante com média e período anterior.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-064",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 65,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Comparar períodos equivalentes e explicar diferenças.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-065",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 66,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Apresentar 3 principais impactos relevantes e valores.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-066",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 67,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Detectar nova cobrança repetida/assinatura/compromisso.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-067",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 68,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Comparar recorrências e novos compromissos.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-068",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 69,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Calcular variação absoluta e percentual, contextualizada.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-069",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 70,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Explicar aumento de despesas e taxa de comprometimento.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-070",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 71,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Comparar últimos períodos e sinalizar tendência.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-071",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 72,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Priorizar 2–3 mudanças com maior efeito financeiro.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-072",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 73,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Comparar valor e frequência com padrão.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-073",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 74,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Mostrar outros aumentos que neutralizaram a redução.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-074",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 75,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Comparar com histórico e encontrar padrão semelhante, se houver.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-075",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 76,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Comparar quantidade e valor mensal comprometido.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-076",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 77,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Quantificar novas parcelas versus demais aumentos.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-077",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 78,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Identificar recorrências que mudaram de valor ou surgiram.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-078",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 79,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Comparar gasto com média pessoal e número de compras.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-079",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 80,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Separar aumento por frequência e valor médio.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-080",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 81,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Comparar ritmo acumulado com meses anteriores.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-081",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 82,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Identificar maior desvio versus histórico pessoal.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-082",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 83,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Comparar gastos de fim de semana com histórico.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-083",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 84,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Somar assinaturas e comparar evolução.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-084",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 85,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Listar novas recorrências/parcelas presentes no período atual.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-085",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 86,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Separar efeito de renda e efeito de despesas.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-086",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 87,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Reconstruir principais movimentos anteriores ao saldo negativo.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-087",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 88,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Comparar últimos 30 dias com período anterior.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-088",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 89,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Comparar categoria identificável; não inventar canal se dado não suportar.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-089",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 90,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Comparar total variável com histórico.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-090",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 91,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Avaliar sequência temporal e distinguir tendência de oscilação.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-091",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 92,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Mostrar compromisso gerado e efeito na sobra.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-092",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 93,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Calcular evolução do peso das parcelas sobre renda.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-093",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 94,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Quantificar contribuição das principais mudanças.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-094",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 95,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Explicar sinais observáveis e oferecer monitoramento, sem prescrição rígida.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-095",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 96,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Comparar indicadores do mês com histórico pessoal.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-096",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 97,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Calcular diferença versus referência histórica.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-097",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 98,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Mostrar categorias/compromissos que aumentaram simultaneamente.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-098",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 99,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Separar impacto de outliers e acúmulo de gastos recorrentes/pequenos.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-099",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 100,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Responder com 2–3 fatores em linguagem simples e valores.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-100",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 101,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Detectar fim do compromisso e oferecer visão da nova folga mensal.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-101",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 102,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Informar valor liberado no próximo ciclo e convidar para simular impacto.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-102",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 103,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Abordar de forma proporcional, sem exagerar relevância.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-103",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 104,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Mostrar impacto mensal e no horizonte futuro.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-104",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 105,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Calcular nova sobra esperada.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-105",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 106,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Consolidar eventos e abordar uma vez, evitando notificações duplicadas.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-106",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 107,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Avaliar relevância antes de interromper o cliente.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-107",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 108,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Contextualizar a folga sem sugerir que todo valor está livre.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-108",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 109,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Mostrar impacto sobre projeção, sem prescrever contratação/produto.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-109",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 110,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Mostrar nova margem e perguntar se quer explorar possibilidades.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-110",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 111,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Abordar sem julgamento da categoria.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-111",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 112,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Projetar próxima sobra mensal.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-112",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 113,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Reconhecer somente efeito financeiro, sem juízo sobre saúde.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-113",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 114,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Mostrar valor anualizado apenas se útil, mantendo foco mensal.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-114",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 115,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Mostrar efeito no próximo ciclo.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-115",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 116,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Não anunciar 'R$ X livres'; calcular efeito líquido.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-116",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 117,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Agrupar em uma única mensagem de oportunidade.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-117",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 118,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Considerar renda antes de chamar o valor de folga.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-118",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 119,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Mostrar impacto líquido.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-119",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 120,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Contextualizar compromissos futuros conhecidos.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-120",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 121,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Mostrar como o fim do compromisso altera projeção.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-121",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 122,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Convidar a definir objetivo para nova margem.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-122",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 123,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Evitar abordagem ou usar limiar de relevância.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-123",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 124,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Priorizar abordagem e mostrar redução de comprometimento.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-124",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 125,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Distinguir fim da parcela de outras transações.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-125",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 126,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Não abordar até validar consistência.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-126",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 127,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Reconhecer encerramento após confirmação da transação.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-127",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 128,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Não disparar abordagem de fim de parcela.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-128",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 129,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Aguardar consistência antes de abordar.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-129",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 130,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Escolher timing útil e não excessivo.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-130",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 131,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Mostrar efeito no orçamento do mês seguinte/atual conforme regra.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-131",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 132,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Explicar temporalidade corretamente.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-132",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 133,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Evitar assumir que despesa desapareceu permanentemente se recorrência anual provável.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-133",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 134,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Mostrar impacto sem sugerir uso específico da folga.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-134",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 135,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Perguntar se quer simular direcionamento à meta.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-135",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 136,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Mostrar efeito líquido sobre comprometimento.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-136",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 137,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Não tratar valor integral como sobra garantida.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-137",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 138,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Destacar alteração de cenário com cautela.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-138",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 139,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Mostrar melhora, mas deixar claro que ainda há pressão.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-139",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 140,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Mostrar visão progressiva se útil.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-140",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 141,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Priorizar proatividade e mostrar efeito futuro.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-141",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 142,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Aplicar regra de materialidade para decidir abordagem.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-142",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 143,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Falar apenas do impacto financeiro observado.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-143",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 144,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Reconhecer liberação a partir do novo encerramento.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-144",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 145,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Usar valor efetivamente liberado/esperado.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-145",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 146,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Calcular folga líquida antes da mensagem.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-146",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 147,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Manter contexto da abordagem na conversa.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-147",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 148,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Não insistir repetidamente.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-148",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 149,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Continuar para projeção e simulações.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-149",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 150,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Encerrar abordagem e preservar autonomia.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-150",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 151,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Detectar mudança e perguntar se a nova renda será recorrente antes de recalcular cenário.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-151",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 152,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Confirmar recorrência e, se confirmado, atualizar projeções.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-152",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 153,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Não assumir aumento: pode ser bônus ou verba extraordinária.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-153",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 154,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Não interpretar soma como nova renda recorrente sem confirmação.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-154",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 155,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Não tratar como aumento permanente.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-155",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 156,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Distinguir de renda recorrente.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-156",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 157,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Ainda confirmar mudança antes de consolidar nova renda.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-157",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 158,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Evitar reclassificação permanente.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-158",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 159,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Perguntar se houve mudança permanente.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-159",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 160,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Reconhecer volatilidade e não projetar valor integral como fixo.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-160",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 161,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Perguntar natureza e recorrência.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-161",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 162,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Não assumir renda.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-162",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 163,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Filtrar ou confirmar natureza antes de abordagem.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-163",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 164,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Confirmar se mudança continuará.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-164",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 165,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Mostrar efeito somente após confirmação.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-165",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 166,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Priorizar abordagem, mantendo pergunta de confirmação.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-166",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 167,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Após confirmação, calcular efeito líquido.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-167",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 168,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Mostrar impacto sobre projeção sem assumir solução completa.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-168",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 169,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Mostrar mudança na margem e oferecer simulação de objetivos.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-169",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 170,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Distinguir timing de aumento real.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-170",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 171,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Perguntar contexto antes de projetar.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-171",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 172,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Não usar como baseline.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-172",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 173,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Aplicar limiar de materialidade para decidir abordagem.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-173",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 174,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Perguntar origem, sem celebrar como aumento.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-174",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 175,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Confirmar se é mudança recorrente/variável.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-175",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 176,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Perguntar estabilidade da fonte.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-176",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 177,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Confirmar natureza e continuidade.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-177",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 178,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Recalcular contexto completo após confirmação.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-178",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 179,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Consolidar abordagem para evitar excesso de mensagens.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-179",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 180,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Mostrar efeito observado e projeção, sem julgamento.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-180",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 181,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Oferecer simulação relacionada à meta após confirmação.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-181",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 182,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Perguntar o que deseja priorizar, sem presumir.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-182",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 183,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Atualizar renda base e mostrar novo cenário.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-183",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 184,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Não alterar renda recorrente; oferecer análise pontual se desejado.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-184",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 185,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Tratar como variável e usar cenário conservador/alternativo.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-185",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 186,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Não atualizar baseline automaticamente.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-186",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 187,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Perguntar/confirmar antes de consolidar.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-187",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 188,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Normalizar calendário antes de concluir aumento.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-188",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 189,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Evitar falso gatilho de aumento.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-189",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 190,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Não disparar mensagem de aumento.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-190",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 191,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Não tratar como renda.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-191",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 192,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Excluir de aumento recorrente.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-192",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 193,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Não classificar como aumento de renda.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-193",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 194,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Não tratar como renda nova.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-194",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 195,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Confirmar e recalcular capacidade.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-195",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 196,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Mostrar novo comprometimento após confirmação.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-196",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 197,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Comunicar efeito real sem exagero.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-197",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 198,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Mostrar nova margem e oferecer cenários.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-198",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 199,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Explicar nova projeção e permitir simulações.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-199",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 200,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Respeitar preferência e cessar abordagem equivalente.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-200",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 201,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Reconhecer melhora e explicar os fatores observados.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-201",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 202,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Mostrar evolução sem atribuir causalidade não comprovada.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-202",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 203,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Destacar mudança e projetar continuidade se padrão se mantiver.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-203",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 204,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Mostrar evolução e oferecer próximo passo.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-204",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 205,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Reconhecer resultado observado e mostrar tendência.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-205",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 206,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Mostrar trajetória e fatores relacionados.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-206",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 207,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Avaliar saldo e comprometimento completos antes de abordar.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-207",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 208,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Identificar categorias que contribuíram.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-208",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 209,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Explicar relação observável entre menor compromisso e sobra.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-209",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 210,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Quantificar evolução.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-210",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 211,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Não chamar de recuperação consistente ainda.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-211",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 212,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Abordar com linguagem cautelosa: 'seu cenário vem melhorando'.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-212",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 213,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Proativamente mostrar progresso.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-213",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 214,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Não atribuir melhora a uma categoria isolada sem efeito líquido.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-214",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 215,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Mostrar queda no comprometimento futuro.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-215",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 216,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Usar como sinal complementar.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-216",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 217,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Reconhecer progresso mesmo com valores modestos.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-217",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 218,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Não classificar como recuperação recorrente.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-218",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 219,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Explicar contribuição da renda confirmada.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-219",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 220,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Mostrar impacto do compromisso encerrado.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-220",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 221,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Mostrar diferença em números sem moralizar.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-221",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 222,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Evitar atribuir a comportamento do cliente.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-222",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 223,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Reconhecer melhora e deixar claro que folga ainda é limitada.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-223",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 224,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Mostrar nova margem.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-224",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 225,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Valorizar evolução sem dizer que situação está resolvida.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-225",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 226,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Mostrar progresso e oferecer simulação de objetivo.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-226",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 227,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Explicar efeito nas próximas projeções.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-227",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 228,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Não classificar como melhora sem considerar compromissos pendentes.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-228",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 229,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Excluir movimentação de crédito como evidência positiva isolada.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-229",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 230,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Não tratar como melhora de geração de sobra.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-230",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 231,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Mostrar tendência.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-231",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 232,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Reconhecer melhora após consistência mínima.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-232",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 233,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Mostrar redução de obrigações futuras.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-233",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 234,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Mostrar impacto na sobra projetada.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-234",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 235,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Identificar fatores de gasto.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-235",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 236,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Explicar composição.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-236",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 237,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Abordar com confiança proporcional à evidência.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-237",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 238,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Não disparar mensagem de recuperação consistente.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-238",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 239,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Contextualizar histórico antes de abordar.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-239",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 240,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Não concluir recuperação sem período comparável.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-240",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 241,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Evitar inferência de tendência.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-241",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 242,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Explicar quais melhoraram e qual ainda exige atenção.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-242",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 243,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Não comunicar apenas boa notícia; contextualizar.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-243",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 244,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Não disparar recuperação.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-244",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 245,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Mostrar ambos como fatores observados.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-245",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 246,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Explicar origem da evolução.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-246",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 247,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Apontar mudanças observadas, evitando afirmar causalidade além dos dados.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-247",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 248,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Oferecer simulações e sinais a acompanhar, preservando autonomia.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-248",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 249,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Conduzir para definição/simulação de meta.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-249",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 250,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    },
+    {
+      "behavior": "Não insistir; manter abordagem não intrusiva.",
+      "runtime_assertions_status": "NOT_IMPLEMENTED",
+      "scenario_id": "CT-250",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+        "row": 251,
+        "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+        "sheet": "Cenarios_Treino"
+      }
+    }
+  ],
+  "schema_version": "1.0"
+}

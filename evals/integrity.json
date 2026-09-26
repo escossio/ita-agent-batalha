@@ -1,0 +1,21 @@
+{
+  "expected_families": {
+    "Até o próximo salário dá?": 50,
+    "Minha parcela terminou": 50,
+    "Minha renda aumentou": 50,
+    "Minha situação financeira melhorou": 50,
+    "Por que meu dinheiro está acabando tão rápido?": 50
+  },
+  "families": {
+    "Até o próximo salário dá?": 50,
+    "Minha parcela terminou": 50,
+    "Minha renda aumentou": 50,
+    "Minha situação financeira melhorou": 50,
+    "Por que meu dinheiro está acabando tão rápido?": 50
+  },
+  "lost_scenarios": 0,
+  "schema_version": "1.0",
+  "source_sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+  "total": 250,
+  "unique_ids": 250
+}

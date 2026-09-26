@@ -1,0 +1,388 @@
+{
+  "rules": [
+    {
+      "all": [
+        {
+          "field": "inadimplente",
+          "operator": "eq",
+          "value": true
+        },
+        {
+          "field": "renegociacao_elegivel",
+          "operator": "eq",
+          "value": true
+        }
+      ],
+      "candidate_solutions": "Renegociação",
+      "condition_text": "inadimplente = SIM AND renegociacao_elegivel = SIM",
+      "id": "R001",
+      "priority_text": "Priorizar tratamento da dívida",
+      "product_text": "Renegociação",
+      "restriction_text": "Não estimular novo crédito como primeira resposta",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/ITA_arvore_decisao_regras_produtos.xlsx",
+        "row": 2,
+        "sha256": "c9db3d9970e23cdc2240cbdbbc4897867c92bde2fe6f859fe7b28191e61002f5",
+        "sheet": "Matriz_Regras"
+      }
+    },
+    {
+      "all": [
+        {
+          "field": "inadimplente",
+          "operator": "eq",
+          "value": true
+        },
+        {
+          "field": "renegociacao_elegivel",
+          "operator": "eq",
+          "value": false
+        }
+      ],
+      "candidate_solutions": "Orientação / canal de apoio",
+      "condition_text": "inadimplente = SIM AND renegociacao_elegivel = NÃO",
+      "id": "R002",
+      "priority_text": "Ajudar a tratar situação atual",
+      "product_text": "Nenhum automático",
+      "restriction_text": "Não inventar solução não elegível",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/ITA_arvore_decisao_regras_produtos.xlsx",
+        "row": 3,
+        "sha256": "c9db3d9970e23cdc2240cbdbbc4897867c92bde2fe6f859fe7b28191e61002f5",
+        "sheet": "Matriz_Regras"
+      }
+    },
+    {
+      "all": [
+        {
+          "field": "inadimplente",
+          "operator": "eq",
+          "value": false
+        },
+        {
+          "field": "risco_saldo_negativo",
+          "operator": "eq",
+          "value": true
+        }
+      ],
+      "candidate_solutions": "Reorganização / simulação / eventual crédito",
+      "condition_text": "inadimplente = NÃO AND risco_saldo_negativo = SIM",
+      "id": "R003",
+      "priority_text": "Prevenir insuficiência primeiro",
+      "product_text": "Crédito se adequado + elegível",
+      "restriction_text": "Crédito não deve ser resposta automática",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/ITA_arvore_decisao_regras_produtos.xlsx",
+        "row": 4,
+        "sha256": "c9db3d9970e23cdc2240cbdbbc4897867c92bde2fe6f859fe7b28191e61002f5",
+        "sheet": "Matriz_Regras"
+      }
+    },
+    {
+      "all": [
+        {
+          "field": "necessidade",
+          "operator": "eq",
+          "value": "liquidez"
+        },
+        {
+          "field": "credito_elegivel",
+          "operator": "eq",
+          "value": true
+        },
+        {
+          "field": "capacidade_pagamento",
+          "operator": "eq",
+          "value": true
+        }
+      ],
+      "candidate_solutions": "Alternativas sem crédito + crédito",
+      "condition_text": "necessidade = liquidez AND credito_elegivel = SIM AND capacidade_pagamento = SIM",
+      "id": "R004",
+      "priority_text": "Comparar impacto antes de ofertar",
+      "product_text": "Empréstimo / crédito",
+      "restriction_text": "Mostrar custo e efeito futuro",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/ITA_arvore_decisao_regras_produtos.xlsx",
+        "row": 5,
+        "sha256": "c9db3d9970e23cdc2240cbdbbc4897867c92bde2fe6f859fe7b28191e61002f5",
+        "sheet": "Matriz_Regras"
+      }
+    },
+    {
+      "all": [
+        {
+          "field": "objetivo",
+          "operator": "eq",
+          "value": "aquisição"
+        },
+        {
+          "field": "urgencia",
+          "operator": "eq",
+          "value": "ALTA"
+        },
+        {
+          "field": "financiamento_elegivel",
+          "operator": "eq",
+          "value": true
+        }
+      ],
+      "candidate_solutions": "Recursos próprios / financiamento",
+      "condition_text": "objetivo = aquisição AND urgencia = ALTA AND financiamento_elegivel = SIM",
+      "id": "R005",
+      "priority_text": "Comparar caminhos",
+      "product_text": "Financiamento",
+      "restriction_text": "Validar capacidade e impacto",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/ITA_arvore_decisao_regras_produtos.xlsx",
+        "row": 6,
+        "sha256": "c9db3d9970e23cdc2240cbdbbc4897867c92bde2fe6f859fe7b28191e61002f5",
+        "sheet": "Matriz_Regras"
+      }
+    },
+    {
+      "all": [
+        {
+          "field": "objetivo",
+          "operator": "eq",
+          "value": "aquisição"
+        },
+        {
+          "field": "urgencia",
+          "operator": "eq",
+          "value": "BAIXA"
+        },
+        {
+          "field": "consorcio_elegivel",
+          "operator": "eq",
+          "value": true
+        }
+      ],
+      "candidate_solutions": "Consórcio / acumulação / financiamento futuro",
+      "condition_text": "objetivo = aquisição AND urgencia = BAIXA AND consorcio_elegivel = SIM",
+      "id": "R006",
+      "priority_text": "Comparar alternativas",
+      "product_text": "Consórcio",
+      "restriction_text": "Não tratar consórcio como equivalente a compra imediata",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/ITA_arvore_decisao_regras_produtos.xlsx",
+        "row": 7,
+        "sha256": "c9db3d9970e23cdc2240cbdbbc4897867c92bde2fe6f859fe7b28191e61002f5",
+        "sheet": "Matriz_Regras"
+      }
+    },
+    {
+      "all": [
+        {
+          "field": "sobra_recorrente",
+          "operator": "eq",
+          "value": true
+        },
+        {
+          "field": "reserva",
+          "operator": "eq",
+          "value": false
+        }
+      ],
+      "candidate_solutions": "Construção de reserva",
+      "condition_text": "sobra_recorrente = SIM AND reserva = NÃO",
+      "id": "R007",
+      "priority_text": "Priorizar proteção financeira",
+      "product_text": "Investimento de liquidez compatível, se aplicável",
+      "restriction_text": "Não partir direto para objetivo de maior risco",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/ITA_arvore_decisao_regras_produtos.xlsx",
+        "row": 8,
+        "sha256": "c9db3d9970e23cdc2240cbdbbc4897867c92bde2fe6f859fe7b28191e61002f5",
+        "sheet": "Matriz_Regras"
+      }
+    },
+    {
+      "all": [
+        {
+          "field": "sobra_recorrente",
+          "operator": "eq",
+          "value": true
+        },
+        {
+          "field": "reserva",
+          "operator": "eq",
+          "value": true
+        },
+        {
+          "field": "objetivo_definido",
+          "operator": "eq",
+          "value": true
+        }
+      ],
+      "candidate_solutions": "Investimentos",
+      "condition_text": "sobra_recorrente = SIM AND reserva = SIM AND objetivo_definido = SIM",
+      "id": "R008",
+      "priority_text": "Recomendar conforme objetivo/perfil",
+      "product_text": "Investimentos",
+      "restriction_text": "Respeitar perfil e horizonte",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/ITA_arvore_decisao_regras_produtos.xlsx",
+        "row": 9,
+        "sha256": "c9db3d9970e23cdc2240cbdbbc4897867c92bde2fe6f859fe7b28191e61002f5",
+        "sheet": "Matriz_Regras"
+      }
+    },
+    {
+      "all": [
+        {
+          "field": "parcela_terminou",
+          "operator": "eq",
+          "value": true
+        }
+      ],
+      "candidate_solutions": "Reserva / dívida / objetivo / investimento",
+      "condition_text": "parcela_terminou = SIM",
+      "id": "R009",
+      "priority_text": "Avaliar contexto antes de direcionar folga",
+      "product_text": "Investimento ou outra solução",
+      "restriction_text": "Não assumir que todo valor ficou livre",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/ITA_arvore_decisao_regras_produtos.xlsx",
+        "row": 10,
+        "sha256": "c9db3d9970e23cdc2240cbdbbc4897867c92bde2fe6f859fe7b28191e61002f5",
+        "sheet": "Matriz_Regras"
+      }
+    },
+    {
+      "all": [
+        {
+          "field": "aumento_renda_detectado",
+          "operator": "eq",
+          "value": true
+        },
+        {
+          "field": "recorrencia_confirmada",
+          "operator": "eq",
+          "value": false
+        }
+      ],
+      "candidate_solutions": "Confirmação de contexto",
+      "condition_text": "aumento_renda_detectado = SIM AND recorrencia_confirmada = NÃO",
+      "id": "R010",
+      "priority_text": "Perguntar se renda será recorrente",
+      "product_text": "Nenhum ainda",
+      "restriction_text": "Não recalcular renda permanente sem confirmação",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/ITA_arvore_decisao_regras_produtos.xlsx",
+        "row": 11,
+        "sha256": "c9db3d9970e23cdc2240cbdbbc4897867c92bde2fe6f859fe7b28191e61002f5",
+        "sheet": "Matriz_Regras"
+      }
+    },
+    {
+      "all": [
+        {
+          "field": "aumento_renda_detectado",
+          "operator": "eq",
+          "value": true
+        },
+        {
+          "field": "recorrencia_confirmada",
+          "operator": "eq",
+          "value": true
+        }
+      ],
+      "candidate_solutions": "Reserva / investimento / consórcio / financiamento",
+      "condition_text": "aumento_renda_detectado = SIM AND recorrencia_confirmada = SIM",
+      "id": "R011",
+      "priority_text": "Entender objetivo e recalcular capacidade",
+      "product_text": "Múltiplos possíveis",
+      "restriction_text": "Elegibilidade é filtro, não recomendação",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/ITA_arvore_decisao_regras_produtos.xlsx",
+        "row": 12,
+        "sha256": "c9db3d9970e23cdc2240cbdbbc4897867c92bde2fe6f859fe7b28191e61002f5",
+        "sheet": "Matriz_Regras"
+      }
+    },
+    {
+      "all": [
+        {
+          "field": "recuperacao_financeira",
+          "operator": "eq",
+          "value": true
+        }
+      ],
+      "candidate_solutions": "Reserva / meta / investimento / aquisição planejada",
+      "condition_text": "recuperacao_financeira = SIM",
+      "id": "R012",
+      "priority_text": "Consolidar melhora e entender próximo objetivo",
+      "product_text": "Conforme contexto",
+      "restriction_text": "Não atribuir melhora ao ITA sem evidência",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/ITA_arvore_decisao_regras_produtos.xlsx",
+        "row": 13,
+        "sha256": "c9db3d9970e23cdc2240cbdbbc4897867c92bde2fe6f859fe7b28191e61002f5",
+        "sheet": "Matriz_Regras"
+      }
+    },
+    {
+      "all": [
+        {
+          "field": "produto_elegivel",
+          "operator": "eq",
+          "value": true
+        },
+        {
+          "field": "necessidade_aderente",
+          "operator": "eq",
+          "value": false
+        }
+      ],
+      "candidate_solutions": "Nenhuma",
+      "condition_text": "produto_elegivel = SIM AND necessidade_aderente = NÃO",
+      "id": "R013",
+      "priority_text": "Não ofertar",
+      "product_text": "Nenhum",
+      "restriction_text": "Produto disponível não implica oferta",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/ITA_arvore_decisao_regras_produtos.xlsx",
+        "row": 14,
+        "sha256": "c9db3d9970e23cdc2240cbdbbc4897867c92bde2fe6f859fe7b28191e61002f5",
+        "sheet": "Matriz_Regras"
+      }
+    },
+    {
+      "all": [
+        {
+          "field": "multiplos_produtos_elegiveis",
+          "operator": "eq",
+          "value": true
+        }
+      ],
+      "candidate_solutions": "Todas soluções aderentes",
+      "condition_text": "multiplos_produtos_elegiveis = SIM",
+      "id": "R014",
+      "priority_text": "Simular e comparar apenas as que resolvem a necessidade",
+      "product_text": "Pode haver >1",
+      "restriction_text": "Cliente decide após explicação",
+      "source": {
+        "columns": "A:F",
+        "path": "docs/source/ITA_arvore_decisao_regras_produtos.xlsx",
+        "row": 15,
+        "sha256": "c9db3d9970e23cdc2240cbdbbc4897867c92bde2fe6f859fe7b28191e61002f5",
+        "sheet": "Matriz_Regras"
+      }
+    }
+  ],
+  "schema_version": "1.0"
+}

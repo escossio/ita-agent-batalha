@@ -14,8 +14,9 @@ Voz e Tom: **SOURCE_PENDING_LOCAL_COPY**, dependência documental não bloqueant
 | 1 | Gate estrutural aprovado com pendência documental | Três fontes congeladas; hashes/ZIP/XML/sanitização conferidos; manifesto atualizado conforme instrução do usuário |
 | 2 | Concluída | PR #1 integrado; seis checks e CodeQL verdes no commit 535da98; merge 2aa4652 |
 | 3 | Concluída | PR #2; SHA d2c8eac validado em worker e Actions; merge 01945d7 |
-| 4 | Em andamento | Oito contratos tipados/versionados, schemas e testes; aguardando CI/worker |
-| 5–10 | Não iniciadas | Aguardar gates anteriores |
+| 4 | Concluída | PR #3; SHA 5a6b62d com checks/worker aprovados; merge ad360a3 |
+| 5 | Em validação | 14 regras e 250 cenários derivados; 21 testes curtos aprovados; aguarda CI/worker |
+| 6–10 | Não iniciadas | Aguardar gates anteriores |
 | 11–18 | Planejadas, não iniciadas | Definições recebidas e registradas no plano oficial |
 
 Originais preservados: XLSX byte a byte; HTML original privado e cópia pública sanitizada. Histórico de recepção em docs/source/INTAKE_REVIEW.md. Etapas anteriores de acesso remoto são históricas e não geram dependência atual.
@@ -49,3 +50,7 @@ Local no AGT: `docker compose config --quiet` aprovado; lint e 6 unit tests curt
 ## Etapa 4 — contratos
 
 CustomerContext, FinancialSnapshot, Eligibility, PolicyDecision, ToolRequest, ToolResult, AgentResponse e AuditEvent definidos em Pydantic estrito, com JSON Schema 1.0 versionado. Centavos inteiros, extras proibidos, dados ausentes explícitos e invariantes de deny/resultados/correlation/customer. Regeneração sem drift entra no CI. Não há lógica financeira, Policy Engine ou Agent implementados nesta etapa.
+
+## Etapa 5 — transformação reproduzível
+
+Fontes originais inalteradas. Regras R001–R014 preservam predicados e localização; tabelas completas preservam células e linhas. Dataset contém CT-001–CT-250, cinco famílias de 50, sem perdas. Regeneração exata verificada em CI; expectativas textuais não equivalem a evals executados (runner funcional na etapa 13). Cinco categorias de Voz e Tom permanecem vazias e provisórias, sem conteúdo inventado.
