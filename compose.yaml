@@ -79,6 +79,11 @@ services:
       agent:
         condition: service_healthy
   agent:
+    environment:
+      ITA_MODEL_PROVIDER: ${ITA_MODEL_PROVIDER:-mock}
+      GOOGLE_CLOUD_PROJECT: ${GOOGLE_CLOUD_PROJECT:-}
+      GOOGLE_CLOUD_LOCATION: ${GOOGLE_CLOUD_LOCATION:-}
+      ITA_VERTEX_MODEL: ${ITA_VERTEX_MODEL:-}
     build:
       context: .
       dockerfile: infra/docker/Dockerfile

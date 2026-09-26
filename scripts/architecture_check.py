@@ -49,8 +49,12 @@ def network_violations(config: dict) -> list[str]:
     if any("DB_" in name or "POSTGRES" in name for name in services["agent"].get("environment", {})):
         issues.append("agent: database configuration forbidden")
     for name, network in config["networks"].items():
-        if name != "edge" and not network.get("internal"):
+        if name not in {"edge", "model_egress"} and not network.get("internal"):
             issues.append(f"{name}: network must be internal")
+    if "model_egress" in config["networks"]:
+        attached = {name for name, spec in services.items() if "model_egress" in spec.get("networks", {})}
+        if attached != {"agent"}:
+            issues.append("model_egress: only agent may use provider egress")
     return issues
 
 

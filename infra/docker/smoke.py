@@ -86,6 +86,24 @@ for customer, expected in (("demo-customer", "ok"), ("demo-denied", "denied")):
     broker_logs = compose("logs", "--no-color", "tool-broker")
     assert '"event": "tool_authorized"' in broker_logs
     assert '"event": "tool_blocked"' in broker_logs
+    agent_probe = """
+import json
+import urllib.request
+from uuid import uuid4
+cid = str(uuid4())
+value = dict(schema_version="1.0", correlation_id=cid,
+    context=dict(schema_version="1.0", customer_id="demo-customer", mode="DEMO", consent_to_analysis=True,
+        financial_level="stable", emotional_state="neutral", human_requested=False, provenance="DEMO_FIXTURE"),
+    utterance="Até o próximo salário dá?", proposed_spend_cents=50000)
+req = urllib.request.Request("http://agent:8080/v1/respond", data=json.dumps(value).encode(),
+    headers={"Content-Type": "application/json", "X-Correlation-ID": cid})
+with urllib.request.urlopen(req, timeout=8) as response:
+    result = json.load(response)
+    assert result["status"] == "ok", result
+    assert result["model_provider"] == "mock"
+    assert result["financial_result"]["closing_cents"] == 60000
+"""
+    compose("exec", "-T", "api", "python", "-c", agent_probe)
     # Probe actual container IPs as well as DNS, so lack of discovery alone is not proof.
     for target, port in (("postgres", 5432), ("finance", 8080), ("data", 8080)):
         info = json.loads(subprocess.check_output(["docker", "inspect", compose("ps", "-q", target)]))[0]

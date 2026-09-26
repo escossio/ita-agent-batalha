@@ -263,6 +263,7 @@ class ToolResult(Contract):
 
 
 class AgentResponse(Contract):
+    model_provider: Literal["mock", "vertex"] | None = None
     correlation_id: CorrelationID
     customer_id: Identifier
     mode: Literal["DEMO"]

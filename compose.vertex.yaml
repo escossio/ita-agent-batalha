@@ -1,0 +1,13 @@
+# Override opcional. Requer identidade ADC externa e autorização Vertex; não cria infraestrutura.
+services:
+  agent:
+    environment:
+      ITA_MODEL_PROVIDER: vertex
+      GOOGLE_CLOUD_PROJECT: ${GOOGLE_CLOUD_PROJECT:?External project required}
+      GOOGLE_CLOUD_LOCATION: ${GOOGLE_CLOUD_LOCATION:?External location required}
+      ITA_VERTEX_MODEL: ${ITA_VERTEX_MODEL:?External model required}
+    networks:
+      - model_egress
+networks:
+  model_egress:
+    internal: false
