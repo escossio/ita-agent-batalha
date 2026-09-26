@@ -4,6 +4,7 @@ import ast
 import json
 from pathlib import Path
 import subprocess
+from urllib.parse import urlsplit
 
 
 def violations(path: Path, source: str) -> list[str]:
@@ -24,7 +25,11 @@ def violations(path: Path, source: str) -> list[str]:
             )):
                 issues.append(f"{path}:{node.lineno}: forbidden agent import {name}")
         if is_agent and isinstance(node, ast.Constant) and isinstance(node.value, str):
-            if "bigquery.googleapis.com" in node.value or "bigquerystorage.googleapis.com" in node.value:
+            try:
+                host = urlsplit(node.value).hostname if node.value.startswith(("http://", "https://")) else node.value
+            except ValueError:
+                host = None
+            if host in {"bigquery.googleapis.com", "bigquerystorage.googleapis.com"}:
                 issues.append(f"{path}:{node.lineno}: direct BigQuery endpoint forbidden")
         if is_agent and isinstance(node, ast.Call) and isinstance(node.func, ast.Name):
             if node.func.id in {"eval", "exec", "__import__"}:

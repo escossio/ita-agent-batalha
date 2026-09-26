@@ -123,3 +123,5 @@ Gate anterior de 10–12 com mock permanece válido; esta ampliação está parc
 Validação desta ampliação: 93 testes curtos, lint, arquitetura (26 arquivos, zero violações) e Compose base/Vertex aprovados; CI/worker serão vinculados ao SHA do PR. Configuração alterada: .env.example (variáveis não secretas do coletor) e .gitignore (venv isolada do inventário); nenhum host, IAM, serviço global, deploy ou infraestrutura paga alterado. Voz e Tom continua SOURCE_PENDING_LOCAL_COPY não bloqueante.
 
 Instrução posterior confirmada: o operador entregará inventário de metadados gerado no Cloud Shell como arquivo local. Nenhum token/chave/credencial será fornecido ao AGT. Não tentar habilitar acesso GCP no AGT. Inventário bruto somente local/privado; publicar exclusivamente documentação/contratos sanitizados após revisão. Mock/fixtures continuam independentes de GCP.
+
+Correção durante CI desta ampliação: CodeQL sinalizou duas comparações parciais de URL no verificador estático de arquitetura. Substituídas por parsing explícito de hostname; nenhum alerta foi suprimido ou contornado. Regressão e certificação repetidas no SHA corrigido.
