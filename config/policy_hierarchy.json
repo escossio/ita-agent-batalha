@@ -1,0 +1,10 @@
+{
+  "schema_version": "1.0",
+  "precedence": ["person_safety", "mandatory_restrictions", "authorization", "financial_rules", "eligibility", "conversation", "voice"],
+  "default": "deny",
+  "deny_overrides": true,
+  "unknown_is_permission": false,
+  "voice_status": "SOURCE_PENDING_LOCAL_COPY",
+  "max_options": 3,
+  "max_options_origin": "ADR-0002: local design limit, not a claim about missing Voice/Tone"
+}
