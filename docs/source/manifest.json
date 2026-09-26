@@ -1,50 +1,69 @@
 {
   "manifest_version": "1.0",
   "inventory_date": "2026-09-26",
-  "status": "blocked_invalid_and_missing_sources",
+  "status": "blocked_inaccessible_voice_and_tone",
   "sources": [
     {
       "id": "decision_rules",
       "expected_name": "ITA_arvore_decisao_regras_produtos.xlsx",
-      "status": "received_invalid",
-      "origin": "Pasta docs/source/ indicada pelo usuário; proveniência anterior não informada.",
-      "captured_at": "2026-09-26T21:40:30Z",
-      "path": null,
-      "size_bytes": 12624,
-      "sha256": "31e653e975cd64d8cfa51a629d749e23eb2c08a777e35227594f9da65249c331",
-      "integrity": "failed_zip_validation",
-      "publication_status": "not_published",
+      "status": "incorporated_original",
+      "origin": "Arquivo local fornecido pelo usuário nesta sessão; proveniência anterior não informada.",
+      "captured_at": "2026-09-26T21:44:50Z",
+      "path": "docs/source/ITA_arvore_decisao_regras_produtos.xlsx",
+      "size_bytes": 14505,
+      "sha256": "c9db3d9970e23cdc2240cbdbbc4897867c92bde2fe6f859fe7b28191e61002f5",
+      "integrity": "zip_crc_xml_pass",
+      "publication_status": "reviewed",
       "review": "docs/source/INTAKE_REVIEW.md"
     },
     {
       "id": "evaluation_scenarios",
       "expected_name": "cenarios_treinamento_ITA_250.xlsx",
-      "status": "missing",
-      "origin": null,
-      "captured_at": null,
-      "path": null,
-      "size_bytes": null,
-      "sha256": null
+      "status": "incorporated_original",
+      "origin": "Arquivo local fornecido pelo usuário nesta sessão; proveniência anterior não informada.",
+      "captured_at": "2026-09-26T21:44:50Z",
+      "path": "docs/source/cenarios_treinamento_ITA_250.xlsx",
+      "size_bytes": 24017,
+      "sha256": "8bdd28d94bce9b41e8f23ebdca4e628f794fbd9b9c990354931cccd5278a1e74",
+      "integrity": "zip_crc_xml_pass",
+      "publication_status": "reviewed",
+      "review": "docs/source/INTAKE_REVIEW.md"
     },
     {
       "id": "journey_prototype",
       "expected_name": "prototipo_IAI_ITA_jornada.html",
-      "status": "missing",
-      "origin": null,
-      "captured_at": null,
-      "path": null,
-      "size_bytes": null,
-      "sha256": null
+      "status": "incorporated_sanitized",
+      "origin": "Arquivo local fornecido pelo usuário nesta sessão; proveniência anterior não informada.",
+      "captured_at": "2026-09-26T21:44:50Z",
+      "path": "docs/source/prototipo_IAI_ITA_jornada.sanitized.html",
+      "size_bytes": 12344,
+      "sha256": "d9d59570fb66ab5865482ab4dca67cc6b8e14079fe2bb4197c962364f0bd9015",
+      "integrity": "utf8_reviewed",
+      "publication_status": "reviewed",
+      "review": "docs/source/INTAKE_REVIEW.md",
+      "original_sha256": "a96d4fe3c9d2591dfb2945f171d7a18e329cfb233ddfdd6a4ccb7948624eab23",
+      "original_size_bytes": 12144,
+      "sanitization_script": "docs/source/sanitize_prototype.py"
     },
     {
       "id": "voice_and_tone",
       "expected_name": "Ita: Voz e Tom",
-      "status": "missing",
-      "origin": null,
+      "status": "inaccessible",
+      "origin": "https://claude.ai/artifact/YEMJ288EEVpnw1GgY4WE2e",
       "captured_at": null,
       "path": null,
       "size_bytes": null,
-      "sha256": null
+      "sha256": null,
+      "retrieval_status": "HTTP 403; conteúdo não obtido",
+      "checked_on": "2026-09-26",
+      "discovery_project": {
+        "url": "https://drive.google.com/drive/project/17pVdp0OtuAwK48QiFy2YS16FYxRCt-A6",
+        "title": "Ita - Grupo 01",
+        "mime_type": "application/vnd.google-apps.project",
+        "metadata_access": "success",
+        "children_search": "empty",
+        "content_access": "project URL unsupported; download by ID HTTP 403"
+      }
     }
   ]
 }

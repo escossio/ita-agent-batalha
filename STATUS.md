@@ -3,13 +3,13 @@
 Data: 2026-09-26. Repositório: <https://github.com/escossio/ita-agent-batalha>.
 Branch local: `main`. Para o SHA exato deste checkpoint, executar `git rev-parse HEAD`.
 
-**Etapa 1 parcial e bloqueada: uma fonte recebida com integridade inválida, três ausentes e nenhuma incorporada.**
+**Etapa 1 parcial: três fontes incorporadas após revisão; falta “Ita: Voz e Tom”.**
 O repositório público foi criado vazio e conferido pela API. Workspace isolado e identidade Git local noreply preparados.
 Estrutura inicial, inventário e sequência oficial 1 → 10 registrados. Nenhum arquivo preexistente de outro projeto foi alterado.
 
 | Etapa | Estado | Evidência / impedimento |
 | --- | --- | --- |
-| 1 — Repositório e fontes | Parcial / bloqueada | Repositório criado; 1/4 fontes recebidas, ZIP inválido; 0/4 aprovadas/incorporadas |
+| 1 — Repositório e fontes | Parcial / bloqueada | 3/4 incorporadas: duas planilhas íntegras e HTML sanitizado; falta Voz e Tom |
 | 2 — Governança | Bloqueada, não iniciada | Gate da etapa 1 não aprovado |
 | 3 — Containers | Bloqueada, não iniciada | Depende da etapa 2 |
 | 4 — Contratos | Bloqueada, não iniciada | Depende da etapa 3 |
@@ -20,7 +20,14 @@ Estrutura inicial, inventário e sequência oficial 1 → 10 registrados. Nenhum
 | 9 — Tool Broker | Bloqueada, não iniciada | Depende da etapa 8 |
 | 10 — Agent | Bloqueada, não iniciada | Depende da etapa 9 |
 
-## Recebimento de fonte após o bootstrap
+## Reenvio atual — fontes íntegras
+
+- Recebidas duas planilhas válidas e o HTML no diretório indicado pelo usuário. ZIP/CRC/XML das planilhas aprovados; cópias originais idênticas por SHA-256. A planilha inválida anterior permanece arquivada privadamente.
+- Gitleaks nos arquivos e XML expandido: zero achados. HTML contém identificadores de uma captura de tela; publicado somente exemplar sanitizado, reproduzível e marcado DEMO, com original preservado fora do Git.
+- Manifesto atualizado: 3/4 fontes incorporadas; `voice_and_tone` está `inaccessible`. Link Claude informado pelo usuário retornou HTTP 403; conteúdo não capturado. Origem, data, tamanhos e hashes dos demais arquivos registrados. Nenhuma conversão para runtime/evals, implementação de etapa posterior ou execução do HTML.
+- Risco no código-fonte do protótipo registrado: entrada livre em `innerHTML`. Fonte arquivada não deve ser servida como aplicação pública.
+
+## Primeiro recebimento após o bootstrap (histórico)
 
 - Usuário indicou `docs/source/`; encontrada somente a planilha de regras, com 12.624 bytes e hash estável.
 - Validação ZIP falhou: 11 das 19 entradas ilegíveis; offsets negativos e cabeçalhos inválidos. Registro em `docs/source/INTAKE_REVIEW.md`.
@@ -51,15 +58,15 @@ Estrutura inicial, inventário e sequência oficial 1 → 10 registrados. Nenhum
 
 ## Pendência para retomar
 
-Receber uma nova cópia íntegra de `ITA_arvore_decisao_regras_produtos.xlsx` e obter
-`cenarios_treinamento_ITA_250.xlsx`, `prototipo_IAI_ITA_jornada.html` e `Ita: Voz e Tom`.
-A pasta indicada contém apenas a planilha inválida além dos documentos de inventário. As buscas anteriores no Drive não localizaram as fontes.
+Obter conteúdo acessível de `Ita: Voz e Tom`. O usuário informou `https://claude.ai/artifact/YEMJ288EEVpnw1GgY4WE2e`; tentativa de leitura pela ferramenta web falhou e requisição HTTP retornou 403. Solicitado texto ou link de exportação acessível. Não foi capturado conteúdo nem atribuído hash ao documento.
+
+O link posterior de projeto Drive foi identificado como “Ita - Grupo 01”, MIME `application/vnd.google-apps.project`. Metadados acessíveis, mas busca por filhos retornou vazia; fetch de `/drive/project` não é suportado pelo conector e tentativa de download pelo ID retornou 403. Solicitado o link direto de Voz e Tom dentro do projeto; acesso aos metadados não comprova acesso aos documentos.
 
 Retomar a etapa 1: revisar dados/metadados, preservar originais, sanitizar cópias se necessário, registrar proveniência/hash,
 incorporar as quatro fontes, atualizar README/STATUS, validar e fazer checkpoint. Só então iniciar a etapa 2.
 
 ## Divergências e riscos
 
-O conflito “agora não” foi informado no briefing, mas não verificado nas fontes indisponíveis. Nenhuma decisão de policy foi tomada.
-O ZIP inválido impede revisar integralmente a planilha recebida quanto a segredos/dados pessoais/bancários; sua publicação continua bloqueada. As demais fontes não foram recebidas.
+CT-150, aba `Cenarios_Treino`, linha 151, confirma encerramento da abordagem para “agora não”. Falta Voz e Tom para verificar a outra parte do conflito informado; nenhuma decisão de policy foi tomada.
+O problema de integridade da primeira planilha foi resolvido pelo reenvio. Os identificadores do HTML foram removidos apenas da cópia pública; original preservado privadamente. Entrada livre em `innerHTML` permanece como risco documentado da fonte, que não está implantada.
 A proteção de main ainda não foi aplicada, pois a etapa 2 está bloqueada. Este checkpoint é bootstrap documental, não fundação concluída.

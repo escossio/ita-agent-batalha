@@ -32,10 +32,18 @@ Se houver achado, não publicar: preservar original fora do Git público e revis
 
 ## Limitações
 
-- Nenhuma das quatro fontes foi aprovada: uma recebida com ZIP inválido e três ausentes.
+- Três fontes revisadas e incorporadas, com HTML sanitizado; Voz e Tom permanece ausente.
 - Não há branch protection ou checks públicos configurados nesta etapa.
 - A revisão é manual/local e não constitui pipeline de certificação da etapa 2.
 
-## Recebimento posterior — planilha inválida
+## Primeiro recebimento — planilha inválida (histórico)
 
 A planilha de regras recebida em 2026-09-26 falhou na validação do ZIP interno. Não foi possível revisar todo o conteúdo; isso bloqueia sua publicação mesmo sem evidência confirmada de segredo. Original preservado, backup privado conferido e arquivo mantido fora do índice/histórico. Publicar somente atualização documental do recebimento, após varredura de árvore/histórico. Detalhes e hash em `docs/source/INTAKE_REVIEW.md`.
+
+## Reenvio íntegro e sanitização
+
+Duas planilhas íntegras revisadas integralmente, inclusive XML expandido e relações ZIP; sem macros, abas ocultas, comentários, propriedades pessoais ou links externos encontrados. Gitleaks aprovado no material expandido. Nenhum identificador de cliente detectado nas planilhas.
+
+O HTML traz iniciais e final de cartão em uma representação associada a captura de tela. Como a origem real/sintética desses identificadores não foi confirmada, original permanece privado; somente a cópia `.sanitized.html` é publicada. Sanitização reproduzível em `docs/source/sanitize_prototype.py`, hashes de origem/resultado no manifesto.
+
+Risco adicional: o protótipo insere texto digitado em `innerHTML`. Não foi executado, hospedado ou incorporado ao runtime; manter como evidência e referência, sem copiar essa prática para a implementação futura. A revisão não certifica os cálculos demonstrativos ou o comportamento do protótipo como produto.

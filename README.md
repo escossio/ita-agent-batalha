@@ -2,7 +2,7 @@
 
 Fundação do agente financeiro ITA. Repositório público: <https://github.com/escossio/ita-agent-batalha>.
 
-**Estado: etapa 1 parcial, bloqueada: uma fonte recebida com integridade inválida e três ausentes. Não há aplicação executável.**
+**Estado: etapa 1 parcial: duas planilhas íntegras e o protótipo sanitizado incorporados; falta “Ita: Voz e Tom”. Não há runtime implementado.**
 
 A sequência oficial está em [IMPLEMENTATION_ORDER.md](docs/architecture/IMPLEMENTATION_ORDER.md).
 O estado verificável e as pendências estão em [STATUS.md](STATUS.md).
@@ -10,14 +10,14 @@ As etapas 2–10 não foram iniciadas: sua execução depende da validação da 
 
 ## Documentos-fonte
 
-Os nomes abaixo foram fornecidos no briefing de implantação. O usuário indicou a pasta local `docs/source/`; nela foi recebida somente a planilha de regras, com integridade inválida. Nenhuma fonte está aprovada ou incorporada ao Git.
+Os nomes abaixo foram fornecidos no briefing de implantação. Após uma cópia inicial inválida, o usuário disponibilizou as duas planilhas íntegras e o HTML no diretório local indicado nesta sessão. Proveniência anterior não informada. Os hashes, tamanhos e horários estão em `docs/source/manifest.json`.
 
 | Fonte esperada | Origem confirmada | Função | Captura |
 | --- | --- | --- | --- |
-| `ITA_arvore_decisao_regras_produtos.xlsx` | Pasta local indicada pelo usuário | Regras, árvore decisória e restrições de produtos | 2026-09-26; ZIP inválido, não publicada |
-| `cenarios_treinamento_ITA_250.xlsx` | Pendente | Fonte de 250 cenários de avaliação/regressão; não treinamento automático de modelo | Pendente |
-| `prototipo_IAI_ITA_jornada.html` | Pendente | Referência de jornada e interação | Pendente |
-| `Ita: Voz e Tom` | Pendente; pode ser Google Docs | Diretrizes de linguagem e comportamento a classificar na etapa 5 | Pendente |
+| `ITA_arvore_decisao_regras_produtos.xlsx` | Reenvio local pelo usuário | Regras, árvore decisória e restrições de produtos | 2026-09-26; original íntegro, sem alterações |
+| `cenarios_treinamento_ITA_250.xlsx` | Arquivo local fornecido pelo usuário | Fonte de cenários de avaliação/regressão; não treinamento automático de modelo | 2026-09-26; original íntegro, sem alterações |
+| `prototipo_IAI_ITA_jornada.html` | Arquivo local fornecido pelo usuário | Referência de jornada e interação | 2026-09-26; publicada cópia `prototipo_IAI_ITA_jornada.sanitized.html` |
+| `Ita: Voz e Tom` | [Artefato Claude informado pelo usuário](https://claude.ai/artifact/YEMJ288EEVpnw1GgY4WE2e) | Diretrizes de linguagem e comportamento a classificar na etapa 5 | Bloqueada: HTTP 403; conteúdo não capturado |
 
 Na incorporação, registrar proveniência, data UTC, tamanho e SHA-256 em `docs/source/manifest.json`.
 Se Voz e Tom estiver no Google Docs, capturar Markdown com origem e data explícitas.
@@ -33,7 +33,7 @@ packages/             # reservado
 config/               # reservado
 evals/                # reservado
 docs/
-  source/             # inventário; nenhuma fonte aprovada
+  source/             # duas planilhas e HTML sanitizado; Voz e Tom pendente
   architecture/       # ordem oficial de implementação
   adr/                # reservado
   security/           # evidência da revisão antes da publicação
@@ -48,6 +48,9 @@ tests/                # reservado
 `.env.example` e `compose.yaml` são marcadores sem credenciais nem serviços.
 `docker compose up` ainda não levanta o projeto; containerização pertence à etapa 3.
 Nenhuma dependência de runtime/modelo foi escolhida ou instalada nesta etapa.
+
+O HTML arquivado é referência recebida, não uma implementação da vertical slice por este projeto.
+Seu código usa valores fixos e insere entrada do usuário em `innerHTML`; não deve ser servido como aplicação pública nem reutilizado como runtime. A sanitização de privacidade está documentada em `docs/source/INTAKE_REVIEW.md`.
 
 ## Operação
 

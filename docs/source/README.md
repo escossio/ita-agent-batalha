@@ -1,9 +1,9 @@
 # Recepção e congelamento das fontes
 
-Nenhuma das quatro fontes foi incorporada. Não há arquivos fictícios substituindo originais.
+Duas planilhas originais íntegras e uma cópia sanitizada do protótipo foram incorporadas. Falta “Ita: Voz e Tom”.
 O inventário está em `manifest.json`; valores nulos significam evidência ainda não obtida.
 
-Em 2026-09-26, a pasta indicada pelo usuário continha `ITA_arvore_decisao_regras_produtos.xlsx` (12.624 bytes), mas o ZIP interno falhou na validação. Original preservado sem alterações e cópia privada conferida fora do Git; arquivo excluído localmente do staging automático até substituição por cópia íntegra e revisão. As demais três fontes continuam ausentes. Detalhes em [INTAKE_REVIEW.md](INTAKE_REVIEW.md).
+Em 2026-09-26, a primeira cópia da planilha de regras falhou na validação ZIP e foi preservada fora do Git. O reenvio trouxe uma cópia íntegra, a planilha de cenários e o protótipo HTML. As duas planilhas foram copiadas sem alteração; o HTML original permanece privado por conter identificadores de uma captura de tela. Detalhes e procedimento reproduzível de sanitização em [INTAKE_REVIEW.md](INTAKE_REVIEW.md).
 
 Para concluir a etapa 1:
 
