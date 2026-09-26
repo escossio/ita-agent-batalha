@@ -11,7 +11,8 @@ Este registro não substitui o threat model e as fronteiras de segurança a impl
 - Autoria Git configurada localmente com o noreply público associado à conta GitHub.
 - Gitleaks 8.30.1: zero achados na árvore inicial. Binário conferido pelo SHA-256 fixado no scanner do projeto de referência do ambiente; instalado somente fora do repositório.
 - Auditoria complementar da árvore: zero achados para IPv4 privado, e-mail fora de noreply, CPF/CNPJ formatado, extensões de segredo/dump e URLs fora do repositório público.
-- Revisão humana assistida do conteúdo novo não identificou dados pessoais/bancários nem detalhes privados de infraestrutura.
+- Revisão textual pelo assistente do conteúdo novo não identificou dados pessoais/bancários nem detalhes privados de infraestrutura.
+- Histórico do checkpoint inicial `8c1100d`: um commit examinado pelo Gitleaks, zero achados; `git fsck --full` aprovado; autoria/committer com noreply conferidos. Repetir a revisão incluindo este registro antes do push.
 
 O histórico deve ser examinado depois de criado o commit e antes do push, incluindo autoria e todos os objetos versionados.
 Comandos de reprodução, com Gitleaks disponível no PATH:

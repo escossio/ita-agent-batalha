@@ -28,6 +28,7 @@ Estrutura inicial, inventário e sequência oficial 1 → 10 registrados. Nenhum
 - `git diff --cached --check`: aprovado para a estrutura inicial.
 - Gitleaks 8.30.1 na árvore: zero achados. Auditoria complementar de arquivos rastreados: zero achados de IP privado, e-mail pessoal, CPF/CNPJ formatado, URL inesperada ou arquivo proibido.
 - Revisão manual do conteúdo novo: somente documentação, inventário, marcadores e exclusões Git; nenhum original/dado bancário recebido. Auditoria de segurança detalhada em `docs/security/PUBLICATION_REVIEW.md`.
+- Checkpoint inicial `8c1100d`: `git fsck --full` aprovado, histórico completo examinado pelo Gitleaks sem achados e autoria noreply conferida. A revisão será repetida sobre o checkpoint documental final antes do push.
 
 ## O que não foi validado nem implementado
 
