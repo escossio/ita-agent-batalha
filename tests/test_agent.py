@@ -7,7 +7,7 @@ from unittest.mock import patch
 from packages.contracts.models import AgentResponse
 from services.agent.orchestrator import Orchestrator
 from services.agent.providers import MockProvider, configured_provider
-from services.agent.vertex import ModelUnavailable, VertexProvider
+from services.agent.vertex import ModelUnavailable, VertexGeminiProvider
 from services.policy.main import authorize
 from test_broker import Broker, Transport
 from test_policy import policy_input
@@ -107,7 +107,15 @@ class VertexTests(unittest.TestCase):
                 configured_provider()
         for location in ("../anything", "https://example.com"):
             with self.assertRaises(ModelUnavailable):
-                VertexProvider("demo-project", location, "demo-model")
+                VertexGeminiProvider("demo-project", location, "demo-model")
+
+    def test_factory_selects_real_provider_with_external_model_and_region(self):
+        with patch.dict(os.environ, {"ITA_MODEL_PROVIDER": "vertex", "GOOGLE_CLOUD_PROJECT": "demo-project",
+                                     "GOOGLE_CLOUD_LOCATION": "us-central1", "ITA_VERTEX_MODEL": "configured-model"}):
+            provider = configured_provider()
+        self.assertIsInstance(provider, VertexGeminiProvider)
+        self.assertEqual(provider.url, "https://us-central1-aiplatform.googleapis.com/v1/projects/"
+                         "demo-project/locations/us-central1/publishers/google/models/configured-model:generateContent")
 
     def test_vertex_request_uses_fixed_host_schema_and_no_api_key(self):
         captured = {}
@@ -132,7 +140,7 @@ class VertexTests(unittest.TestCase):
                 captured.update(url=url, kwargs=copy.deepcopy(kwargs))
                 return Response()
         from services.agent.models import ModelPlan
-        provider = VertexProvider("demo-project", "global", "configured-model", Session)
+        provider = VertexGeminiProvider("demo-project", "global", "configured-model", Session)
         result = provider.generate("classify", "Até o salário?", ModelPlan)
         self.assertEqual(result["tool"], "finance.project")
         self.assertTrue(captured["url"].startswith("https://aiplatform.googleapis.com/v1/projects/demo-project/"))
@@ -144,6 +152,6 @@ class VertexTests(unittest.TestCase):
         def unavailable():
             raise RuntimeError("private identity detail")
         from services.agent.models import ModelPlan
-        provider = VertexProvider("demo-project", "global", "configured-model", unavailable)
+        provider = VertexGeminiProvider("demo-project", "global", "configured-model", unavailable)
         with self.assertRaisesRegex(ModelUnavailable, "MODEL_UNAVAILABLE_OR_INVALID"):
             provider.generate("classify", "hello", ModelPlan)

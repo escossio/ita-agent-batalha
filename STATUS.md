@@ -22,8 +22,8 @@ Voz e Tom: **SOURCE_PENDING_LOCAL_COPY**, dependência documental não bloqueant
 | 9 | Concluída | PR #8; SHA 6313b9b aprovado em CI/worker; 66 testes; merge 78845aa |
 | 10 | Concluída com mock autorizado | PR #10; SHA 7c6e99f; 76 testes/CI/worker aprovados; merge 40e0ca8. Vertex real aguarda ADC externo |
 | 11 | Concluída | PR #11; SHA 06667df; 78 testes e integração PostgreSQL/Web em CI/worker; merge 40ea31b |
-| 12 | Em validação | Testes adversariais e outages reais em worker; aguarda certificação |
-| 13 | Não iniciada | Dataset íntegro; runner de eval funcional ainda não implementado |
+| 12 | Concluída | PR #12; SHA 9b94506; 87 testes e outages/recovery em worker/Actions; merge 19a78e2 |
+| 13 | Parcial, preservada em branch isolada | Runner em elaboração; sem certificação dos 250; ampliação GCP solicitada antes de prosseguir |
 | 14 | Não iniciada | Aguarda gate 13 |
 | 15 | Não iniciada | Auditoria básica existente; observabilidade completa aguarda gate 14 |
 | 16 | Não iniciada | Mapeamento inicial existente; portabilidade completa aguarda gate 15 |
@@ -32,7 +32,7 @@ Voz e Tom: **SOURCE_PENDING_LOCAL_COPY**, dependência documental não bloqueant
 
 Originais preservados: XLSX byte a byte; HTML original privado e cópia pública sanitizada. Histórico de recepção em docs/source/INTAKE_REVIEW.md. Etapas anteriores de acesso remoto são históricas e não geram dependência atual.
 
-## Validação e limites
+## Validação e limites — registro histórico da etapa 1
 
 Manifesto e hashes das três fontes locais aprovados; fonte ausente permanece sem conteúdo/hash. Alteração de autorização registrada em IMPLEMENTATION_ORDER.md. Nenhum serviço global alterado, nenhuma suíte pesada local, nenhuma vertical slice iniciada. Governance, Compose runtime e testes de produto serão validados nas etapas respectivas.
 
@@ -84,7 +84,7 @@ Projeção em centavos, categorias de compromissos, histórico, simulação de g
 
 66 testes curtos aprovados. Grants/decision_id do chamador não autorizam; Policy carrega contexto DEMO do servidor. Leitura dependente de dados exige autorização própria. Contrato Projection reforçado na origem para rejeitar números internamente incoerentes. HTTP tem destinos fixos, sem redirects/proxy; logs de auditoria sem payload financeiro. Data usa adaptador de fixture explícito nesta etapa, sem fallback; persistência PostgreSQL pertence à vertical slice (11). Smoke distribuído inclui Broker → Policy → Data/Finance e caso negado.
 
-## Checkpoint certificado e ponto de retomada
+## Histórico — checkpoint anterior à escolha do provider
 
 Etapas 1–9 estruturalmente certificadas, com exceção documental autorizada para Voz e Tom. Último componente certificado: 6313b9b861e7038b8790b0678c6884e9b3419693, integrado pelo PR #8 em 78845aae96d51f8342c1569fad8f0c85946c6520. Evidência em docs/architecture/STAGE_09_VALIDATION.json.
 
@@ -111,3 +111,17 @@ Web apresenta pergunta/gasto, API valida e converte representação monetária s
 Threat model atualizado com controles/evidências e limites do mock. Testes cobrem falha de autorização/validação/ferramenta, ausência/incerteza, injeção, exfiltração, invenção financeira, produtos, humano e bypass. Worker derruba Policy/Broker/Finance/Data/PostgreSQL um a um, exige fail closed e verifica recuperação da jornada. Nenhuma falha é convertida em PASS por fallback.
 
 Correção de teste na etapa 12: o transporte simulado agora converte MissingData no mesmo erro estruturado MISSING_DATA do HTTP real. A falha não foi ignorada; regressão repetida após a correção.
+
+## Ampliação GCP da etapa 10 — instrução posterior
+
+Provider oficial `VertexGeminiProvider`, port `ModelProvider` preservado; mock explícito permanece em CI. Projeto/região/modelo são externos. VERTEX_OK e leitura BigQuery foram confirmados manualmente pelo usuário no Google, não reproduzidos pelo AGT.
+
+Inventário BigQuery: **BLOCKED_ENVIRONMENT_ACCESS**. Não há ADC disponível nesta sessão nem canal de execução autenticado no Google. Coletor de metadados implementado e testado, captura real tentada e falhou sem produzir inventário. Não foram obtidos schemas/tipos/nulabilidade/todas as tabelas. A tabela extrato_sintetico e seis nomes de campos são informação do usuário, não inventário completo. Adapter definitivo fica condicionado à inspeção integral; nenhum schema ou cálculo foi presumido. Fonte da competição é sintética externa, distinta das fixtures locais.
+
+Gate anterior de 10–12 com mock permanece válido; esta ampliação está parcial. Etapas 14–18 não foram iniciadas. Rascunho da etapa 13 preservado em setup/13-evals; não foi misturado neste checkpoint. Detalhes e comandos: docs/architecture/BIGQUERY_INVENTORY.md.
+
+Validação desta ampliação: 93 testes curtos, lint, arquitetura (26 arquivos, zero violações) e Compose base/Vertex aprovados; CI/worker serão vinculados ao SHA do PR. Configuração alterada: .env.example (variáveis não secretas do coletor) e .gitignore (venv isolada do inventário); nenhum host, IAM, serviço global, deploy ou infraestrutura paga alterado. Voz e Tom continua SOURCE_PENDING_LOCAL_COPY não bloqueante.
+
+Instrução posterior confirmada: o operador entregará inventário de metadados gerado no Cloud Shell como arquivo local. Nenhum token/chave/credencial será fornecido ao AGT. Não tentar habilitar acesso GCP no AGT. Inventário bruto somente local/privado; publicar exclusivamente documentação/contratos sanitizados após revisão. Mock/fixtures continuam independentes de GCP.
+
+Correção durante CI desta ampliação: CodeQL sinalizou duas comparações parciais de URL no verificador estático de arquitetura. Substituídas por parsing explícito de hostname; nenhum alerta foi suprimido ou contornado. Regressão e certificação repetidas no SHA corrigido.

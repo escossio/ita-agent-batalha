@@ -2,7 +2,7 @@
 
 Fundação do agente financeiro ITA. Repositório público: <https://github.com/escossio/ita-agent-batalha>.
 
-**Etapa 1: gate estrutural aprovado. Três fontes congeladas; Voz e Tom é `SOURCE_PENDING_LOCAL_COPY`, dependência documental não bloqueante.**
+**Etapas 1–12 certificadas com mock explícito. Integração Vertex AI/Gemini implementada; inventário BigQuery aguarda acesso ao ambiente Google. Voz e Tom: `SOURCE_PENDING_LOCAL_COPY`.**
 
 A sequência oficial está em [IMPLEMENTATION_ORDER.md](docs/architecture/IMPLEMENTATION_ORDER.md).
 O estado verificável e as pendências estão em [STATUS.md](STATUS.md).
@@ -45,9 +45,9 @@ tests/                # reservado
 .github/workflows/    # certificação e CodeQL
 ```
 
-A fundação Compose oferece saúde e isolamento de serviços; ainda sem jornada financeira.
+A jornada DEMO percorre Web → API → Agent → Policy/Broker → Finance/Data → PostgreSQL.
 Execução e coordenação em [CONTAINERS.md](docs/architecture/CONTAINERS.md). AGT coordena; builds/PostgreSQL/smoke usam workers.
-Não há dependência de modelo nesta etapa.
+Vertex AI/Gemini é o provider oficial; CI usa mock explícito. Veja [provider](docs/architecture/AGENT_PROVIDER.md) e [inventário BigQuery pendente](docs/architecture/BIGQUERY_INVENTORY.md).
 
 O HTML arquivado é referência recebida, não uma implementação da vertical slice por este projeto.
 Seu código usa valores fixos e insere entrada do usuário em `innerHTML`; não deve ser servido como aplicação pública nem reutilizado como runtime. A sanitização de privacidade está documentada em `docs/source/INTAKE_REVIEW.md`.
@@ -56,6 +56,6 @@ Seu código usa valores fixos e insere entrada do usuário em `innerHTML`; não 
 
 Workspace isolado no padrão de projetos do AGT. Configuração Git local com identidade pública noreply.
 AGT coordena; workers executam cargas pesadas e certificam o SHA solicitado. GitHub Actions certifica alterações via PR; veja `docs/security/GITHUB_GOVERNANCE.md`.
-Não há deploy externo, migração GCP, API bancária, movimentação financeira ou vertical slice implementados.
+A vertical slice DEMO e os testes adversariais foram certificados; não houve deploy externo, migração GCP, integração bancária ou movimentação financeira. O dataset externo da competição não é fixture local e ainda não está ligado à jornada.
 
 Acesso ao Drive não é necessário nem será reconstruído. Trabalhar somente com artefatos locais; o GitHub/repositório público é a fonte versionada principal. Regras específicas de Voz e Tom dependem de sua futura cópia local.

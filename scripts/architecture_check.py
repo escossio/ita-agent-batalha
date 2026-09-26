@@ -4,6 +4,7 @@ import ast
 import json
 from pathlib import Path
 import subprocess
+from urllib.parse import urlsplit
 
 
 def violations(path: Path, source: str) -> list[str]:
@@ -14,15 +15,22 @@ def violations(path: Path, source: str) -> list[str]:
         if isinstance(node, ast.Import):
             names = [n.name for n in node.names]
         elif isinstance(node, ast.ImportFrom):
-            names = [node.module or ""]
+            names = [node.module or ""] + [f"{node.module or ''}.{alias.name}" for alias in node.names]
         else:
             names = []
         for name in names:
             if is_agent and any(part in name.split(".") for part in (
                 "psycopg", "psycopg2", "sqlalchemy", "sqlite3", "subprocess",
-                "finance", "data", "policy", "broker",
+                "finance", "data", "policy", "broker", "bigquery", "bigquery_storage",
             )):
                 issues.append(f"{path}:{node.lineno}: forbidden agent import {name}")
+        if is_agent and isinstance(node, ast.Constant) and isinstance(node.value, str):
+            try:
+                host = urlsplit(node.value).hostname if node.value.startswith(("http://", "https://")) else node.value
+            except ValueError:
+                host = None
+            if host in {"bigquery.googleapis.com", "bigquerystorage.googleapis.com"}:
+                issues.append(f"{path}:{node.lineno}: direct BigQuery endpoint forbidden")
         if is_agent and isinstance(node, ast.Call) and isinstance(node.func, ast.Name):
             if node.func.id in {"eval", "exec", "__import__"}:
                 issues.append(f"{path}:{node.lineno}: dynamic execution forbidden")
