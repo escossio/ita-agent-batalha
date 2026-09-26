@@ -16,3 +16,4 @@
 !config/rules.json
 !requirements-agent.txt
 !requirements-data.txt
+!requirements-gcp.txt

@@ -2,7 +2,7 @@
 
 Decisão do usuário, 2026-09-26: Vertex AI/Gemini via ADC/identidade, sem chave hardcoded. Mock explícito autorizado para certificação quando não houver credencial. Descoberta ADC no AGT retornou DefaultCredentialsError; nenhum projeto pago, chave ou infraestrutura externa foi criado. Ativação real permanece externa e **não bloqueia os gates estruturais**.
 
-`ModelProvider` define interpret/compose; domínio, Policy e Broker não importam Google. O adaptador `VertexGeminiProvider` em `vertex.py` usa generateContent REST e google-auth ADC, com host derivado de projeto/região/modelo validados. Sem API key, ferramentas nativas do modelo, SQL ou execução arbitrária. Dependências específicas ficam em requirements-agent.txt e somente na imagem Agent.
+`ModelProvider` define interpret/compose; domínio, Policy e Broker não importam Google. O adaptador `VertexGeminiProvider` em `vertex.py` usa generateContent REST e google-auth ADC, com host derivado de projeto/região/modelo validados. Sem API key, ferramentas nativas do modelo, SQL ou execução arbitrária. Adapter de modelo fica somente na imagem Agent. Dependências HTTP/ADC pinadas em requirements-gcp.txt são consumidas pelas imagens Agent e Data; não entram no domínio.
 
 Modelo produz ModelPlan validado: intenção e solicitação de ferramenta da allow-list. Não escolhe cliente, saldo, gasto proposto ou elegibilidade. Gasto vem da entrada estruturada. Agent consulta Policy; Broker reautoriza independentemente; somente resultados tipados voltam para AgentResponse. Contexto recebido pode restringir uma solicitação, nunca conceder permissão que Policy negou. Contexto de autorização é do servidor.
 

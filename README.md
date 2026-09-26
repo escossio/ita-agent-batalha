@@ -2,7 +2,7 @@
 
 Fundação do agente financeiro ITA. Repositório público: <https://github.com/escossio/ita-agent-batalha>.
 
-**Etapas 1–12 certificadas com mock explícito. Integração Vertex AI/Gemini implementada; inventário BigQuery aguarda acesso ao ambiente Google. Voz e Tom: `SOURCE_PENDING_LOCAL_COPY`.**
+**Etapas 1–12 certificadas com mock explícito. Integração Vertex AI/Gemini implementada; schema BigQuery inspecionado e adapter Data preparado, ainda sem ativação na jornada. Voz e Tom: `SOURCE_PENDING_LOCAL_COPY`.**
 
 A sequência oficial está em [IMPLEMENTATION_ORDER.md](docs/architecture/IMPLEMENTATION_ORDER.md).
 O estado verificável e as pendências estão em [STATUS.md](STATUS.md).
@@ -47,7 +47,7 @@ tests/                # reservado
 
 A jornada DEMO percorre Web → API → Agent → Policy/Broker → Finance/Data → PostgreSQL.
 Execução e coordenação em [CONTAINERS.md](docs/architecture/CONTAINERS.md). AGT coordena; builds/PostgreSQL/smoke usam workers.
-Vertex AI/Gemini é o provider oficial; CI usa mock explícito. Veja [provider](docs/architecture/AGENT_PROVIDER.md) e [inventário BigQuery pendente](docs/architecture/BIGQUERY_INVENTORY.md).
+Vertex AI/Gemini é o provider oficial; CI usa mock explícito. Veja [provider](docs/architecture/AGENT_PROVIDER.md) e [mapeamento BigQuery](docs/architecture/BIGQUERY_INVENTORY.md).
 
 O HTML arquivado é referência recebida, não uma implementação da vertical slice por este projeto.
 Seu código usa valores fixos e insere entrada do usuário em `innerHTML`; não deve ser servido como aplicação pública nem reutilizado como runtime. A sanitização de privacidade está documentada em `docs/source/INTAKE_REVIEW.md`.
