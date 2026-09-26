@@ -2,7 +2,10 @@ FROM python:3.13-slim@sha256:7c61056e61ac89e852de05f3dc6fa51a6dd2181797bceed46aa
 ARG COMPONENT
 ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1
 WORKDIR /app
+COPY requirements.txt /app/requirements.txt
+RUN pip install --no-cache-dir -r /app/requirements.txt
 COPY packages/runtime/ /app/packages/runtime/
+COPY packages/contracts/ /app/packages/contracts/
 COPY services/${COMPONENT}/ /app/component/
 USER 10001:10001
 EXPOSE 8080

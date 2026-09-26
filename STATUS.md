@@ -13,8 +13,9 @@ Voz e Tom: **SOURCE_PENDING_LOCAL_COPY**, dependência documental não bloqueant
 | --- | --- | --- |
 | 1 | Gate estrutural aprovado com pendência documental | Três fontes congeladas; hashes/ZIP/XML/sanitização conferidos; manifesto atualizado conforme instrução do usuário |
 | 2 | Concluída | PR #1 integrado; seis checks e CodeQL verdes no commit 535da98; merge 2aa4652 |
-| 3 | Em andamento | Containerização e fluxo distribuído isolado |
-| 4–10 | Não iniciadas | Aguardar gates anteriores |
+| 3 | Concluída | PR #2; SHA d2c8eac validado em worker e Actions; merge 01945d7 |
+| 4 | Em andamento | Oito contratos tipados/versionados, schemas e testes; aguardando CI/worker |
+| 5–10 | Não iniciadas | Aguardar gates anteriores |
 | 11–18 | Planejadas, não iniciadas | Definições recebidas e registradas no plano oficial |
 
 Originais preservados: XLSX byte a byte; HTML original privado e cópia pública sanitizada. Histórico de recepção em docs/source/INTAKE_REVIEW.md. Etapas anteriores de acesso remoto são históricas e não geram dependência atual.
@@ -39,8 +40,12 @@ Manifesto e hashes das três fontes locais aprovados; fonte ausente permanece se
 
 - Segundo arquivo local divergente preservado fora do Git; trabalho continuado em worktree isolado com hashes certificados. A versão incorreta nunca foi incorporada aos commits.
 
-## Etapa 3 — candidato para certificação
+## Etapa 3 — certificada
 
 Compose: web, api, agent, policy, tool-broker, finance, data, postgres, observability e job secrets-init. Imagens base pinadas por digest, redes segmentadas, secrets gerados fora do Git e usuário de aplicação PostgreSQL sem superuser. Agent não tem rede/segredo/arquivo de banco, Finance ou Data.
 
-Local no AGT: `docker compose config --quiet` aprovado; lint e 6 unit tests curtos aprovados; análise de 9 arquivos runtime sem violação. Build/up/smoke/shutdown aguardam worker, sem execução pesada local.
+Local no AGT: `docker compose config --quiet` aprovado; lint e 6 unit tests curtos aprovados; análise de 9 arquivos runtime sem violação. Build/up/smoke/shutdown aprovados em worker e no GitHub, sem execução pesada local. Bypass por DNS e IP direto negado; todos os healthchecks e saída limpa verificados. Recursos efêmeros removidos.
+
+## Etapa 4 — contratos
+
+CustomerContext, FinancialSnapshot, Eligibility, PolicyDecision, ToolRequest, ToolResult, AgentResponse e AuditEvent definidos em Pydantic estrito, com JSON Schema 1.0 versionado. Centavos inteiros, extras proibidos, dados ausentes explícitos e invariantes de deny/resultados/correlation/customer. Regeneração sem drift entra no CI. Não há lógica financeira, Policy Engine ou Agent implementados nesta etapa.

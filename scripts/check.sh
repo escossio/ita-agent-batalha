@@ -3,7 +3,7 @@ set -euo pipefail
 cd "$(dirname "$0")/.."
 case "${1:-}" in
   lint) python3 -m ruff check .; git diff --check ;;
-  unit-contract) python3 -m unittest discover -s tests -v ;;
+  unit-contract) python3 -m unittest discover -s tests -v; python3 scripts/export_contracts.py --check ;;
   architecture) python3 scripts/architecture_check.py ;;
   build)
     [[ "${ITA_CI_WORKER:-}" == 1 ]] || { echo 'Build requires distributed/hosted worker'; exit 64; }

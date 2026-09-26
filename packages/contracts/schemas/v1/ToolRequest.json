@@ -1,0 +1,114 @@
+{
+  "$defs": {
+    "ProjectionArguments": {
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "const": "projection",
+          "title": "Kind",
+          "type": "string"
+        },
+        "proposed_spend_cents": {
+          "maximum": 1000000000000,
+          "minimum": 0,
+          "title": "Proposed Spend Cents",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "kind",
+        "proposed_spend_cents"
+      ],
+      "title": "ProjectionArguments",
+      "type": "object"
+    },
+    "SnapshotArguments": {
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "const": "snapshot",
+          "title": "Kind",
+          "type": "string"
+        }
+      },
+      "required": [
+        "kind"
+      ],
+      "title": "SnapshotArguments",
+      "type": "object"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "arguments": {
+      "discriminator": {
+        "mapping": {
+          "projection": "#/$defs/ProjectionArguments",
+          "snapshot": "#/$defs/SnapshotArguments"
+        },
+        "propertyName": "kind"
+      },
+      "oneOf": [
+        {
+          "$ref": "#/$defs/SnapshotArguments"
+        },
+        {
+          "$ref": "#/$defs/ProjectionArguments"
+        }
+      ],
+      "title": "Arguments"
+    },
+    "correlation_id": {
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+      "title": "Correlation Id",
+      "type": "string"
+    },
+    "customer_id": {
+      "pattern": "^[a-zA-Z0-9][a-zA-Z0-9_-]{0,63}$",
+      "title": "Customer Id",
+      "type": "string"
+    },
+    "policy_decision_id": {
+      "anyOf": [
+        {
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Policy Decision Id"
+    },
+    "request_id": {
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+      "title": "Request Id",
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "1.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "tool": {
+      "enum": [
+        "data.snapshot",
+        "finance.project"
+      ],
+      "title": "Tool",
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "request_id",
+    "correlation_id",
+    "customer_id",
+    "tool",
+    "arguments"
+  ],
+  "title": "ToolRequest",
+  "type": "object"
+}

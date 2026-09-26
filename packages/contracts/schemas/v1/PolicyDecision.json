@@ -1,0 +1,201 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "allowed_actions": {
+      "items": {
+        "enum": [
+          "read_snapshot",
+          "project_cashflow",
+          "compare_products",
+          "end_conversation",
+          "handoff"
+        ],
+        "type": "string"
+      },
+      "maxItems": 5,
+      "title": "Allowed Actions",
+      "type": "array"
+    },
+    "allowed_products": {
+      "items": {
+        "enum": [
+          "credit",
+          "renegotiation",
+          "financing",
+          "consortium",
+          "investment"
+        ],
+        "type": "string"
+      },
+      "maxItems": 5,
+      "title": "Allowed Products",
+      "type": "array"
+    },
+    "authorized_tools": {
+      "items": {
+        "enum": [
+          "data.snapshot",
+          "finance.project"
+        ],
+        "type": "string"
+      },
+      "maxItems": 2,
+      "title": "Authorized Tools",
+      "type": "array"
+    },
+    "blocked_actions": {
+      "items": {
+        "enum": [
+          "read_snapshot",
+          "project_cashflow",
+          "compare_products",
+          "end_conversation",
+          "handoff"
+        ],
+        "type": "string"
+      },
+      "maxItems": 5,
+      "title": "Blocked Actions",
+      "type": "array"
+    },
+    "blocked_products": {
+      "items": {
+        "enum": [
+          "credit",
+          "renegotiation",
+          "financing",
+          "consortium",
+          "investment"
+        ],
+        "type": "string"
+      },
+      "maxItems": 5,
+      "title": "Blocked Products",
+      "type": "array"
+    },
+    "correlation_id": {
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+      "title": "Correlation Id",
+      "type": "string"
+    },
+    "credit_allowed": {
+      "title": "Credit Allowed",
+      "type": "boolean"
+    },
+    "customer_id": {
+      "pattern": "^[a-zA-Z0-9][a-zA-Z0-9_-]{0,63}$",
+      "title": "Customer Id",
+      "type": "string"
+    },
+    "decision_id": {
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+      "title": "Decision Id",
+      "type": "string"
+    },
+    "expires_at": {
+      "maxLength": 32,
+      "title": "Expires At",
+      "type": "string"
+    },
+    "language_constraints": {
+      "items": {
+        "enum": [
+          "no_judgment",
+          "no_invented_numbers",
+          "no_pressure",
+          "signal_uncertainty",
+          "no_product_offer"
+        ],
+        "type": "string"
+      },
+      "maxItems": 5,
+      "title": "Language Constraints",
+      "type": "array"
+    },
+    "max_options": {
+      "maximum": 5,
+      "minimum": 0,
+      "title": "Max Options",
+      "type": "integer"
+    },
+    "outcome": {
+      "enum": [
+        "allow",
+        "deny",
+        "handoff"
+      ],
+      "title": "Outcome",
+      "type": "string"
+    },
+    "policy_version": {
+      "const": "1.0",
+      "title": "Policy Version",
+      "type": "string"
+    },
+    "reasons": {
+      "items": {
+        "enum": [
+          "ALLOWED",
+          "DEFAULT_DENY",
+          "NO_CONSENT",
+          "HUMAN_REQUESTED",
+          "PERSON_SAFETY",
+          "UNKNOWN_CONTEXT",
+          "FINANCIAL_DISTRESS",
+          "INELIGIBLE",
+          "PRODUCT_BLOCKED",
+          "TOOL_NOT_ALLOWED",
+          "INVALID_INPUT",
+          "MISSING_DATA",
+          "UNCERTAIN_DATA",
+          "DEPENDENCY_FAILURE",
+          "TIMEOUT",
+          "INVALID_OUTPUT",
+          "USER_DECLINED"
+        ],
+        "type": "string"
+      },
+      "maxItems": 10,
+      "minItems": 1,
+      "title": "Reasons",
+      "type": "array"
+    },
+    "request_digest": {
+      "pattern": "^[0-9a-f]{64}$",
+      "title": "Request Digest",
+      "type": "string"
+    },
+    "requires_human": {
+      "title": "Requires Human",
+      "type": "boolean"
+    },
+    "schema_version": {
+      "const": "1.0",
+      "title": "Schema Version",
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "decision_id",
+    "correlation_id",
+    "customer_id",
+    "request_digest",
+    "outcome",
+    "allowed_actions",
+    "blocked_actions",
+    "allowed_products",
+    "blocked_products",
+    "authorized_tools",
+    "credit_allowed",
+    "max_options",
+    "requires_human",
+    "language_constraints",
+    "reasons",
+    "policy_version",
+    "expires_at"
+  ],
+  "title": "PolicyDecision",
+  "type": "object"
+}

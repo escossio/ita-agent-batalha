@@ -1,0 +1,16 @@
+{
+  "stage": 3,
+  "sha": "d2c8eac035a20e37ed0de8ab5274457d7050a6c9",
+  "pr": 2,
+  "merge_sha": "01945d7c78ed6280dbe2b9735f6b179ef933c534",
+  "distributed": "PASS",
+  "github_actions": "PASS",
+  "compose_config": "PASS",
+  "build": "PASS",
+  "healthchecks": "PASS",
+  "correlation_id": "PASS",
+  "agent_bypass_dns_and_ip": "DENIED",
+  "shutdown": "PASS",
+  "ephemeral_resources": "removed",
+  "agt_heavy_execution": false
+}

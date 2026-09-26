@@ -1,0 +1,77 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "consent_to_analysis": {
+      "title": "Consent To Analysis",
+      "type": "boolean"
+    },
+    "contact_permission": {
+      "default": false,
+      "title": "Contact Permission",
+      "type": "boolean"
+    },
+    "customer_id": {
+      "pattern": "^[a-zA-Z0-9][a-zA-Z0-9_-]{0,63}$",
+      "title": "Customer Id",
+      "type": "string"
+    },
+    "emotional_state": {
+      "enum": [
+        "unknown",
+        "neutral",
+        "distressed",
+        "crisis"
+      ],
+      "title": "Emotional State",
+      "type": "string"
+    },
+    "financial_level": {
+      "enum": [
+        "unknown",
+        "critical",
+        "tight",
+        "stable"
+      ],
+      "title": "Financial Level",
+      "type": "string"
+    },
+    "human_requested": {
+      "title": "Human Requested",
+      "type": "boolean"
+    },
+    "locale": {
+      "const": "pt-BR",
+      "default": "pt-BR",
+      "title": "Locale",
+      "type": "string"
+    },
+    "mode": {
+      "const": "DEMO",
+      "title": "Mode",
+      "type": "string"
+    },
+    "provenance": {
+      "const": "DEMO_FIXTURE",
+      "title": "Provenance",
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "1.0",
+      "title": "Schema Version",
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "customer_id",
+    "mode",
+    "consent_to_analysis",
+    "financial_level",
+    "emotional_state",
+    "human_requested",
+    "provenance"
+  ],
+  "title": "CustomerContext",
+  "type": "object"
+}
