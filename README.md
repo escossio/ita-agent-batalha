@@ -6,7 +6,7 @@ Fundação do agente financeiro ITA. Repositório público: <https://github.com/
 
 A sequência oficial está em [IMPLEMENTATION_ORDER.md](docs/architecture/IMPLEMENTATION_ORDER.md).
 O estado verificável e as pendências estão em [STATUS.md](STATUS.md).
-Avanço sequencial com gates e checkpoints. Etapas 11–18 ainda não especificadas; nenhuma vertical slice autorizada.
+Avanço sequencial com gates e checkpoints. Ordem completa 1–18 registrada; vertical slice autorizada apenas na etapa 11, após os gates anteriores.
 
 ## Documentos-fonte
 
@@ -42,7 +42,7 @@ infra/
   docker/             # reservado
   gcp/                # reservado
 tests/                # reservado
-.github/workflows/    # reservado; nenhum check configurado
+.github/workflows/    # certificação e CodeQL
 ```
 
 `.env.example` e `compose.yaml` são marcadores sem credenciais nem serviços.
@@ -55,7 +55,7 @@ Seu código usa valores fixos e insere entrada do usuário em `innerHTML`; não 
 ## Operação
 
 Workspace isolado no padrão de projetos do AGT. Configuração Git local com identidade pública noreply.
-AGT coordena; workers executam cargas pesadas e certificam o SHA solicitado. GitHub Actions será a certificação pública na etapa 2.
+AGT coordena; workers executam cargas pesadas e certificam o SHA solicitado. GitHub Actions certifica alterações via PR; veja `docs/security/GITHUB_GOVERNANCE.md`.
 Não há deploy externo, migração GCP, API bancária, movimentação financeira ou vertical slice implementados.
 
 Acesso ao Drive não é necessário nem será reconstruído. Trabalhar somente com artefatos locais; o GitHub/repositório público é a fonte versionada principal. Regras específicas de Voz e Tom dependem de sua futura cópia local.
