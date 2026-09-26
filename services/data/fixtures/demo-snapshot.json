@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.0",
+  "kind": "financial_snapshot",
+  "snapshot_id": "demo-snapshot",
+  "customer_id": "demo-customer",
+  "mode": "DEMO",
+  "as_of": "2026-09-01",
+  "currency": "BRL",
+  "balance_cents": 200000,
+  "next_income": {
+    "due_on": "2026-09-19",
+    "amount_cents": 300000,
+    "recurring_confirmed": true,
+    "certainty": "confirmed"
+  },
+  "commitments": [
+    {
+      "entry_id": "demo-entry-1",
+      "due_on": "2026-09-02",
+      "amount_cents": 40000,
+      "category": "bill",
+      "certainty": "confirmed"
+    },
+    {
+      "entry_id": "demo-entry-2",
+      "due_on": "2026-09-03",
+      "amount_cents": 20000,
+      "category": "installment",
+      "certainty": "confirmed"
+    },
+    {
+      "entry_id": "demo-entry-3",
+      "due_on": "2026-09-04",
+      "amount_cents": 5000,
+      "category": "subscription",
+      "certainty": "confirmed"
+    },
+    {
+      "entry_id": "demo-entry-4",
+      "due_on": "2026-09-05",
+      "amount_cents": 10000,
+      "category": "recurring",
+      "certainty": "confirmed"
+    },
+    {
+      "entry_id": "demo-entry-5",
+      "due_on": "2026-09-06",
+      "amount_cents": 15000,
+      "category": "variable",
+      "certainty": "estimated"
+    }
+  ],
+  "history": null,
+  "data_complete": true,
+  "provenance": "DEMO_FIXTURE"
+}
