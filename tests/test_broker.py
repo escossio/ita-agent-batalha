@@ -6,7 +6,8 @@ import unittest
 from pydantic import ValidationError
 from packages.contracts.models import ToolRequest
 from services.policy.main import authorize
-from services.finance.engine import project
+from services.finance.engine import MissingData, project
+from packages.runtime.http_client import RemoteFailure
 from test_finance import fixture
 from test_policy import policy_input
 
@@ -28,7 +29,10 @@ class Transport:
         elif destination == "snapshot":
             result = fixture()
         else:
-            result = project(payload).model_dump()
+            try:
+                result = project(payload).model_dump()
+            except MissingData:
+                raise RemoteFailure("MISSING_DATA") from None
         return result | self.patch.get(destination, {})
 
 
