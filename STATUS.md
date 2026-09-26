@@ -16,8 +16,9 @@ Voz e Tom: **SOURCE_PENDING_LOCAL_COPY**, dependência documental não bloqueant
 | 3 | Concluída | PR #2; SHA d2c8eac validado em worker e Actions; merge 01945d7 |
 | 4 | Concluída | PR #3; SHA 5a6b62d com checks/worker aprovados; merge ad360a3 |
 | 5 | Concluída | PR #4; SHA 0403328, CI/worker aprovados; merge f0e5461 |
-| 6 | Em validação | Três ADRs, hierarquia e testes; aguarda CI/worker |
-| 7–10 | Não iniciadas | Aguardar gates anteriores |
+| 6 | Concluída | PR #5; SHA 9c585df aprovado em CI/worker; merge 96f1b54 |
+| 7 | Em validação | Policy independente e testes de default deny, identidade, produtos, segurança e consentimento |
+| 8–10 | Não iniciadas | Aguardar gates anteriores |
 | 11–18 | Planejadas, não iniciadas | Definições recebidas e registradas no plano oficial |
 
 Originais preservados: XLSX byte a byte; HTML original privado e cópia pública sanitizada. Histórico de recepção em docs/source/INTAKE_REVIEW.md. Etapas anteriores de acesso remoto são históricas e não geram dependência atual.
@@ -59,3 +60,7 @@ Fontes originais inalteradas. Regras R001–R014 preservam predicados e localiza
 ## Etapa 6 — decisões explícitas
 
 ADRs 0001–0003 registram oito ambiguidades/conflitos, limites locais de opções, arbitragem deny-overrides e semântica temporal financeira. “Agora não” encerra abordagem sem agendar; contraparte de Voz e Tom permanece não confirmada. Permissões não podem ser reabertas por tom de voz ou dados ausentes.
+
+## Etapa 7 — Policy Engine
+
+Entradas estruturadas e PolicyDecision com validade/vínculo de requisição. Allow-list, bloqueios de produto/ferramenta, humano, nível financeiro, elegibilidade e linguagem. Fatos/contexto confiáveis são responsabilidade do serviço, nunca grants do LLM. Interface interna preparada; wiring HTTP com Broker nas etapas seguintes.
