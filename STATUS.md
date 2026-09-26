@@ -17,8 +17,9 @@ Voz e Tom: **SOURCE_PENDING_LOCAL_COPY**, dependência documental não bloqueant
 | 4 | Concluída | PR #3; SHA 5a6b62d com checks/worker aprovados; merge ad360a3 |
 | 5 | Concluída | PR #4; SHA 0403328, CI/worker aprovados; merge f0e5461 |
 | 6 | Concluída | PR #5; SHA 9c585df aprovado em CI/worker; merge 96f1b54 |
-| 7 | Em validação | Policy independente e testes de default deny, identidade, produtos, segurança e consentimento |
-| 8–10 | Não iniciadas | Aguardar gates anteriores |
+| 7 | Concluída | PR #6; SHA dd04465 aprovado em CI/worker, inclusive Policy HTTP; merge 5a0fa23 |
+| 8 | Em validação | Motor determinístico, fixtures DEMO e testes; aguarda CI/worker |
+| 9–10 | Não iniciadas | Aguardar gates anteriores |
 | 11–18 | Planejadas, não iniciadas | Definições recebidas e registradas no plano oficial |
 
 Originais preservados: XLSX byte a byte; HTML original privado e cópia pública sanitizada. Histórico de recepção em docs/source/INTAKE_REVIEW.md. Etapas anteriores de acesso remoto são históricas e não geram dependência atual.
@@ -66,3 +67,7 @@ ADRs 0001–0003 registram oito ambiguidades/conflitos, limites locais de opçõ
 Entradas estruturadas e PolicyDecision com validade/vínculo de requisição. Allow-list, bloqueios de produto/ferramenta, humano, nível financeiro, elegibilidade e linguagem. Fatos/contexto confiáveis são responsabilidade do serviço, nunca grants do LLM. Interface interna preparada; wiring HTTP com Broker nas etapas seguintes.
 
 Validação da etapa 7: 43 testes curtos e lint/arquitetura/scans aprovados; smoke distribuído inclui chamadas HTTP reais de Policy com e sem consentimento.
+
+## Etapa 8 — Finance Engine
+
+Projeção em centavos, categorias de compromissos, histórico, simulação de gasto e custos com taxa verificada. MissingData não gera número. Fixtures sintéticas DEMO, sem contratos reais presumidos. Smoke de worker chama Finance por HTTP a partir da rede do Broker.

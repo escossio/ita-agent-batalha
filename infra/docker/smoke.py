@@ -43,6 +43,24 @@ for consent, expected in ((False, "deny"), (True, "allow")):
         assert result["authorized_tools"] == (["finance.project"] if consent else [])
 """
     compose("exec", "-T", "agent", "python", "-c", policy_probe)
+    finance_probe = """
+import json
+import urllib.request
+from uuid import uuid4
+cid = str(uuid4())
+snapshot = dict(schema_version="1.0", kind="financial_snapshot", snapshot_id="demo-smoke",
+    customer_id="demo-customer", mode="DEMO", as_of="2026-09-01", currency="BRL", balance_cents=200000,
+    next_income=dict(due_on="2026-09-19", amount_cents=300000, recurring_confirmed=True, certainty="confirmed"),
+    commitments=[], history=None, data_complete=True, provenance="DEMO_FIXTURE")
+value = dict(correlation_id=cid, snapshot=snapshot, proposed_spend_cents=50000)
+req = urllib.request.Request("http://finance:8080/v1/project", data=json.dumps(value).encode(),
+    headers={"Content-Type": "application/json", "X-Correlation-ID": cid})
+with urllib.request.urlopen(req, timeout=5) as response:
+    result = json.load(response)
+    assert result["closing_cents"] == 150000
+    assert response.headers["X-Correlation-ID"] == cid
+"""
+    compose("exec", "-T", "tool-broker", "python", "-c", finance_probe)
     # Probe actual container IPs as well as DNS, so lack of discovery alone is not proof.
     for target, port in (("postgres", 5432), ("finance", 8080), ("data", 8080)):
         info = json.loads(subprocess.check_output(["docker", "inspect", compose("ps", "-q", target)]))[0]
