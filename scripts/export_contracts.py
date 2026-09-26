@@ -7,6 +7,9 @@ import sys
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from packages.contracts.models import CONTRACTS  # noqa: E402
+from packages.contracts.ledger import LEDGER_CONTRACTS  # noqa: E402
+
+EXPORTED_CONTRACTS = CONTRACTS + LEDGER_CONTRACTS
 
 
 if __name__ == "__main__":
@@ -16,7 +19,7 @@ if __name__ == "__main__":
     target = Path("packages/contracts/schemas/v1")
     if not args.check:
         target.mkdir(parents=True, exist_ok=True)
-    for model in CONTRACTS:
+    for model in EXPORTED_CONTRACTS:
         schema = model.model_json_schema()
         schema["$schema"] = "https://json-schema.org/draft/2020-12/schema"
         text = json.dumps(schema, ensure_ascii=False, indent=2, sort_keys=True) + "\n"
@@ -26,4 +29,4 @@ if __name__ == "__main__":
                 raise SystemExit(f"schema drift: {path}")
         else:
             path.write_text(text)
-    print(f"{len(CONTRACTS)} versioned contracts {'verified' if args.check else 'exported'}")
+    print(f"{len(EXPORTED_CONTRACTS)} versioned contracts {'verified' if args.check else 'exported'}")

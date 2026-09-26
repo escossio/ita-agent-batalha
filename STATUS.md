@@ -112,7 +112,7 @@ Threat model atualizado com controles/evidências e limites do mock. Testes cobr
 
 Correção de teste na etapa 12: o transporte simulado agora converte MissingData no mesmo erro estruturado MISSING_DATA do HTTP real. A falha não foi ignorada; regressão repetida após a correção.
 
-## Ampliação GCP da etapa 10 — instrução posterior
+## Histórico — ampliação GCP antes da recepção do inventário
 
 Provider oficial `VertexGeminiProvider`, port `ModelProvider` preservado; mock explícito permanece em CI. Projeto/região/modelo são externos. VERTEX_OK e leitura BigQuery foram confirmados manualmente pelo usuário no Google, não reproduzidos pelo AGT.
 
@@ -125,3 +125,15 @@ Validação desta ampliação: 93 testes curtos, lint, arquitetura (26 arquivos,
 Instrução posterior confirmada: o operador entregará inventário de metadados gerado no Cloud Shell como arquivo local. Nenhum token/chave/credencial será fornecido ao AGT. Não tentar habilitar acesso GCP no AGT. Inventário bruto somente local/privado; publicar exclusivamente documentação/contratos sanitizados após revisão. Mock/fixtures continuam independentes de GCP.
 
 Correção durante CI desta ampliação: CodeQL sinalizou duas comparações parciais de URL no verificador estático de arquitetura. Substituídas por parsing explícito de hostname; nenhum alerta foi suprimido ou contornado. Regressão e certificação repetidas no SHA corrigido.
+
+## Etapa 10 / BigQuery — inventário local recebido e mapeado
+
+Checkpoint anterior integrado pelo PR #13, merge 5df2349; SHA 3f9507c certificado com 93 testes/CI/worker. Inventário agora recebido localmente, gerado em 2026-09-26T23:33:13Z: uma tabela listada, extrato_sintetico, 11 campos NULLABLE. Identidades e localização conferidas entre listagem e metadados. Bloqueio de inventário resolvido; nenhuma credencial ou acesso GCP no AGT necessário. Bruto preservado fora do Git/imagem; contém metadata de IAM que não foi publicado.
+
+Implementados contratos LedgerReadRequest/CompetitionLedger e adapter REST de leitura em Data Access. vlr e saldo_apos FLOAT são normalizados individualmente via Decimal/HALF_UP para centavos inteiros antes de qualquer Finance; nulos preservados, inválidos rejeitados, origem aproximada e arredondamento explícitos. Campos de parcela FLOAT são contagens inteiras exatas, sem arredondamento. Documentação sanitizada e ADR 0004 registram mapeamento e limites.
+
+Adapter preparado com consulta parametrizada, ADC externo, validação de schema/identidade/região, janela/linhas/custo limitados e falha fechada. Não houve chamada real ao BigQuery, alteração de Policy/Broker/Finance/Agent, nova rota ou egress. Jornada PostgreSQL/DEMO preservada. Ativação de fonte externa depende de vínculo de identidade confiável/Policy e semântica/dados necessários; metadata não comprova próxima renda, obrigações futuras nem saldo atual. Moeda/unidade exigem configuração explícita.
+
+Configurações tocadas: .env.example, requirements-agent.txt, requirements-data.txt, novo requirements-gcp.txt, .dockerignore e Dockerfile. Nenhuma configuração global/infraestrutura externa alterada. Testes e CI deste checkpoint serão vinculados ao SHA do PR; validação pesada exclusivamente distribuída. Etapa 13 preservada em branch isolada; 14–18 não antecipadas.
+
+Validação local deste mapeamento: 107 testes curtos aprovados, 10 schemas sem drift, lint/arquitetura (29 arquivos, zero violações), Compose base/Vertex aprovados. Hashes dos originais privados conferidos sem alteração; SOURCE_FIELDS coincide com os 11 campos/tipos/modos recebidos. Certificação de imagem Data inclui import ADC/adapter e normalização sem contato GCP.

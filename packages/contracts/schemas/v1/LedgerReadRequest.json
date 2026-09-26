@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "correlation_id": {
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+      "title": "Correlation Id",
+      "type": "string"
+    },
+    "customer_id": {
+      "pattern": "^[a-zA-Z0-9][a-zA-Z0-9_-]{0,63}$",
+      "title": "Customer Id",
+      "type": "string"
+    },
+    "from_time": {
+      "maxLength": 32,
+      "title": "From Time",
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "1.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "source_user_id": {
+      "maxLength": 256,
+      "minLength": 1,
+      "title": "Source User Id",
+      "type": "string"
+    },
+    "to_time": {
+      "maxLength": 32,
+      "title": "To Time",
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "correlation_id",
+    "customer_id",
+    "source_user_id",
+    "from_time",
+    "to_time"
+  ],
+  "title": "LedgerReadRequest",
+  "type": "object"
+}
