@@ -1,0 +1,27 @@
+{
+  "date": "2026-09-26",
+  "stage": 9,
+  "certified_sha": "6313b9b861e7038b8790b0678c6884e9b3419693",
+  "merge_sha": "78845aae96d51f8342c1569fad8f0c85946c6520",
+  "pull_request": "https://github.com/escossio/ita-agent-batalha/pull/8",
+  "checks": {
+    "lint": "PASS",
+    "unit-contract": "PASS",
+    "architecture": "PASS",
+    "build": "PASS",
+    "secret-scan": "PASS",
+    "analyze": "PASS",
+    "distributed-foundation": "PASS"
+  },
+  "unit_tests": 66,
+  "source_scenarios": 250,
+  "eval_execution": "NOT_IMPLEMENTED",
+  "compose_config": "PASS",
+  "container_build_up_health_smoke_shutdown": "PASS_ON_WORKER_AND_GITHUB",
+  "broker_roundtrip": "PASS",
+  "forged_decision_denial": "PASS",
+  "agent_direct_database_finance_data_access": "BLOCKED_AS_EXPECTED",
+  "source_voice": "SOURCE_PENDING_LOCAL_COPY",
+  "live_llm": "NOT_CONFIGURED",
+  "release": "NOT_CREATED"
+}

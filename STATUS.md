@@ -19,9 +19,16 @@ Voz e Tom: **SOURCE_PENDING_LOCAL_COPY**, dependência documental não bloqueant
 | 6 | Concluída | PR #5; SHA 9c585df aprovado em CI/worker; merge 96f1b54 |
 | 7 | Concluída | PR #6; SHA dd04465 aprovado em CI/worker, inclusive Policy HTTP; merge 5a0fa23 |
 | 8 | Concluída | PR #7; SHA e7f10e7, 55 testes/CI/worker aprovados; merge e5401f3 |
-| 9 | Em validação | Broker com reautorização independente, schemas, timeout e auditoria; aguarda CI/worker |
-| 10 | Não iniciada | Aguardar gate 9 |
-| 11–18 | Planejadas, não iniciadas | Definições recebidas e registradas no plano oficial |
+| 9 | Concluída | PR #8; SHA 6313b9b aprovado em CI/worker; 66 testes; merge 78845aa |
+| 10 | Bloqueada antes da implementação | Aguarda escolha de provedor/credencial do modelo; consulta enviada ao usuário, nenhum segredo criado ou API chamada |
+| 11 | Não iniciada | Aguarda gate 10; vertical slice autorizada somente após 1–10 |
+| 12 | Não iniciada | Aguarda gate 11 |
+| 13 | Não iniciada | Dataset íntegro; runner de eval funcional ainda não implementado |
+| 14 | Não iniciada | Aguarda gate 13 |
+| 15 | Não iniciada | Auditoria básica existente; observabilidade completa aguarda gate 14 |
+| 16 | Não iniciada | Mapeamento inicial existente; portabilidade completa aguarda gate 15 |
+| 17 | Não iniciada | Aguarda gate 16 |
+| 18 | Não iniciada | Sem freeze/release; aguarda certificação completa |
 
 Originais preservados: XLSX byte a byte; HTML original privado e cópia pública sanitizada. Histórico de recepção em docs/source/INTAKE_REVIEW.md. Etapas anteriores de acesso remoto são históricas e não geram dependência atual.
 
@@ -76,3 +83,13 @@ Projeção em centavos, categorias de compromissos, histórico, simulação de g
 ## Etapa 9 — Tool Broker
 
 66 testes curtos aprovados. Grants/decision_id do chamador não autorizam; Policy carrega contexto DEMO do servidor. Leitura dependente de dados exige autorização própria. Contrato Projection reforçado na origem para rejeitar números internamente incoerentes. HTTP tem destinos fixos, sem redirects/proxy; logs de auditoria sem payload financeiro. Data usa adaptador de fixture explícito nesta etapa, sem fallback; persistência PostgreSQL pertence à vertical slice (11). Smoke distribuído inclui Broker → Policy → Data/Finance e caso negado.
+
+## Checkpoint certificado e ponto de retomada
+
+Etapas 1–9 estruturalmente certificadas, com exceção documental autorizada para Voz e Tom. Último componente certificado: 6313b9b861e7038b8790b0678c6884e9b3419693, integrado pelo PR #8 em 78845aae96d51f8342c1569fad8f0c85946c6520. Evidência em docs/architecture/STAGE_09_VALIDATION.json.
+
+Etapa 10 aguarda escolha do usuário sobre provedor/credencial. Inspeção de presença (sem exibir valores) não encontrou OPENAI_API_KEY no ambiente e arquivos locais usuais. A skill de credenciais exige decisão antes de implementar código de API; não se presume autorização para criar/reutilizar chave. Nenhuma chave foi criada, nenhum endpoint de modelo foi chamado e nenhum Agent funcional foi declarado concluído. Após resposta, continuar a etapa 10; não reiniciar 1–9.
+
+Governança: main protegida, PRs e sete checks obrigatórios, sem automerge/autofix. Scans de árvore/histórico/XLSX expandido sem achados. Um worker indisponível foi contornado por outro compatível; nenhum build, PostgreSQL completo ou smoke pesado executado no AGT.
+
+Limitações atuais: Data é fixture DEMO explícita, ainda sem persistência da jornada; interface de cliente não tem autenticação bancária real; não existe vertical slice, runner funcional de 250 evals ou release. Integridade de 250 cenários não significa 250 PASS de comportamento. Voz e Tom continua SOURCE_PENDING_LOCAL_COPY, não bloqueante documental.
