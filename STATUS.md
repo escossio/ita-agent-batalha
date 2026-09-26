@@ -20,7 +20,7 @@ Voz e Tom: **SOURCE_PENDING_LOCAL_COPY**, dependência documental não bloqueant
 | 7 | Concluída | PR #6; SHA dd04465 aprovado em CI/worker, inclusive Policy HTTP; merge 5a0fa23 |
 | 8 | Concluída | PR #7; SHA e7f10e7, 55 testes/CI/worker aprovados; merge e5401f3 |
 | 9 | Concluída | PR #8; SHA 6313b9b aprovado em CI/worker; 66 testes; merge 78845aa |
-| 10 | Bloqueada antes da implementação | Aguarda escolha de provedor/credencial do modelo; consulta enviada ao usuário, nenhum segredo criado ou API chamada |
+| 10 | Em validação | Vertex/Gemini via ADC, provider substituível e mock explícito autorizado; aguarda CI/worker |
 | 11 | Não iniciada | Aguarda gate 10; vertical slice autorizada somente após 1–10 |
 | 12 | Não iniciada | Aguarda gate 11 |
 | 13 | Não iniciada | Dataset íntegro; runner de eval funcional ainda não implementado |
@@ -93,3 +93,11 @@ Etapa 10 aguarda escolha do usuário sobre provedor/credencial. Inspeção de pr
 Governança: main protegida, PRs e sete checks obrigatórios, sem automerge/autofix. Scans de árvore/histórico/XLSX expandido sem achados. Um worker indisponível foi contornado por outro compatível; nenhum build, PostgreSQL completo ou smoke pesado executado no AGT.
 
 Limitações atuais: Data é fixture DEMO explícita, ainda sem persistência da jornada; interface de cliente não tem autenticação bancária real; não existe vertical slice, runner funcional de 250 evals ou release. Integridade de 250 cenários não significa 250 PASS de comportamento. Voz e Tom continua SOURCE_PENDING_LOCAL_COPY, não bloqueante documental.
+
+## Etapa 10 — autorização posterior de provider
+
+O usuário escolheu Vertex AI/Gemini, ADC e abstração substituível; autorizou mock para certificação e ativação real externa sem bloquear arquitetura. Isso supera o ponto de parada documental anterior. ADC indisponível no AGT (DefaultCredentialsError), sem chave criada nem chamada real ao modelo. Provider REST/ADC implementado com contratos estritos; mock não é fallback silencioso. Agent respeita deny, chama apenas Policy/Broker e compõe valores exclusivamente do Finance. Composição de linguagem inicialmente limitada a vocabulário seguro, sem atribuir conteúdo à fonte Voz e Tom ausente.
+
+Configuração tocada: compose.yaml, compose.vertex.yaml, .env.example, infra/docker/Dockerfile, .dockerignore e requirements-agent.txt. Nenhuma configuração global do host alterada.
+
+Etapa 10: 76 testes curtos aprovados; Compose base e override Vertex validados sem subir containers no AGT. Certificação real de Gemini permanece não executada; mock e transporte Vertex simulado são identificados separadamente.

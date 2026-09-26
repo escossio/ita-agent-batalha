@@ -571,6 +571,22 @@
       "title": "Mode",
       "type": "string"
     },
+    "model_provider": {
+      "anyOf": [
+        {
+          "enum": [
+            "mock",
+            "vertex"
+          ],
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Model Provider"
+    },
     "policy_decision_id": {
       "anyOf": [
         {
