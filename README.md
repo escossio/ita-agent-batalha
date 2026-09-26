@@ -27,9 +27,9 @@ Fontes ficam em `docs/source/`; derivados reproduzíveis ficam em `config/` e `e
 ## Estrutura inicial
 
 ```text
-apps/                 # reservado
-services/             # reservado
-packages/             # reservado
+apps/                 # reservado para apresentação
+services/             # fronteiras HTTP isoladas
+packages/             # runtime HTTP comum
 config/               # reservado
 evals/                # reservado
 docs/
@@ -45,9 +45,9 @@ tests/                # reservado
 .github/workflows/    # certificação e CodeQL
 ```
 
-`.env.example` e `compose.yaml` são marcadores sem credenciais nem serviços.
-`docker compose up` ainda não levanta o projeto; containerização pertence à etapa 3.
-Nenhuma dependência de runtime/modelo foi escolhida ou instalada nesta etapa.
+A fundação Compose oferece saúde e isolamento de serviços; ainda sem jornada financeira.
+Execução e coordenação em [CONTAINERS.md](docs/architecture/CONTAINERS.md). AGT coordena; builds/PostgreSQL/smoke usam workers.
+Não há dependência de modelo nesta etapa.
 
 O HTML arquivado é referência recebida, não uma implementação da vertical slice por este projeto.
 Seu código usa valores fixos e insere entrada do usuário em `innerHTML`; não deve ser servido como aplicação pública nem reutilizado como runtime. A sanitização de privacidade está documentada em `docs/source/INTAKE_REVIEW.md`.

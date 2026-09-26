@@ -1,7 +1,9 @@
 """Restrições de dependência aplicadas ao código de runtime existente."""
 
 import ast
+import json
 from pathlib import Path
+import subprocess
 
 
 def violations(path: Path, source: str) -> list[str]:
@@ -27,6 +29,31 @@ def violations(path: Path, source: str) -> list[str]:
     return issues
 
 
+def network_violations(config: dict) -> list[str]:
+    issues = []
+    services = config["services"]
+    for name, spec in services.items():
+        if spec.get("privileged") or spec.get("network_mode") == "host":
+            issues.append(f"{name}: host privilege/network forbidden")
+        if name != "web" and spec.get("ports"):
+            issues.append(f"{name}: internal service port exposed")
+        for mount in spec.get("volumes", []):
+            if "docker.sock" in str(mount):
+                issues.append(f"{name}: Docker socket forbidden")
+    for left, right in (("agent", "postgres"), ("agent", "finance"), ("agent", "data"),
+                        ("api", "postgres"), ("web", "postgres"), ("tool-broker", "postgres")):
+        if set(services[left].get("networks", {})) & set(services[right].get("networks", {})):
+            issues.append(f"forbidden shared network: {left}/{right}")
+    if services["agent"].get("volumes"):
+        issues.append("agent: secret/data volumes forbidden")
+    if any("DB_" in name or "POSTGRES" in name for name in services["agent"].get("environment", {})):
+        issues.append("agent: database configuration forbidden")
+    for name, network in config["networks"].items():
+        if name != "edge" and not network.get("internal"):
+            issues.append(f"{name}: network must be internal")
+    return issues
+
+
 if __name__ == "__main__":
     problems = []
     count = 0
@@ -34,6 +61,8 @@ if __name__ == "__main__":
         for path in Path(root).rglob("*.py"):
             count += 1
             problems.extend(violations(path, path.read_text()))
+    config = json.loads(subprocess.check_output(["docker", "compose", "config", "--format", "json"]))
+    problems.extend(network_violations(config))
     for problem in problems:
         print(problem)
     print(f"architecture: {count} runtime files checked; {len(problems)} violations")

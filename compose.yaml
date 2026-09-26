@@ -1,4 +1,383 @@
-# Marcador da estrutura inicial da etapa 1; não é uma stack executável.
-# Definir serviços e redes somente na etapa 3 após validar as etapas 1 e 2.
 name: ita-agent-batalha
-services: {}
+services:
+  web:
+    build:
+      context: .
+      dockerfile: infra/docker/Dockerfile
+      args:
+        COMPONENT: web
+    init: true
+    read_only: true
+    cap_drop:
+    - ALL
+    security_opt:
+    - no-new-privileges:true
+    pids_limit: 64
+    mem_limit: 128m
+    cpus: '0.5'
+    stop_grace_period: 10s
+    tmpfs:
+    - /tmp:size=8m
+    networks:
+    - edge
+    - web_api
+    healthcheck:
+      test:
+      - CMD
+      - python
+      - -c
+      - import urllib.request; urllib.request.urlopen('http://localhost:8080/healthz',timeout=2)
+      interval: 5s
+      timeout: 3s
+      retries: 12
+    logging:
+      driver: json-file
+      options:
+        max-size: 5m
+        max-file: '2'
+    depends_on:
+      api:
+        condition: service_healthy
+    ports:
+    - 127.0.0.1:${ITA_PORT:-8080}:8080
+  api:
+    build:
+      context: .
+      dockerfile: infra/docker/Dockerfile
+      args:
+        COMPONENT: api
+    init: true
+    read_only: true
+    cap_drop:
+    - ALL
+    security_opt:
+    - no-new-privileges:true
+    pids_limit: 64
+    mem_limit: 128m
+    cpus: '0.5'
+    stop_grace_period: 10s
+    tmpfs:
+    - /tmp:size=8m
+    networks:
+    - web_api
+    - api_agent
+    healthcheck:
+      test:
+      - CMD
+      - python
+      - -c
+      - import urllib.request; urllib.request.urlopen('http://localhost:8080/healthz',timeout=2)
+      interval: 5s
+      timeout: 3s
+      retries: 12
+    logging:
+      driver: json-file
+      options:
+        max-size: 5m
+        max-file: '2'
+    depends_on:
+      agent:
+        condition: service_healthy
+  agent:
+    build:
+      context: .
+      dockerfile: infra/docker/Dockerfile
+      args:
+        COMPONENT: agent
+    init: true
+    read_only: true
+    cap_drop:
+    - ALL
+    security_opt:
+    - no-new-privileges:true
+    pids_limit: 64
+    mem_limit: 128m
+    cpus: '0.5'
+    stop_grace_period: 10s
+    tmpfs:
+    - /tmp:size=8m
+    networks:
+    - api_agent
+    - agent_policy
+    - agent_broker
+    healthcheck:
+      test:
+      - CMD
+      - python
+      - -c
+      - import urllib.request; urllib.request.urlopen('http://localhost:8080/healthz',timeout=2)
+      interval: 5s
+      timeout: 3s
+      retries: 12
+    logging:
+      driver: json-file
+      options:
+        max-size: 5m
+        max-file: '2'
+    depends_on:
+      policy:
+        condition: service_healthy
+      tool-broker:
+        condition: service_healthy
+  policy:
+    build:
+      context: .
+      dockerfile: infra/docker/Dockerfile
+      args:
+        COMPONENT: policy
+    init: true
+    read_only: true
+    cap_drop:
+    - ALL
+    security_opt:
+    - no-new-privileges:true
+    pids_limit: 64
+    mem_limit: 128m
+    cpus: '0.5'
+    stop_grace_period: 10s
+    tmpfs:
+    - /tmp:size=8m
+    networks:
+    - agent_policy
+    - broker_policy
+    healthcheck:
+      test:
+      - CMD
+      - python
+      - -c
+      - import urllib.request; urllib.request.urlopen('http://localhost:8080/healthz',timeout=2)
+      interval: 5s
+      timeout: 3s
+      retries: 12
+    logging:
+      driver: json-file
+      options:
+        max-size: 5m
+        max-file: '2'
+  tool-broker:
+    build:
+      context: .
+      dockerfile: infra/docker/Dockerfile
+      args:
+        COMPONENT: tool-broker
+    init: true
+    read_only: true
+    cap_drop:
+    - ALL
+    security_opt:
+    - no-new-privileges:true
+    pids_limit: 64
+    mem_limit: 128m
+    cpus: '0.5'
+    stop_grace_period: 10s
+    tmpfs:
+    - /tmp:size=8m
+    networks:
+    - agent_broker
+    - broker_policy
+    - broker_finance
+    - broker_data
+    healthcheck:
+      test:
+      - CMD
+      - python
+      - -c
+      - import urllib.request; urllib.request.urlopen('http://localhost:8080/healthz',timeout=2)
+      interval: 5s
+      timeout: 3s
+      retries: 12
+    logging:
+      driver: json-file
+      options:
+        max-size: 5m
+        max-file: '2'
+    depends_on:
+      policy:
+        condition: service_healthy
+      finance:
+        condition: service_healthy
+      data:
+        condition: service_healthy
+  finance:
+    build:
+      context: .
+      dockerfile: infra/docker/Dockerfile
+      args:
+        COMPONENT: finance
+    init: true
+    read_only: true
+    cap_drop:
+    - ALL
+    security_opt:
+    - no-new-privileges:true
+    pids_limit: 64
+    mem_limit: 128m
+    cpus: '0.5'
+    stop_grace_period: 10s
+    tmpfs:
+    - /tmp:size=8m
+    networks:
+    - broker_finance
+    healthcheck:
+      test:
+      - CMD
+      - python
+      - -c
+      - import urllib.request; urllib.request.urlopen('http://localhost:8080/healthz',timeout=2)
+      interval: 5s
+      timeout: 3s
+      retries: 12
+    logging:
+      driver: json-file
+      options:
+        max-size: 5m
+        max-file: '2'
+  data:
+    build:
+      context: .
+      dockerfile: infra/docker/Dockerfile
+      args:
+        COMPONENT: data
+    init: true
+    read_only: true
+    cap_drop:
+    - ALL
+    security_opt:
+    - no-new-privileges:true
+    pids_limit: 64
+    mem_limit: 128m
+    cpus: '0.5'
+    stop_grace_period: 10s
+    tmpfs:
+    - /tmp:size=8m
+    networks:
+    - broker_data
+    - data_db
+    healthcheck:
+      test:
+      - CMD
+      - python
+      - -c
+      - import urllib.request; urllib.request.urlopen('http://localhost:8080/healthz',timeout=2)
+      interval: 5s
+      timeout: 3s
+      retries: 12
+    logging:
+      driver: json-file
+      options:
+        max-size: 5m
+        max-file: '2'
+    depends_on:
+      postgres:
+        condition: service_healthy
+    volumes:
+    - db-app-secret:/run/secrets:ro
+    environment:
+      DB_HOST: postgres
+      DB_NAME: ita_demo
+      DB_USER: ita_demo
+      DB_PASSWORD_FILE: /run/secrets/password
+  observability:
+    build:
+      context: .
+      dockerfile: infra/docker/Dockerfile
+      args:
+        COMPONENT: observability
+    init: true
+    read_only: true
+    cap_drop:
+    - ALL
+    security_opt:
+    - no-new-privileges:true
+    pids_limit: 64
+    mem_limit: 128m
+    cpus: '0.5'
+    stop_grace_period: 10s
+    tmpfs:
+    - /tmp:size=8m
+    networks:
+    - observation
+    healthcheck:
+      test:
+      - CMD
+      - python
+      - -c
+      - import urllib.request; urllib.request.urlopen('http://localhost:8080/healthz',timeout=2)
+      interval: 5s
+      timeout: 3s
+      retries: 12
+    logging:
+      driver: json-file
+      options:
+        max-size: 5m
+        max-file: '2'
+  secrets-init:
+    image: python:3.13-slim@sha256:7c61056e61ac89e852de05f3dc6fa51a6dd2181797bceed46aa725dd7cb2cd3b
+    network_mode: none
+    read_only: true
+    volumes:
+    - db-admin-secret:/admin
+    - db-app-secret:/app-secret
+    command:
+    - python
+    - -c
+    - "from pathlib import Path; import secrets\nfor name in ['/admin/password','/app-secret/password']:\n\
+      \ p=Path(name); p.exists() or p.write_text(secrets.token_urlsafe(48)); p.chmod(0o444)"
+    restart: 'no'
+  postgres:
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: ita_bootstrap
+      POSTGRES_PASSWORD_FILE: /run/admin-secret/password
+    volumes:
+    - postgres-data:/var/lib/postgresql/data
+    - db-admin-secret:/run/admin-secret:ro
+    - db-app-secret:/run/app-secret:ro
+    networks:
+    - data_db
+    depends_on:
+      secrets-init:
+        condition: service_completed_successfully
+    healthcheck:
+      test:
+      - CMD-SHELL
+      - pg_isready -U ita_demo -d ita_demo
+      interval: 5s
+      timeout: 3s
+      retries: 12
+    mem_limit: 256m
+    cpus: '1'
+    stop_grace_period: 15s
+    logging:
+      driver: json-file
+      options:
+        max-size: 5m
+        max-file: '2'
+    build:
+      context: .
+      dockerfile: infra/docker/Postgres.Dockerfile
+networks:
+  agent_broker:
+    internal: true
+  agent_policy:
+    internal: true
+  api_agent:
+    internal: true
+  broker_data:
+    internal: true
+  broker_finance:
+    internal: true
+  broker_policy:
+    internal: true
+  data_db:
+    internal: true
+  edge:
+    internal: false
+  observation:
+    internal: true
+  web_api:
+    internal: true
+volumes:
+  postgres-data: {}
+  db-admin-secret: {}
+  db-app-secret: {}
