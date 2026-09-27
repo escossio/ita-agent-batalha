@@ -2,6 +2,7 @@
 import asyncio
 import json
 from urllib.parse import urlsplit
+from . import cloudrun
 import urllib.error
 import urllib.request
 
@@ -27,15 +28,22 @@ class HttpTransport:
         "assess": "http://finance:8080/v1/assess-ledger",
     }
 
+    def endpoint(self, destination):
+        local = self.ROUTES[destination]
+        parts = urlsplit(local)
+        return cloudrun.service_url(parts.hostname) + parts.path if cloudrun.enabled() else local
+
     def headers(self, destination, payload, correlation_id):
         result = {"Content-Type": "application/json", "X-Correlation-ID": correlation_id}
-        if destination in {"snapshot", "ledger"}:
+        if cloudrun.enabled():
+            result.update(cloudrun.outbound(cloudrun.service_url(urlsplit(self.ROUTES[destination]).hostname)))
+        elif destination in {"snapshot", "ledger"}:
             from .service_auth import broker_headers
             result.update(broker_headers(urlsplit(self.ROUTES[destination]).path, payload, correlation_id))
         return result
 
     def _post(self, destination, payload, correlation_id):
-        request = urllib.request.Request(self.ROUTES[destination], data=json.dumps(payload).encode(),
+        request = urllib.request.Request(self.endpoint(destination), data=json.dumps(payload).encode(),
             headers=self.headers(destination, payload, correlation_id))
         opener = urllib.request.build_opener(NoRedirect, urllib.request.ProxyHandler({}))
         try:

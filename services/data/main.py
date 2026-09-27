@@ -11,6 +11,7 @@ from packages.runtime.service_auth import BrokerAuthenticator
 from .ledger_runtime import configured_reader
 from packages.runtime.audit import audit
 from packages.runtime.server import serve
+from packages.runtime.cloudrun import enabled
 from .store import initialize, read_snapshot, ready
 
 
@@ -65,6 +66,8 @@ def snapshot(payload, correlation_id):
 
 if __name__ == "__main__":
     mode = os.getenv("ITA_DATA_PROVIDER", "postgres")
+    if enabled() and mode != "bigquery":
+        raise ValueError("CLOUD_BIGQUERY_REQUIRED")
     if mode == "postgres":
         initialize()
     else:
