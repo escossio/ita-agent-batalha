@@ -1,6 +1,8 @@
 """HTTP de fundação: saúde, identificação da requisição e shutdown limpo."""
 
 import json
+import os
+from . import cloudrun
 from contextvars import ContextVar
 
 import signal
@@ -16,7 +18,17 @@ def event(service: str, name: str, **fields) -> None:
     print(json.dumps({"service": service, "event": name, **fields}), flush=True)
 
 
+def listen_port():
+    port = int(os.getenv("PORT", "8080"))
+    if not 1 <= port <= 65535:
+        raise ValueError("INVALID_PORT")
+    return port
+
+
 def serve(service: str, routes=None, pages=None, health=None, before_route=None) -> None:
+    is_cloud = cloudrun.enabled()
+    if is_cloud and service != "observability" and os.getenv("ITA_RUNTIME_MODE") != "competition":
+        raise ValueError("CLOUD_COMPETITION_REQUIRED")
     class Handler(BaseHTTPRequestHandler):
         server_version = "ITA"
         sys_version = ""
@@ -46,6 +58,11 @@ def serve(service: str, routes=None, pages=None, health=None, before_route=None)
                     payload = json.loads(self.rfile.read(length))
                     if not isinstance(payload, dict):
                         raise ValueError("object required")
+                    if is_cloud:
+                        if os.getenv("ITA_CLOUD_BOOTSTRAP") == "1":
+                            raise RuntimeError("BOOTSTRAP_NOT_SERVING")
+                        if service != "web":
+                            cloudrun.inbound(service, self.headers)
                     if before_route:
                         before_route(payload, correlation_id, self.headers, self.path)
                     token = request_headers.set(self.headers)
@@ -85,7 +102,7 @@ def serve(service: str, routes=None, pages=None, health=None, before_route=None)
                 healthy = health() if health else True
                 status = 200 if healthy else 503
                 content_type = "application/json"
-                body = json.dumps({"service": service, "status": "ok" if healthy else "unavailable", "mode": "DEMO"}).encode()
+                body = json.dumps({"service": service, "status": "ok" if healthy else "unavailable", "mode": os.getenv("ITA_RUNTIME_MODE", "demo")}).encode()
             elif self.path in (pages or {}):
                 status = 200
                 content_type, body = pages[self.path]
@@ -108,7 +125,7 @@ def serve(service: str, routes=None, pages=None, health=None, before_route=None)
             event(service, "request.completed", correlation_id=correlation_id, status=status,
                   duration_ms=round((monotonic() - started) * 1000, 3))
 
-    server = ThreadingHTTPServer(("0.0.0.0", 8080), Handler)
+    server = ThreadingHTTPServer(("0.0.0.0", listen_port()), Handler)
     server.daemon_threads = True
 
     def stop(_number, _frame):

@@ -38,6 +38,14 @@ class SourceGateTests(unittest.TestCase):
             self.assertTrue(violations(Path(f"services/{component}/main.py"), "from google.cloud import bigquery"))
         self.assertFalse(violations(Path("services/data/bigquery.py"), "from google.cloud import bigquery"))
 
+    def test_publication_fixture_exception_is_narrow(self):
+        from scripts.publication_check import inspect
+        fixture = ("broker" + "@" + "example.iam.gserviceaccount.com").encode()
+        self.assertFalse(inspect("tests/test_cloudrun.py", fixture))
+        self.assertTrue(inspect("README.md", fixture))
+        real_shape = ("person" + "@" + "unapproved.invalid").encode()
+        self.assertTrue(inspect("tests/test_cloudrun.py", real_shape))
+
     def test_agent_contract_import_is_allowed(self):
         self.assertFalse(violations(Path("services/agent/main.py"), "from packages.contracts import Request"))
 

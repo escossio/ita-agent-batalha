@@ -1,0 +1,9 @@
+{
+  "web": {"service_account": "ita-web-sa", "callees": ["api"], "public_candidate": true},
+  "api": {"service_account": "ita-api-sa", "callees": ["agent"], "public_candidate": false},
+  "agent": {"service_account": "ita-agent-sa", "callees": ["policy", "tool-broker"], "public_candidate": false},
+  "policy": {"service_account": "ita-policy-sa", "callees": [], "public_candidate": false},
+  "tool-broker": {"service_account": "ita-broker-sa", "callees": ["policy", "data", "finance"], "public_candidate": false},
+  "data": {"service_account": "ita-data-sa", "callees": ["policy"], "public_candidate": false},
+  "finance": {"service_account": "ita-finance-sa", "callees": [], "public_candidate": false}
+}

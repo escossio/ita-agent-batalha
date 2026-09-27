@@ -59,3 +59,7 @@ AGT coordena; workers executam cargas pesadas e certificam o SHA solicitado. Git
 A vertical slice DEMO e os testes adversariais foram certificados; não houve deploy externo, migração GCP, integração bancária ou movimentação financeira. O modo da competição usa o adapter BigQuery e retorna contexto incompleto quando faltam dados de projeção. CI usa transporte sintético identificado. Veja [operação e limites](docs/demo/COMPETITION_RUNTIME.md).
 
 Acesso ao Drive não é necessário nem será reconstruído. Trabalhar somente com artefatos locais; o GitHub/repositório público é a fonte versionada principal. Regras específicas de Voz e Tom dependem de sua futura cópia local.
+
+## Target final: Cloud Run
+
+Readiness e pacote Cloud Shell preparados, sem deployment e sem concluir a etapa 16. Sete serviços de negócio usam identidade nativa/IAM; PostgreSQL fica no desenvolvimento/teste local. Próximo gate: operador executar **preflight somente-leitura** e fornecer saída sanitizada. Veja [pacote Cloud Shell](infra/gcp/cloudrun/README.md), [readiness](docs/architecture/CLOUD_RUN_TARGET.md) e [fronteiras IAM](docs/security/GCP_IAM_BOUNDARIES.md). Nenhuma credencial GCP é necessária no AGT/CI.

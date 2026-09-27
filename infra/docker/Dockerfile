@@ -1,9 +1,14 @@
 FROM python:3.13-slim@sha256:7c61056e61ac89e852de05f3dc6fa51a6dd2181797bceed46aa725dd7cb2cd3b
 ARG COMPONENT
+ARG VCS_REF=unknown
+ARG BUILD_CREATED=unknown
+LABEL org.opencontainers.image.revision=$VCS_REF \
+      org.opencontainers.image.source="https://github.com/escossio/ita-agent-batalha" \
+      org.opencontainers.image.created=$BUILD_CREATED
 ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1
 WORKDIR /app
 COPY requirements.txt requirements-agent.txt requirements-data.txt requirements-gcp.txt /app/
-RUN pip install --no-cache-dir -r /app/requirements.txt
+RUN pip install --no-cache-dir -r /app/requirements.txt -r /app/requirements-gcp.txt
 RUN if [ "$COMPONENT" = agent ]; then pip install --no-cache-dir -r /app/requirements-agent.txt; fi
 RUN if [ "$COMPONENT" = data ]; then pip install --no-cache-dir -r /app/requirements-data.txt; fi
 COPY packages/runtime/ /app/packages/runtime/

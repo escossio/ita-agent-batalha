@@ -151,3 +151,23 @@ Configuração alterada: compose.yaml (redes Data–Policy e chaves por par), no
 Validação local do wiring: 120 testes curtos e 11 schemas aprovados; lint e arquitetura (34 arquivos) sem violações; Compose base e overrides BigQuery+Vertex combinados aprovados. Secret scan e certificação distribuída/GitHub exigidos antes do merge.
 
 Certificação do código em 997d8fb20b096332f6b998df704c2d1cd42b37f6, PR #15: 120 testes; lint, unit/contract, arquitetura, secret scan, CodeQL (zero alertas abertos no PR), Compose/build e ambas as jornadas em containers aprovados no GitHub e em worker distribuído. Falhas/recuperação, bloqueio de acesso direto e shutdown limpo aprovados; fallback entre workers funcionou, sem suíte pesada no AGT. Evidência distribuída associada ao SHA com status PASS. Este registro documental também passa pelos checks obrigatórios antes do merge. Sem chamada/deploy GCP; certificação do transporte real/ADC permanece pendência externa explícita.
+
+## Cloud Run readiness — passada autorizada, etapa 16 permanece aberta
+
+Runtime final Cloud Run confirmado pelo operador. Trabalho nesta branch é preflight/pacote de implantação, sem deploy, API habilitada, IAM, Artifact Registry ou gcloud executado no AGT. Cloud SQL/VPC Access fora do caminho crítico; Agent Engine opcional. PostgreSQL continua apenas no modo DEMO local. Etapas 13–18 não são declaradas concluídas por esta preparação.
+
+Primeiro checkpoint: PORT dinâmico, URLs HTTPS Cloud Run configuráveis, ID token por audience com verificação de assinatura/caller no receptor além do IAM da plataforma. Cloud não usa as chaves HMAC de serviço locais; prova de contexto do cliente usa assinatura remota IAM signJwt da API, verificada pela Policy. Chave privada nunca sai do Google. Registry permanece configuração externa revogável, a montar via Secret Manager. SDK de autenticação presente em todos os containers HTTP; domínio preservado. Testes targeted do adapter cloud aprovados; scripts, arquitetura e certificação completa seguem pendentes neste checkpoint.
+
+Segundo checkpoint: pacote Cloud Shell e ADR 0006 preparados, sete SAs/arestas explícitas, bootstrap fechado/configure separado, publicação Web isolada e destroy apenas de preview próprio. Build valida SHA/checks e registra tags SHA/digests/labels OCI, sem latest. Preflight somente leitura, sem generateContent ou linhas de extrato; aponta bloqueios sem habilitar APIs. Configuração tocada: Dockerfile (auth SDK/labels), .env.example, infra/gcp/cloudrun/env.example e services.json; nenhum host/Compose global alterado.
+
+Lint, 141 testes curtos, 11 schemas, integridade das fontes/250 cenários e arquitetura (35 arquivos, zero violações) preparados para certificação pública e distribuída deste SHA. Worker deverá provar PORT=9091/startup/SIGTERM/read-only/sem volumes dos oito containers HTTP e repetir ambas as jornadas anteriores. Nenhum comando gcloud real nos testes (subprocesses simulados). Compatibilidade local não equivale a IAM/deploy Google certificado. Próximo gate obrigatório continua sendo o operador executar preflight e devolver saída sanitizada; etapa 16 NÃO concluída.
+
+Revisão de publicação detectou cinco falsos positivos: identidades sintéticas explícitas e URL adversarial no teste cloud. Exceção restrita aos valores revisados nesse único arquivo, com teste garantindo bloqueio em outros arquivos/endereço não aprovado. Nenhuma credencial real envolvida; scan deve passar antes de push.
+
+CodeQL encontrou comparação incompleta de URL no novo guard estático de Vertex. Corrigido na origem com parsing explícito de hostname em todos os ramos; alerta não suprimido. Novo SHA deve repetir checks e certificação antes do merge.
+
+O alerta CodeQL persistiu no teste de sufixo mesmo após parsing. O guard agora compara os labels DNS completos e o identificador regional do serviço, sem busca parcial de URL. Verificação funcional do guard preservada; aguarda nova análise sem supressão.
+
+Pacote da passada no PR #16: preparação Cloud Run implementada; resultado final de Actions/CodeQL/worker vinculado ao SHA no PR antes da integração. Readiness local não muda os estados externos AINDA NÃO TESTADO/BLOQUEADO. Após integração, o único próximo gate operacional é preflight somente-leitura no Cloud Shell; nenhum deploy ou encerramento da etapa 16 autorizado nesta passada.
+
+Revisão final do build: contexto Docker agora é o repositório público fixado pelo SHA completo certificado, impedindo inclusão de arquivos locais ignorados mesmo em checkout limpo. Teste de build/push simulado verifica sete contextos/digests e ausência de contexto local. Total: 142 testes. O checkpoint 4dcc751 passou em Actions/CodeQL; o novo SHA repete todos os gates por esta alteração de empacotamento.

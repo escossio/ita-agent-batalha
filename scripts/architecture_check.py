@@ -11,6 +11,7 @@ def violations(path: Path, source: str) -> list[str]:
     issues = []
     tree = ast.parse(source)
     is_agent = "agent" in path.parts
+    is_vertex_owner = path.parts[:2] == ("services", "agent")
     is_data = path.parts[:2] == ("services", "data")
     for node in ast.walk(tree):
         if isinstance(node, ast.Import):
@@ -20,6 +21,8 @@ def violations(path: Path, source: str) -> list[str]:
         else:
             names = []
         for name in names:
+            if not is_vertex_owner and any(part in name.split(".") for part in ("vertexai", "aiplatform", "genai")):
+                issues.append(f"{path}:{node.lineno}: Vertex is exclusive to Agent")
             if not is_data and any(part in name.split(".") for part in ("bigquery", "bigquery_storage")):
                 issues.append(f"{path}:{node.lineno}: BigQuery is exclusive to Data Access")
             if is_agent and any(part in name.split(".") for part in (
@@ -34,6 +37,14 @@ def violations(path: Path, source: str) -> list[str]:
                 host = None
             if host in {"bigquery.googleapis.com", "bigquerystorage.googleapis.com"}:
                 issues.append(f"{path}:{node.lineno}: BigQuery endpoint outside Data Access forbidden")
+        if not is_vertex_owner and isinstance(node, ast.Constant) and isinstance(node.value, str):
+            try:
+                vertex_host = urlsplit(node.value if node.value.startswith(("http://", "https://")) else "//" + node.value).hostname
+            except ValueError:
+                vertex_host = None
+            labels = vertex_host.split(".") if vertex_host else []
+            if len(labels) == 3 and labels[1:] == ["googleapis", "com"] and labels[0].rsplit("-", 1)[-1] == "aiplatform":
+                issues.append(f"{path}:{node.lineno}: Vertex endpoint outside Agent forbidden")
         if is_agent and isinstance(node, ast.Call) and isinstance(node.func, ast.Name):
             if node.func.id in {"eval", "exec", "__import__"}:
                 issues.append(f"{path}:{node.lineno}: dynamic execution forbidden")
@@ -85,6 +96,8 @@ if __name__ == "__main__":
             problems.extend(violations(path, path.read_text()))
     config = json.loads(subprocess.check_output(["docker", "compose", "config", "--format", "json"]))
     problems.extend(network_violations(config))
+    from cloudrun_check import check as cloudrun_check
+    problems.extend(cloudrun_check())
     for problem in problems:
         print(problem)
     print(f"architecture: {count} runtime files checked; {len(problems)} violations")
