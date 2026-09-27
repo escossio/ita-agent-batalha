@@ -39,7 +39,7 @@ def violations(path: Path, source: str) -> list[str]:
                 issues.append(f"{path}:{node.lineno}: BigQuery endpoint outside Data Access forbidden")
         if not is_vertex_owner and isinstance(node, ast.Constant) and isinstance(node.value, str):
             try:
-                vertex_host = urlsplit(node.value).hostname if node.value.startswith(("http://", "https://")) else node.value
+                vertex_host = urlsplit(node.value if node.value.startswith(("http://", "https://")) else "//" + node.value).hostname
             except ValueError:
                 vertex_host = None
             if vertex_host and (vertex_host == "aiplatform.googleapis.com" or vertex_host.endswith("-aiplatform.googleapis.com")):
