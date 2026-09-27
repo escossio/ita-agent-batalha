@@ -165,3 +165,7 @@ Lint, 141 testes curtos, 11 schemas, integridade das fontes/250 cenários e arqu
 Revisão de publicação detectou cinco falsos positivos: identidades sintéticas explícitas e URL adversarial no teste cloud. Exceção restrita aos valores revisados nesse único arquivo, com teste garantindo bloqueio em outros arquivos/endereço não aprovado. Nenhuma credencial real envolvida; scan deve passar antes de push.
 
 CodeQL encontrou comparação incompleta de URL no novo guard estático de Vertex. Corrigido na origem com parsing explícito de hostname em todos os ramos; alerta não suprimido. Novo SHA deve repetir checks e certificação antes do merge.
+
+O alerta CodeQL persistiu no teste de sufixo mesmo após parsing. O guard agora compara os labels DNS completos e o identificador regional do serviço, sem busca parcial de URL. Verificação funcional do guard preservada; aguarda nova análise sem supressão.
+
+Pacote da passada no PR #16: preparação Cloud Run implementada; resultado final de Actions/CodeQL/worker vinculado ao SHA no PR antes da integração. Readiness local não muda os estados externos AINDA NÃO TESTADO/BLOQUEADO. Após integração, o único próximo gate operacional é preflight somente-leitura no Cloud Shell; nenhum deploy ou encerramento da etapa 16 autorizado nesta passada.

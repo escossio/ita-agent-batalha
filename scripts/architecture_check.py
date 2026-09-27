@@ -42,7 +42,8 @@ def violations(path: Path, source: str) -> list[str]:
                 vertex_host = urlsplit(node.value if node.value.startswith(("http://", "https://")) else "//" + node.value).hostname
             except ValueError:
                 vertex_host = None
-            if vertex_host and (vertex_host == "aiplatform.googleapis.com" or vertex_host.endswith("-aiplatform.googleapis.com")):
+            labels = vertex_host.split(".") if vertex_host else []
+            if len(labels) == 3 and labels[1:] == ["googleapis", "com"] and labels[0].rsplit("-", 1)[-1] == "aiplatform":
                 issues.append(f"{path}:{node.lineno}: Vertex endpoint outside Agent forbidden")
         if is_agent and isinstance(node, ast.Call) and isinstance(node.func, ast.Name):
             if node.func.id in {"eval", "exec", "__import__"}:
