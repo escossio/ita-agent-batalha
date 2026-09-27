@@ -13,21 +13,19 @@ import urllib.error
 import urllib.request
 
 ROOT = Path(__file__).resolve().parents[3]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+from infra.gcp.cloudrun import namespace as ns  # noqa: E402
+
+Blocked, blocked = ns.Blocked, ns.blocked
 PLAN = json.loads(Path(__file__).with_name("services.json").read_text())
 APIS = [name + ".googleapis.com" for name in (
     "run", "aiplatform", "artifactregistry", "bigquery", "iamcredentials", "logging", "monitoring", "secretmanager")]
 CHECKS = {"lint", "unit-contract", "architecture", "build", "secret-scan", "analyze", "CodeQL"}
 
 
-class Blocked(Exception):
-    pass
-
-
-def blocked(operation, resource, error, action):
-    raise Blocked(f"BLOCKED\noperation: {operation}\nresource: {resource}\nerror: {error}\nnext human action: {action}")
-
-
 def run(args):
+    ns.command(args)
     result = subprocess.run(args, text=True, capture_output=True, cwd=ROOT, check=False)
     if result.returncode:
         blocked(" ".join(args[:3]), " ".join(args[3:]), result.stderr.strip() or result.stdout.strip(),
@@ -43,8 +41,10 @@ def required(name, pattern):
 
 
 def config():
-    return dict(project=required("ITA_GCP_PROJECT", r"[a-z][a-z0-9-]{4,61}[a-z0-9]"),
+    cfg = dict(project=required("ITA_GCP_PROJECT", r"[a-z][a-z0-9-]{4,61}[a-z0-9]"),
                 region=required("ITA_GCP_REGION", r"[a-z]+-[a-z]+[0-9]"))
+    ns.scope(cfg)
+    return cfg
 
 
 def gc(cfg, *args):
@@ -56,17 +56,19 @@ def account(cfg, service):
 
 
 def prefix():
-    # This package owns a preview only; never reuse a production service name.
-    return required("ITA_CLOUD_RUN_PREFIX", r"ita-preview-[a-z0-9][a-z0-9-]{0,20}")
+    return ns.prefix()
 
 
 def service_name(service):
-    return prefix() + "-" + service
+    return ns.name("service", prefix() + "-" + PLAN[service]["resource_suffix"])
 
 
 def table_config():
-    return (required("ITA_BIGQUERY_DATASET", r"[A-Za-z0-9_]{1,1024}"),
-            required("ITA_BIGQUERY_TABLE", r"[A-Za-z0-9_]{1,1024}"))
+    dataset = required("ITA_BIGQUERY_DATASET", r"[A-Za-z0-9_]{1,1024}")
+    table = required("ITA_BIGQUERY_TABLE", r"[A-Za-z0-9_]{1,1024}")
+    if (dataset, table) != ("hackathon_dados", "extrato_sintetico"):
+        ns.deny("BigQuery source", "only the confirmed read-only source is authorized")
+    return dataset, table
 
 
 def preflight(cfg):
@@ -112,52 +114,63 @@ def preflight(cfg):
 
 
 def repository(cfg, create=False):
-    repo = required("ITA_ARTIFACT_REPOSITORY", r"[a-z][a-z0-9-]{0,62}")
+    ns.scope(cfg)
+    repo = ns.name("repository", os.getenv("ITA_ARTIFACT_REPOSITORY", prefix()))
+    resource = f"projects/{cfg['project']}/locations/{cfg['region']}/repositories/{repo}"
+    if create:
+        current = run(["gcloud", "config", "get-value", "project"])
+        if current != cfg["project"]:
+            blocked("confirm project", resource, "active project differs", "Select the confirmed project manually; no mutation performed.")
+        print(f"CONFIRMADO project={cfg['project']} region={cfg['region']}")
     repos = json.loads(gc(cfg, "artifacts", "repositories", "list", "--location="+cfg["region"], "--format=json"))
-    matches = [r for r in repos if r["name"].split("/")[-1] == repo]
+    matches = [r for r in repos if r["name"] == resource]
     if not matches:
         if not create:
-            blocked("find repository", repo, "not found", "Choose an existing repository or explicitly run artifact_repository.sh --apply after approval.")
-        gc(cfg, "artifacts", "repositories", "create", repo, "--repository-format=docker", "--location="+cfg["region"])
-    elif matches[0].get("format") != "DOCKER":
-        blocked("select repository", repo, "not a Docker repository", "Select a Docker repository.")
+            blocked("find repository", resource, "not found", "Run only artifact_repository.sh --apply when explicitly authorized; no shared fallback.")
+        print("OPERATION CREATE Artifact Registry " + resource + " format=DOCKER immutable-tags=true", flush=True)
+        gc(cfg, "artifacts", "repositories", "create", repo, "--repository-format=docker", "--location="+cfg["region"],
+           "--immutable-tags", "--labels="+",".join(k+"="+v for k, v in ns.OWNER.items()))
+    else:
+        ns.labels(matches[0].get("labels", {}))
+        if matches[0].get("format") != "DOCKER" or not matches[0].get("dockerConfig", {}).get("immutableTags"):
+            blocked("select repository", resource, "format/tag policy mismatch", "Inspect manually; never modify or adopt an existing resource.")
+        print("OWNED repository already exists; NO MUTATION: " + resource)
     return cfg["region"] + "-docker.pkg.dev/" + cfg["project"] + "/" + repo
 
 
-def custom_role(cfg, role, permissions):
-    roles = json.loads(gc(cfg, "iam", "roles", "list", "--format=json"))
-    name = "projects/" + cfg["project"] + "/roles/" + role
-    existing = next((r for r in roles if r["name"] == name), None)
-    if existing:
-        detail = json.loads(gc(cfg, "iam", "roles", "describe", role, "--format=json"))
-        if set(detail.get("includedPermissions", [])) != set(permissions) or detail.get("deleted"):
-            blocked("verify existing custom role", name, "permission mismatch", "Review role manually; this script will not broaden or overwrite it.")
-    else:
-        gc(cfg, "iam", "roles", "create", role, "--title="+role, "--permissions="+",".join(permissions), "--stage=GA")
-    return name
+def verify_account(cfg, service, detail):
+    email = account(cfg, service)
+    ns.account(email)
+    if detail.get("email") != email or detail.get("description") != ns.SA_DESCRIPTION or detail.get("disabled"):
+        blocked("verify service account", PLAN[service]["service_account"], "ownership/identity mismatch or disabled", "Review collision with Google team; never adopt an external identity.")
 
 
 def identities(cfg):
-    existing = {a["email"] for a in json.loads(gc(cfg, "iam", "service-accounts", "list", "--format=json"))}
+    ns.scope(cfg)
+    existing = {a["email"]: a for a in json.loads(gc(cfg, "iam", "service-accounts", "list", "--format=json"))}
+    # Check every collision before creating any account. No project/table IAM writes.
+    for service in PLAN:
+        if account(cfg, service) in existing:
+            verify_account(cfg, service, existing[account(cfg, service)])
     for service in PLAN:
         if account(cfg, service) not in existing:
-            gc(cfg, "iam", "service-accounts", "create", PLAN[service]["service_account"])
-    for role_id, permissions, service in (("itaVertexPredict", ["aiplatform.endpoints.predict"], "agent"),
-                                          ("itaBigQueryJobs", ["bigquery.jobs.create"], "data")):
-        role = custom_role(cfg, role_id, permissions)
-        gc(cfg, "projects", "add-iam-policy-binding", cfg["project"], "--member=serviceAccount:"+account(cfg, service), "--role="+role, "--condition=None")
-    signer = custom_role(cfg, "itaCustomerProofSigner", ["iam.serviceAccounts.signJwt"])
-    gc(cfg, "iam", "service-accounts", "add-iam-policy-binding", account(cfg, "api"),
-       "--member=serviceAccount:"+account(cfg, "api"), "--role="+signer, "--condition=None")
-    dataset, table = table_config()
-    # Table scope is narrower than dataset/project; no writer grant, no ACL overwrite.
-    run(["bq", "--project_id="+cfg["project"], "add-iam-policy-binding", "--member=serviceAccount:"+account(cfg, "data"),
-         "--role=roles/bigquery.dataViewer", cfg["project"]+":"+dataset+"."+table])
-    secret = required("ITA_IDENTITY_SECRET", r"[a-zA-Z0-9_-]{1,255}")
-    for service in ("api", "policy", "data"):
-        gc(cfg, "secrets", "add-iam-policy-binding", secret, "--member=serviceAccount:"+account(cfg, service),
-           "--role=roles/secretmanager.secretAccessor", "--condition=None")
-    print("PREPARADO identities; inherited roles/org policies still require operator review. No keys generated.")
+            gc(cfg, "iam", "service-accounts", "create", ns.name("account", PLAN[service]["service_account"]),
+               "--description="+ns.SA_DESCRIPTION)
+    print("PREPARADO own accounts only; IAM NOT applied. Shared project/table remain READ_ONLY. Runtime permissions require a later explicit human decision.")
+
+
+def verify_runtime_resources(cfg):
+    for service in PLAN:
+        detail = json.loads(gc(cfg, "iam", "service-accounts", "describe", account(cfg, service), "--format=json"))
+        verify_account(cfg, service, detail)
+    secret = ns.name("secret", required("ITA_IDENTITY_SECRET", r"[a-zA-Z0-9_-]{1,255}"))
+    detail = json.loads(gc(cfg, "secrets", "describe", secret, "--format=json"))
+    if detail.get("name") != "projects/"+cfg["project"]+"/secrets/"+secret:
+        # Secret Manager returns numeric project identifiers; this package cannot infer them.
+        # Resolve the selected short name with the explicit --project, then enforce ownership.
+        if detail.get("name", "").split("/")[-1] != secret:
+            ns.deny(secret, "secret identity mismatch")
+    ns.labels(detail.get("labels", {}))
 
 
 def certified_sha():
@@ -199,7 +212,7 @@ def build_push(cfg):
     if path.exists():
         blocked("build manifest", str(path), "already exists", "Choose a new output path; do not overwrite provenance.")
     for service in PLAN:
-        name, dockerfile = repo + "/ita-" + service, "infra/docker/Dockerfile"
+        name, dockerfile = repo + "/" + service_name(service), "infra/docker/Dockerfile"
         tag = name + ":" + sha
         run(["docker", "build", "--platform=linux/amd64", "--build-arg=COMPONENT="+service,
              "--build-arg=VCS_REF="+sha, "--build-arg=BUILD_CREATED="+created, "-f", dockerfile, "-t", tag,
@@ -223,7 +236,7 @@ def images(cfg):
     for item in manifest["images"]:
         service = item["service"]
         if (service not in PLAN or service in result or item["sha"] != sha
-                or not re.fullmatch(re.escape(repo+"/ita-"+service)+r"@sha256:[0-9a-f]{64}", item["digest"])):
+                or not re.fullmatch(re.escape(repo+"/"+service_name(service))+r"@sha256:[0-9a-f]{64}", item["digest"])):
             raise ValueError("invalid image manifest")
         result[service] = item["digest"]
     return sha, result
@@ -234,9 +247,8 @@ def describe(cfg, service):
 
 
 def owned(detail):
-    labels = detail["metadata"].get("labels", {})
-    if labels.get("ita-preview") != prefix() or labels.get("ita-managed") != "cloudrun-readiness":
-        blocked("mutate service", detail["metadata"]["name"], "not owned by this preview", "Use an isolated preview prefix.")
+    ns.name("service", detail["metadata"]["name"])
+    ns.labels(detail["metadata"].get("labels", {}))
 
 
 def environment(cfg, service, urls, bootstrap):
@@ -266,13 +278,14 @@ def environment(cfg, service, urls, bootstrap):
 
 
 def deploy(cfg, phase):
+    ns.scope(cfg)
     sha, digests = images(cfg)
     bootstrap = phase == "bootstrap"
     urls = {}
     if bootstrap:
         existing = json.loads(gc(cfg, "run", "services", "list", "--region="+cfg["region"], "--format=json"))
         if any(s["metadata"]["name"] in {service_name(n) for n in PLAN} for s in existing):
-            blocked("bootstrap", prefix(), "service already exists", "Inspect partial run; use a fresh preview or reviewed cleanup. Never overwrite live services.")
+            blocked("bootstrap", prefix(), "service already exists", "Inspect partial run; perform reviewed cleanup of owned resources. Never overwrite live services.")
     else:
         for service in PLAN:
             detail = describe(cfg, service)
@@ -285,17 +298,19 @@ def deploy(cfg, phase):
             for binding in policy.get("bindings", []):
                 if binding["role"] == "roles/run.invoker" and set(binding["members"]) - expected:
                     blocked("verify invokers", service_name(service), "unexpected invoker binding", "Review IAM explicitly before configuring the preview.")
-        for caller, spec in PLAN.items():
-            for callee in spec["callees"]:
-                gc(cfg, "run", "services", "add-iam-policy-binding", service_name(callee), "--region="+cfg["region"],
-                   "--member=serviceAccount:"+account(cfg, caller), "--role=roles/run.invoker", "--condition=None")
     ingress = os.environ.get("ITA_CLOUD_RUN_INGRESS", "all")
     if ingress not in {"all", "internal", "internal-and-cloud-load-balancing"}:
         raise ValueError("invalid ingress")
     # Validate all configuration before the first deploy; no partial env edits.
     envs = {s: environment(cfg, s, urls, bootstrap) for s in PLAN}
-    secret = required("ITA_IDENTITY_SECRET", r"[a-zA-Z0-9_-]{1,255}")
+    verify_runtime_resources(cfg)
+    secret = ns.name("secret", required("ITA_IDENTITY_SECRET", r"[a-zA-Z0-9_-]{1,255}"))
     secret_version = required("ITA_IDENTITY_SECRET_VERSION", r"[1-9][0-9]*")
+    if not bootstrap:
+        for caller, spec in PLAN.items():
+            for callee in spec["callees"]:
+                gc(cfg, "run", "services", "add-iam-policy-binding", service_name(callee), "--region="+cfg["region"],
+                   "--member=serviceAccount:"+account(cfg, caller), "--role=roles/run.invoker", "--condition=None")
     with tempfile.TemporaryDirectory() as temp:
         for service in PLAN:
             path = Path(temp) / (service+".json")
@@ -305,7 +320,7 @@ def deploy(cfg, phase):
                     "--no-allow-unauthenticated", "--invoker-iam-check", "--ingress="+ingress,
                     "--execution-environment=gen2", "--memory=512Mi", "--cpu=1", "--concurrency=8", "--timeout=60",
                     "--min-instances=0", "--max-instances=2", "--startup-probe=httpGet.path=/healthz,httpGet.port=8080",
-                    "--labels=ita-preview="+prefix()+",ita-managed=cloudrun-readiness,ita-sha="+sha]
+                    "--labels="+",".join(k+"="+v for k, v in ns.OWNER.items())+",ita-escossio-sha="+sha]
             if service in {"api", "policy", "data"}:
                 args += ["--set-secrets=/secrets/identity/registry.json="+secret+":"+secret_version]
             gc(cfg, *args)
@@ -369,7 +384,7 @@ def destroy(cfg, confirmation):
         owned(describe(cfg, service))
     for service in PLAN:
         gc(cfg, "run", "services", "delete", service_name(service), "--region="+cfg["region"])
-    print("Only owned preview services removed. SAs/roles/secrets/images preserved for separate review.")
+    print("Only owned namespace services removed. SAs/secrets/images preserved for separate review.")
 
 
 def main():
@@ -381,7 +396,8 @@ def main():
     args = parser.parse_args()
     if not os.getenv("DEVSHELL_PROJECT_ID"):
         blocked("execution", "host", "Cloud Shell environment required", "Clone and run in Google Cloud Shell; never run gcloud on AGT.")
-    for tool in ("gcloud", "docker", "bq", "git"):
+    tools = ("gcloud",) if args.operation == "artifact_repository" else ("gcloud", "docker", "bq", "git")
+    for tool in tools:
         if not shutil.which(tool):
             blocked("tool availability", tool, "missing", "Use a Cloud Shell with the required tools.")
     cfg = config()
