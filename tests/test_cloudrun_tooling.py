@@ -12,11 +12,11 @@ from scripts.architecture_check import violations
 
 class CloudToolingTests(unittest.TestCase):
     def setUp(self):
-        self.cfg = dict(project="example-project", region="us-central1")
-        self.patch = patch.dict(os.environ, dict(ITA_GCP_PROJECT="example-project", ITA_GCP_REGION="us-central1",
-            ITA_CLOUD_RUN_PREFIX="ita-preview-ci", ITA_BIGQUERY_DATASET="demo", ITA_BIGQUERY_TABLE="ledger",
+        self.cfg = dict(project="batalha-time-01-97zr", region="us-central1")
+        self.patch = patch.dict(os.environ, dict(ITA_GCP_PROJECT="batalha-time-01-97zr", ITA_GCP_REGION="us-central1",
+            ITA_RESOURCE_PREFIX="ita-escossio", ITA_BIGQUERY_DATASET="hackathon_dados", ITA_BIGQUERY_TABLE="extrato_sintetico",
             ITA_BIGQUERY_CURRENCY="BRL", ITA_BIGQUERY_MONEY_UNIT="major", ITA_BIGQUERY_MAX_BYTES_BILLED="1000000",
-            ITA_VERTEX_MODEL="gemini-configured", ITA_IDENTITY_SECRET="identity-registry", ITA_IDENTITY_SECRET_VERSION="1"), clear=True)
+            ITA_VERTEX_MODEL="gemini-configured", ITA_IDENTITY_SECRET="ita-escossio-identity-registry", ITA_IDENTITY_SECRET_VERSION="1"), clear=True)
         self.patch.start()
         self.addCleanup(self.patch.stop)
 
@@ -44,7 +44,7 @@ class CloudToolingTests(unittest.TestCase):
             run.assert_not_called()
 
     def test_mutations_need_explicit_apply(self):
-        with patch.dict(os.environ, DEVSHELL_PROJECT_ID="example-project"), patch("shutil.which", return_value="/fake"), patch.object(op, "run") as run:
+        with patch.dict(os.environ, DEVSHELL_PROJECT_ID="batalha-time-01-97zr"), patch("shutil.which", return_value="/fake"), patch.object(op, "run") as run:
             for action in ("identities", "build_push", "deploy", "publish_web", "destroy_preview", "artifact_repository"):
                 with patch("sys.argv", ["operator.py", action]), self.assertRaises(op.Blocked):
                     op.main()
@@ -55,7 +55,7 @@ class CloudToolingTests(unittest.TestCase):
         def fake(args):
             calls.append(args)
             if args[1:4] == ["config", "get-value", "project"]:
-                return "example-project"
+                return "batalha-time-01-97zr"
             if "services" in args and "--enabled" in args:
                 return "\n".join(op.APIS)
             return "[]"
@@ -82,8 +82,12 @@ class CloudToolingTests(unittest.TestCase):
         commands = []
         def fake_gc(cfg, *args):
             commands.append(args)
+            if args[:3] == ("iam", "service-accounts", "describe"):
+                return json.dumps(dict(email=args[3], description=op.ns.SA_DESCRIPTION))
+            if args[:2] == ("secrets", "describe"):
+                return json.dumps(dict(name="projects/123/secrets/ita-escossio-identity-registry", labels=op.ns.OWNER))
             return "[]" if "list" in args else "{}"
-        digests = {s: f"us-central1-docker.pkg.dev/example-project/repo/ita-{s}@sha256:"+"a"*64 for s in op.PLAN}
+        digests = {s: f"us-central1-docker.pkg.dev/batalha-time-01-97zr/repo/ita-{s}@sha256:"+"a"*64 for s in op.PLAN}
         with patch.object(op, "images", return_value=("b"*40, digests)), patch.object(op, "gc", side_effect=fake_gc):
             op.deploy(self.cfg, "bootstrap")
         deployments = [c for c in commands if c[:2] == ("run", "deploy")]
@@ -95,13 +99,13 @@ class CloudToolingTests(unittest.TestCase):
             self.assertFalse(any("vpc" in a or "cloudsql" in a or "--source" in a for a in args))
 
     def test_bootstrap_never_overwrites_existing(self):
-        with patch.object(op, "images", return_value=("a"*40, {})), patch.object(op, "gc", return_value=json.dumps([{"metadata":{"name":"ita-preview-ci-web"}}])) as gc:
+        with patch.object(op, "images", return_value=("a"*40, {})), patch.object(op, "gc", return_value=json.dumps([{"metadata":{"name":"ita-escossio-web"}}])) as gc:
             with self.assertRaises(op.Blocked):
                 op.deploy(self.cfg, "bootstrap")
             self.assertEqual(gc.call_count, 1)
 
     def test_repository_creation_never_implicit(self):
-        with patch.dict(os.environ, ITA_ARTIFACT_REPOSITORY="repo"), patch.object(op, "gc", return_value="[]") as gc:
+        with patch.dict(os.environ, ITA_ARTIFACT_REPOSITORY="ita-escossio"), patch.object(op, "gc", return_value="[]") as gc:
             with self.assertRaises(op.Blocked):
                 op.repository(self.cfg)
             self.assertEqual(gc.call_count, 1)
@@ -109,7 +113,7 @@ class CloudToolingTests(unittest.TestCase):
     def test_destroy_rejects_unowned_resource_before_deletion(self):
         with patch.object(op, "describe", return_value={"metadata":{"name":"service","labels":{}}}), patch.object(op, "gc") as gc:
             with self.assertRaises(op.Blocked):
-                op.destroy(self.cfg, "ita-preview-ci")
+                op.destroy(self.cfg, "ita-escossio")
             gc.assert_not_called()
 
     def test_build_uses_only_certified_git_context_and_records_digests(self):

@@ -171,3 +171,18 @@ O alerta CodeQL persistiu no teste de sufixo mesmo após parsing. O guard agora 
 Pacote da passada no PR #16: preparação Cloud Run implementada; resultado final de Actions/CodeQL/worker vinculado ao SHA no PR antes da integração. Readiness local não muda os estados externos AINDA NÃO TESTADO/BLOQUEADO. Após integração, o único próximo gate operacional é preflight somente-leitura no Cloud Shell; nenhum deploy ou encerramento da etapa 16 autorizado nesta passada.
 
 Revisão final do build: contexto Docker agora é o repositório público fixado pelo SHA completo certificado, impedindo inclusão de arquivos locais ignorados mesmo em checkout limpo. Teste de build/push simulado verifica sete contextos/digests e ausência de contexto local. Total: 142 testes. O checkpoint 4dcc751 passou em Actions/CodeQL; o novo SHA repete todos os gates por esta alteração de empacotamento.
+
+## Isolamento GCP — continuidade da main 39365558
+
+Preflight real confirmado pelo operador, sem reprodução no AGT. APIs, metadata Run/AR/SA e dry-run BigQuery disponíveis; fonte sintética com 467585 registros, região us-central1. Inventário sanitizado em docs/architecture/GCP_EXTERNAL_RESOURCES.md. Cloud SQL/VPC Access continuam ausentes e fora do caminho crítico; etapa 16 NÃO concluída.
+
+Guard central ligado antes de todo subprocesso do pacote Cloud Shell; namespace fixo ita-escossio, sete serviços/packages/SAs próprios. Rejeita serviços agente/ita-backend, registries agentes/batalha-agentes, squad/default Compute SA e secret ita-backend-gcp-credentials como targets mutáveis. Colisão de ownership bloqueia, nunca adota/relabel. Nenhum fallback para registry compartilhado. Build preserva Git SHA e exige tags imutáveis/digests próprios.
+
+ADR 0007 remove a automação anterior de IAM no projeto/tabela compartilhados, agora somente leitura. identities.sh prepara criação apenas de SAs próprias; grants adicionais dependem de decisão humana posterior. Próximo gate: operador criar somente Artifact Registry ita-escossio com flag --apply, projeto ativo/região conferidos, existência consultada e operação exibida. PERMISSION_DENIED/org policy encerra sem contorno. Nenhum comando GCP, IAM, push ou deploy executado nesta passada.
+
+Configurações tocadas: infra/gcp/cloudrun/services.json e env.example; scripts operator.py/namespace.py e guard estático; documentação de target/IAM/demo e testes. Runtime, Compose, domínio e fontes originais preservados. Validação local: 158 testes curtos aprovados, 11 contracts, 250 cenários íntegros, lint/arquitetura/Compose aprovados. Regressão pública/CodeQL e certificação distribuída ainda pendentes para o SHA final. Voz e Tom permanece SOURCE_PENDING_LOCAL_COPY não bloqueante.
+
+
+Certificação da implementação no PR #17, SHA 715725fa9841d5dc8b628b939ce884b0f6c97452: **158 testes**, 11 contracts, lint, arquitetura, secret scan de árvore/histórico, Compose/build e CodeQL aprovados (zero alertas abertos no PR). Worker distribuído aprovou as oito imagens HTTP com PORT dinâmico/read-only/startup/SIGTERM, jornada DEMO, jornada BigQuery mock, falhas/recuperação, bypass negado e shutdown. Evidência PASS associada ao SHA; worker indisponível foi substituído por outro compatível, sem carga pesada no AGT.
+
+Este checkpoint final documenta a certificação; também exige checks públicos e distributed-foundation verdes no seu próprio SHA antes do merge. GitHub/PR conserva os resultados finais por SHA. Não houve criação/alteração de recurso GCP, chamada gcloud, push de imagem ou deploy. Próximo gate permanece exclusivamente a criação manual de ita-escossio no Cloud Shell; demais operações e etapa 16 continuam abertas.
