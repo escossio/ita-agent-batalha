@@ -6,6 +6,7 @@
       "items": {
         "enum": [
           "read_snapshot",
+          "read_ledger",
           "project_cashflow",
           "compare_products",
           "end_conversation",
@@ -13,7 +14,7 @@
         ],
         "type": "string"
       },
-      "maxItems": 5,
+      "maxItems": 6,
       "title": "Allowed Actions",
       "type": "array"
     },
@@ -36,11 +37,12 @@
       "items": {
         "enum": [
           "data.snapshot",
-          "finance.project"
+          "finance.project",
+          "data.ledger"
         ],
         "type": "string"
       },
-      "maxItems": 2,
+      "maxItems": 3,
       "title": "Authorized Tools",
       "type": "array"
     },
@@ -48,6 +50,7 @@
       "items": {
         "enum": [
           "read_snapshot",
+          "read_ledger",
           "project_cashflow",
           "compare_products",
           "end_conversation",
@@ -55,7 +58,7 @@
         ],
         "type": "string"
       },
-      "maxItems": 5,
+      "maxItems": 6,
       "title": "Blocked Actions",
       "type": "array"
     },

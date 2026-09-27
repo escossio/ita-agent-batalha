@@ -1,5 +1,45 @@
 {
   "$defs": {
+    "LedgerArguments": {
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "const": "ledger",
+          "title": "Kind",
+          "type": "string"
+        },
+        "window": {
+          "$ref": "#/$defs/LedgerWindow"
+        }
+      },
+      "required": [
+        "kind",
+        "window"
+      ],
+      "title": "LedgerArguments",
+      "type": "object"
+    },
+    "LedgerWindow": {
+      "additionalProperties": false,
+      "properties": {
+        "from_time": {
+          "maxLength": 32,
+          "title": "From Time",
+          "type": "string"
+        },
+        "to_time": {
+          "maxLength": 32,
+          "title": "To Time",
+          "type": "string"
+        }
+      },
+      "required": [
+        "from_time",
+        "to_time"
+      ],
+      "title": "LedgerWindow",
+      "type": "object"
+    },
     "ProjectionArguments": {
       "additionalProperties": false,
       "properties": {
@@ -7,6 +47,17 @@
           "const": "projection",
           "title": "Kind",
           "type": "string"
+        },
+        "ledger_window": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/LedgerWindow"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
         },
         "proposed_spend_cents": {
           "maximum": 1000000000000,
@@ -44,6 +95,7 @@
     "arguments": {
       "discriminator": {
         "mapping": {
+          "ledger": "#/$defs/LedgerArguments",
           "projection": "#/$defs/ProjectionArguments",
           "snapshot": "#/$defs/SnapshotArguments"
         },
@@ -55,6 +107,9 @@
         },
         {
           "$ref": "#/$defs/ProjectionArguments"
+        },
+        {
+          "$ref": "#/$defs/LedgerArguments"
         }
       ],
       "title": "Arguments"
@@ -68,6 +123,19 @@
       "pattern": "^[a-zA-Z0-9][a-zA-Z0-9_-]{0,63}$",
       "title": "Customer Id",
       "type": "string"
+    },
+    "identity_proof": {
+      "anyOf": [
+        {
+          "maxLength": 4096,
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Identity Proof"
     },
     "policy_decision_id": {
       "anyOf": [
@@ -95,7 +163,8 @@
     "tool": {
       "enum": [
         "data.snapshot",
-        "finance.project"
+        "finance.project",
+        "data.ledger"
       ],
       "title": "Tool",
       "type": "string"

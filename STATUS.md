@@ -137,3 +137,7 @@ Adapter preparado com consulta parametrizada, ADC externo, validação de schema
 Configurações tocadas: .env.example, requirements-agent.txt, requirements-data.txt, novo requirements-gcp.txt, .dockerignore e Dockerfile. Nenhuma configuração global/infraestrutura externa alterada. Testes e CI deste checkpoint serão vinculados ao SHA do PR; validação pesada exclusivamente distribuída. Etapa 13 preservada em branch isolada; 14–18 não antecipadas.
 
 Validação local deste mapeamento: 107 testes curtos aprovados, 10 schemas sem drift, lint/arquitetura (29 arquivos, zero violações), Compose base/Vertex aprovados. Hashes dos originais privados conferidos sem alteração; SOURCE_FIELDS coincide com os 11 campos/tipos/modos recebidos. Certificação de imagem Data inclui import ADC/adapter e normalização sem contato GCP.
+
+## Integração da vertical slice BigQuery — em execução
+
+Instrução posterior autoriza conectar o adapter pela jornada real, sem deploy. Contratos estendidos de forma aditiva no protocolo 1.0: janela explícita, data.ledger, prova de identidade opaca e FinancialContext com INCOMPLETE_FINANCIAL_CONTEXT. Observações, contagens determinísticas, listas vazias de estimativas/inferências e dados ausentes são separados e validados. Não há conversão implícita para FinancialSnapshot. A jornada DEMO permanece compatível. Checkpoint de contratos precede o wiring runtime; certificação ponta a ponta ainda pendente.

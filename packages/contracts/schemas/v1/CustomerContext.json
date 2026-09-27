@@ -47,12 +47,18 @@
       "type": "string"
     },
     "mode": {
-      "const": "DEMO",
+      "enum": [
+        "DEMO",
+        "COMPETITION"
+      ],
       "title": "Mode",
       "type": "string"
     },
     "provenance": {
-      "const": "DEMO_FIXTURE",
+      "enum": [
+        "DEMO_FIXTURE",
+        "VERIFIED_RUNTIME_IDENTITY"
+      ],
       "title": "Provenance",
       "type": "string"
     },
