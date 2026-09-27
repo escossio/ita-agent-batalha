@@ -1,8 +1,8 @@
-# Mapeamento futuro — sem implantação GCP
+# Target Cloud Run — preparação, sem implantação
 
-Containers → Cloud Run; PostgreSQL → Cloud SQL/AlloyDB; secrets → Secret Manager;
-identidade → IAM/Service Accounts; telemetria → OpenTelemetry/Google Cloud Operations;
-imagens → Artifact Registry; configuração → ambiente/config gerenciada.
+Runtime final confirmado: Cloud Run. Pacote do operador em [cloudrun/README.md](cloudrun/README.md).
+O próximo gate é preflight somente-leitura no Cloud Shell; nenhuma operação GCP no AGT.
 
-Não há SDK GCP no domínio nem IDs de projeto, credenciais ou recursos pagos criados.
-O desenho detalhado de IAM/deploy/portabilidade será validado na etapa 16.
+Competição: sete serviços HTTP, BigQuery, Vertex, ADC por serviço, IAM invoker e configuração privada via Secret Manager. PostgreSQL é exclusivo de desenvolvimento/teste DEMO; não há dependência Cloud SQL/AlloyDB/VPC Access. Agent Engine permanece opcional, fora do caminho crítico.
+
+[Readiness e limites](../../docs/architecture/CLOUD_RUN_TARGET.md), [IAM](../../docs/security/GCP_IAM_BOUNDARIES.md), [smoke posterior](../../docs/demo/GCP_SMOKE.md). Etapa 16 permanece aberta; este pacote não declara portabilidade certificada no Google nem cria infraestrutura.
