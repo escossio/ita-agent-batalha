@@ -169,3 +169,5 @@ CodeQL encontrou comparação incompleta de URL no novo guard estático de Verte
 O alerta CodeQL persistiu no teste de sufixo mesmo após parsing. O guard agora compara os labels DNS completos e o identificador regional do serviço, sem busca parcial de URL. Verificação funcional do guard preservada; aguarda nova análise sem supressão.
 
 Pacote da passada no PR #16: preparação Cloud Run implementada; resultado final de Actions/CodeQL/worker vinculado ao SHA no PR antes da integração. Readiness local não muda os estados externos AINDA NÃO TESTADO/BLOQUEADO. Após integração, o único próximo gate operacional é preflight somente-leitura no Cloud Shell; nenhum deploy ou encerramento da etapa 16 autorizado nesta passada.
+
+Revisão final do build: contexto Docker agora é o repositório público fixado pelo SHA completo certificado, impedindo inclusão de arquivos locais ignorados mesmo em checkout limpo. Teste de build/push simulado verifica sete contextos/digests e ausência de contexto local. Total: 142 testes. O checkpoint 4dcc751 passou em Actions/CodeQL; o novo SHA repete todos os gates por esta alteração de empacotamento.

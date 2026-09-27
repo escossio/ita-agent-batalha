@@ -112,6 +112,28 @@ class CloudToolingTests(unittest.TestCase):
                 op.destroy(self.cfg, "ita-preview-ci")
             gc.assert_not_called()
 
+    def test_build_uses_only_certified_git_context_and_records_digests(self):
+        sha, repo, calls = "a"*40, "registry/repo", []
+        def fake_run(args):
+            calls.append(args)
+            if args[:3] == ["git", "show", "-s"]:
+                return "2026-01-01T00:00:00Z"
+            if args[:3] == ["docker", "image", "inspect"]:
+                return json.dumps([{"RepoDigests": [args[3].split(":")[0]+"@sha256:"+"b"*64]}])
+            return ""
+        with tempfile.TemporaryDirectory() as temp, patch.dict(os.environ, ITA_DEPLOYMENT_MANIFEST=str(Path(temp)/"images.json")), \
+                patch.object(op, "certified_sha", return_value=sha), patch.object(op, "repository", return_value=repo), \
+                patch.object(op, "gc"), patch.object(op, "run", side_effect=fake_run), patch("builtins.print"):
+            op.build_push(self.cfg)
+            manifest = json.loads(op.artifact_path().read_text())
+        self.assertEqual(len(manifest["images"]), 7)
+        builds = [c for c in calls if c[:2] == ["docker", "build"]]
+        self.assertEqual(len(builds), 7)
+        for command in builds:
+            self.assertEqual(command[-1], "https://github.com/escossio/ita-agent-batalha.git#"+sha)
+            self.assertIn("--build-arg=VCS_REF="+sha, command)
+        self.assertTrue(all("@sha256:" in item["digest"] for item in manifest["images"]))
+
     def test_digest_manifest_required(self):
         with tempfile.TemporaryDirectory() as temp, patch.dict(os.environ, ITA_CERTIFIED_SHA="a"*40,
                 ITA_DEPLOYMENT_MANIFEST=str(Path(temp)/"images.json")), patch.object(op, "repository", return_value="registry/repo"):

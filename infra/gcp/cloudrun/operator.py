@@ -202,7 +202,8 @@ def build_push(cfg):
         name, dockerfile = repo + "/ita-" + service, "infra/docker/Dockerfile"
         tag = name + ":" + sha
         run(["docker", "build", "--platform=linux/amd64", "--build-arg=COMPONENT="+service,
-             "--build-arg=VCS_REF="+sha, "--build-arg=BUILD_CREATED="+created, "-f", dockerfile, "-t", tag, "."])
+             "--build-arg=VCS_REF="+sha, "--build-arg=BUILD_CREATED="+created, "-f", dockerfile, "-t", tag,
+             "https://github.com/escossio/ita-agent-batalha.git#"+sha])
         run(["docker", "push", tag])
         details = json.loads(run(["docker", "image", "inspect", tag]))[0]
         digest = next(d for d in details["RepoDigests"] if d.startswith(name+"@sha256:"))
