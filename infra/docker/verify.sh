@@ -8,6 +8,7 @@ cleanup() { docker compose down --volumes --remove-orphans >/dev/null 2>&1; }
 trap cleanup EXIT
 docker compose config --quiet
 docker compose build --quiet
+python3 infra/docker/cloudrun_readiness.py
 docker compose up -d --wait --wait-timeout 180
 # Verify the actual Data image includes ADC + integer-only normalization, without GCP.
 docker compose exec -T data python -c 'import google.auth; from component.bigquery import BigQueryLedgerReader; from component.normalization import money_to_cents; assert money_to_cents("1.005") == (101, True); assert money_to_cents("-2.675") == (-268, True)'

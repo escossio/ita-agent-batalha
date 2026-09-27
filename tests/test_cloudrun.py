@@ -54,6 +54,18 @@ class CloudRunTests(unittest.TestCase):
         self.assertEqual(headers["X-Serverless-Authorization"], "Bearer ephemeral-runtime-token")
         self.assertNotIn("X-ITA-Signature", headers)
 
+    @patch("google.oauth2.id_token.fetch_id_token", return_value="ephemeral")
+    def test_actual_http_request_uses_external_url(self, _fetch):
+        response = Mock()
+        response.headers = {"X-Correlation-ID": "cid"}
+        response.read.return_value = b'{}'
+        opener = Mock()
+        opener.open.return_value.__enter__ = Mock(return_value=response)
+        opener.open.return_value.__exit__ = Mock(return_value=False)
+        with patch("urllib.request.build_opener", return_value=opener):
+            self.assertEqual(ApiTransport()._post("respond", {}, "cid"), {})
+        self.assertEqual(opener.open.call_args.args[0].full_url, "https://agent-example.run.app/v1/respond")
+
     @patch("google.oauth2.id_token.fetch_id_token", side_effect=RuntimeError("credential failure"))
     def test_auth_failure_does_not_send_request(self, _fetch):
         with patch("urllib.request.build_opener") as opener, self.assertRaises(PermissionError):

@@ -73,4 +73,4 @@ if __name__ == "__main__":
     else:
         configured_reader()
     serve("data", {"/v1/snapshot": snapshot, "/v1/ledger": ledger},
-          health=ready if mode == "postgres" else None, before_route=BrokerAuthenticator())
+          health=ready if mode == "postgres" else None, before_route=None if enabled() else BrokerAuthenticator())
