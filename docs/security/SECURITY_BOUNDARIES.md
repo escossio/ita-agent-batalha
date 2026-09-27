@@ -13,3 +13,5 @@ Segredos externos ao Git. Logs sem credenciais/conteúdo privado. Fixtures são 
 O repositório é público: revisão de árvore, histórico e XLSX expandido antes de cada push.
 
 Etapa 9: enforcement estático e de rede certificado; Broker reautoriza com contexto DEMO do servidor e aplica schemas/timeout/auditoria. Tentativas de decisão forjada, acesso direto, cliente trocado e ferramenta não permitida têm testes. A semântica financeira do contrato rejeita resultados incoerentes. A identidade atual é exclusivamente DEMO; não representa autenticação bancária real.
+
+Integração competition: API resolve sessão opaca em registry privado e assina prova vinculada a cliente/janela/valor/correlation. Agent/modelo não possuem a chave nem escolhem id_usuario. Policy verifica prova/revogação antes de conceder somente leitura/análise. Broker reautoriza cada tool; Data exige HMAC Broker–Data e reconsulta Policy. Data–Policy tem rede privada própria; egress BigQuery é exclusivo de Data. São identidades operacionais da competição, não autenticação bancária produtiva; GCP requer identidades de workload/TLS/ingress apropriados.

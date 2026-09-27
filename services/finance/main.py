@@ -1,5 +1,6 @@
 from packages.runtime.server import serve
 from .engine import MissingData, project
+from .ledger import assess
 
 
 def calculate(payload, correlation_id):
@@ -13,4 +14,4 @@ def calculate(payload, correlation_id):
 
 
 if __name__ == "__main__":
-    serve("finance", {"/v1/project": calculate})
+    serve("finance", {"/v1/project": calculate, "/v1/assess-ledger": assess})

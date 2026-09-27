@@ -5,13 +5,14 @@ from time import monotonic
 from uuid import uuid4
 from pydantic import ValidationError
 from packages.contracts.digests import request_digest
+from packages.contracts.ledger import CompetitionLedger, FinancialContext
 from packages.contracts.models import FinancialSnapshot, PolicyDecision, Projection, ToolRequest, ToolResult
 from packages.runtime.audit import audit
 from packages.runtime.http_client import RemoteFailure
 
 
 class Broker:
-    def __init__(self, transport, sink=None, timeout_seconds=5):
+    def __init__(self, transport, sink=None, timeout_seconds=10):
         if not 0 < timeout_seconds <= 10:
             raise ValueError("invalid timeout")
         self.transport, self.sink, self.timeout = transport, sink, timeout_seconds
@@ -34,7 +35,7 @@ class Broker:
             raise RemoteFailure("POLICY_UNAVAILABLE")
         self.emit(request, "policy_decided", "ok" if decision.outcome == "allow" else "denied",
                   reason=decision.reasons[0])
-        action = "read_snapshot" if request.tool == "data.snapshot" else "project_cashflow"
+        action = {"data.snapshot": "read_snapshot", "data.ledger": "read_ledger", "finance.project": "project_cashflow"}[request.tool]
         if decision.outcome != "allow" or request.tool not in decision.authorized_tools or action not in decision.allowed_actions:
             raise RemoteFailure("POLICY_DENIED")
         self.emit(request, "tool_authorized", "ok")
@@ -56,6 +57,26 @@ class Broker:
             async with asyncio.timeout(self.timeout):
                 if request.tool == "data.snapshot":
                     data = await self.snapshot(request)
+                elif request.tool == "data.ledger":
+                    await self.authorized(request)
+                    raw = await self.transport.post("ledger", request.model_dump(), request.correlation_id)
+                    data = CompetitionLedger.model_validate(raw)
+                    if (data.customer_id != request.customer_id or data.correlation_id != request.correlation_id
+                            or data.from_time != request.arguments.window.from_time or data.to_time != request.arguments.window.to_time):
+                        raise RemoteFailure("INVALID_OUTPUT")
+                elif request.tool == "finance.project" and request.arguments.ledger_window is not None:
+                    await self.authorized(request)
+                    child = ToolRequest(schema_version="1.0", request_id=str(uuid4()), correlation_id=request.correlation_id,
+                        customer_id=request.customer_id, tool="data.ledger", identity_proof=request.identity_proof,
+                        arguments={"kind": "ledger", "window": request.arguments.ledger_window.model_dump()})
+                    nested = await self.execute(child.model_dump())
+                    if nested.status != "ok":
+                        raise RemoteFailure(nested.error.code)
+                    raw = await self.transport.post("assess", dict(correlation_id=request.correlation_id,
+                        ledger=nested.data.model_dump()), request.correlation_id)
+                    data = FinancialContext.model_validate(raw)
+                    if data.observed != nested.data:
+                        raise RemoteFailure("INVALID_OUTPUT")
                 elif request.tool == "finance.project":
                     await self.authorized(request)
                     child = ToolRequest(schema_version="1.0", request_id=str(uuid4()),

@@ -10,7 +10,7 @@ from packages.contracts.digests import request_digest
 from .models import Facts, PolicyInput, PolicyLimits
 
 PRODUCTS = ["credit", "renegotiation", "financing", "consortium", "investment"]
-ACTIONS = ["read_snapshot", "project_cashflow", "compare_products", "end_conversation", "handoff"]
+ACTIONS = ["read_snapshot", "read_ledger", "project_cashflow", "compare_products", "end_conversation", "handoff"]
 
 
 def matching_rules(facts: Facts, rules: list[dict]) -> list[str]:
@@ -65,7 +65,9 @@ class PolicyEngine:
             return finish("ALLOWED")
         if not context.consent_to_analysis or (value.proactive and not context.contact_permission):
             return finish("NO_CONSENT")
-        if context.emotional_state == "unknown" or context.financial_level == "unknown":
+        ledger_analysis = value.request is not None and context.mode == "COMPETITION" and (
+            value.request.tool == "data.ledger" or (value.request.tool == "finance.project" and value.request.arguments.ledger_window is not None))
+        if context.emotional_state == "unknown" or (context.financial_level == "unknown" and not ledger_analysis):
             return finish("UNKNOWN_CONTEXT")
         if context.emotional_state == "distressed":
             return finish("PERSON_SAFETY", True)

@@ -1,9 +1,12 @@
 from typing import Annotated, Literal
 from pydantic import Field, model_validator
+from packages.contracts.ledger import LedgerWindow
 from packages.contracts.models import Amount, Contract, CorrelationID, CustomerContext, Record
 
 
 class AgentInput(Contract):
+    window: LedgerWindow | None = None
+    identity_proof: Annotated[str, Field(max_length=4096)] | None = None
     correlation_id: CorrelationID
     context: CustomerContext
     utterance: Annotated[str, Field(min_length=1, max_length=2000)]

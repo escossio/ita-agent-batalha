@@ -1,6 +1,6 @@
 """Read-only competition adapter. Only trusted Data Access callers may use it.
 
-No HTTP route/tool is exposed until identity mapping and policy wiring are certified.
+Data HTTP requires authenticated Broker calls and independent policy reauthorization.
 """
 from dataclasses import dataclass
 from datetime import datetime
@@ -44,7 +44,7 @@ class BigQueryConfig:
     @classmethod
     def from_env(cls):
         try:
-            return cls(os.environ["ITA_BIGQUERY_PROJECT"], os.environ["ITA_BIGQUERY_DATASET"],
+            return cls(os.environ.get("ITA_BIGQUERY_PROJECT") or os.environ["GOOGLE_CLOUD_PROJECT"], os.environ["ITA_BIGQUERY_DATASET"],
                        os.environ["ITA_BIGQUERY_TABLE"], os.environ["ITA_BIGQUERY_LOCATION"],
                        os.environ["ITA_BIGQUERY_CURRENCY"], os.environ["ITA_BIGQUERY_MONEY_UNIT"],
                        int(os.environ["ITA_BIGQUERY_MAX_BYTES_BILLED"]))
@@ -57,12 +57,18 @@ class BigQueryTransport:
     def request(self, method, url, payload, correlation_id):
         import google.auth
         from google.auth.transport.requests import AuthorizedSession
+        from google.auth.exceptions import DefaultCredentialsError, RefreshError
+        from requests.exceptions import Timeout
         try:
             credentials, _ = google.auth.default(scopes=["https://www.googleapis.com/auth/bigquery.readonly"])
             with AuthorizedSession(credentials, refresh_timeout=5) as session:
                 session.trust_env = False
                 with session.request(method, url, json=payload, timeout=(3, 8), stream=True,
                                      allow_redirects=False, headers={"X-Correlation-ID": correlation_id}) as response:
+                    if response.status_code in {401, 403}:
+                        raise SourceDataError("BIGQUERY_AUTHENTICATION_FAILED")
+                    if response.status_code == 404:
+                        raise SourceDataError("BIGQUERY_SOURCE_NOT_FOUND")
                     if response.status_code != 200:
                         raise SourceDataError("BIGQUERY_UNAVAILABLE")
                     body = response.raw.read(4_194_305, decode_content=True)
@@ -71,6 +77,10 @@ class BigQueryTransport:
                     return json.loads(body)
         except SourceDataError:
             raise
+        except (DefaultCredentialsError, RefreshError):
+            raise SourceDataError("BIGQUERY_AUTHENTICATION_FAILED") from None
+        except (Timeout, TimeoutError):
+            raise SourceDataError("BIGQUERY_QUERY_TIMEOUT") from None
         except Exception:
             raise SourceDataError("BIGQUERY_UNAVAILABLE") from None
 

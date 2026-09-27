@@ -1,18 +1,22 @@
 """HTTP de fundação: saúde, identificação da requisição e shutdown limpo."""
 
 import json
+from contextvars import ContextVar
+
 import signal
 import threading
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from time import monotonic
 from uuid import UUID, uuid4
 
+request_headers = ContextVar("request_headers", default={})
+
 
 def event(service: str, name: str, **fields) -> None:
     print(json.dumps({"service": service, "event": name, **fields}), flush=True)
 
 
-def serve(service: str, routes=None, pages=None, health=None) -> None:
+def serve(service: str, routes=None, pages=None, health=None, before_route=None) -> None:
     class Handler(BaseHTTPRequestHandler):
         server_version = "ITA"
         sys_version = ""
@@ -42,9 +46,17 @@ def serve(service: str, routes=None, pages=None, health=None) -> None:
                     payload = json.loads(self.rfile.read(length))
                     if not isinstance(payload, dict):
                         raise ValueError("object required")
-                    status, result = route(payload, correlation_id)
+                    if before_route:
+                        before_route(payload, correlation_id, self.headers, self.path)
+                    token = request_headers.set(self.headers)
+                    try:
+                        status, result = route(payload, correlation_id)
+                    finally:
+                        request_headers.reset(token)
             except (ValueError, ValidationError):
                 status, result = 400, {"error": "INVALID_INPUT", "retryable": False}
+            except PermissionError:
+                status, result = 403, {"error": "POLICY_DENIED", "retryable": False}
             except TimeoutError:
                 status, result = 504, {"error": "TIMEOUT", "retryable": True}
             except Exception:

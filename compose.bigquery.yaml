@@ -1,0 +1,46 @@
+# Explicit competition runtime; credentials remain in runtime identity. No deploy.
+services:
+  api:
+    environment:
+      ITA_RUNTIME_MODE: competition
+      ITA_IDENTITY_REGISTRY_FILE: /run/identity/registry.json
+    volumes:
+    - type: bind
+      source: ${ITA_IDENTITY_REGISTRY_FILE:?External identity registry required}
+      target: /run/identity/registry.json
+      read_only: true
+  policy:
+    environment:
+      ITA_RUNTIME_MODE: competition
+      ITA_IDENTITY_REGISTRY_FILE: /run/identity/registry.json
+    volumes:
+    - type: bind
+      source: ${ITA_IDENTITY_REGISTRY_FILE:?External identity registry required}
+      target: /run/identity/registry.json
+      read_only: true
+  data:
+    environment:
+      ITA_RUNTIME_MODE: competition
+      ITA_IDENTITY_REGISTRY_FILE: /run/identity/registry.json
+      ITA_DATA_PROVIDER: ${ITA_DATA_PROVIDER:-bigquery}
+      GOOGLE_CLOUD_PROJECT: ${GOOGLE_CLOUD_PROJECT:?External project required}
+      ITA_BIGQUERY_DATASET: ${ITA_BIGQUERY_DATASET:?External dataset required}
+      ITA_BIGQUERY_TABLE: ${ITA_BIGQUERY_TABLE:?External table required}
+      ITA_BIGQUERY_LOCATION: ${ITA_BIGQUERY_LOCATION:?External location required}
+      ITA_BIGQUERY_CURRENCY: ${ITA_BIGQUERY_CURRENCY:?Explicit currency required}
+      ITA_BIGQUERY_MONEY_UNIT: ${ITA_BIGQUERY_MONEY_UNIT:?Explicit unit required}
+      ITA_BIGQUERY_MAX_BYTES_BILLED: ${ITA_BIGQUERY_MAX_BYTES_BILLED:?Explicit budget
+        required}
+    volumes:
+    - type: bind
+      source: ${ITA_IDENTITY_REGISTRY_FILE:?External identity registry required}
+      target: /run/identity/registry.json
+      read_only: true
+    networks:
+    - data_egress
+  web:
+    environment:
+      ITA_RUNTIME_MODE: competition
+networks:
+  data_egress:
+    internal: false

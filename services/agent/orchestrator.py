@@ -22,7 +22,7 @@ class Orchestrator:
     async def run(self, payload):
         value = AgentInput.model_validate(payload)
         base = dict(schema_version="1.0", correlation_id=value.correlation_id,
-                    customer_id=value.context.customer_id, mode="DEMO", status="error", intent="unknown",
+                    customer_id=value.context.customer_id, mode=value.context.mode, status="error", intent="unknown",
                     message="Não foi possível concluir. Nenhum resultado financeiro foi inventado.",
                     policy_decision_id=None, financial_result=None, tool_results=[], requires_human=False,
                     model_provider=self.provider.name)
@@ -56,9 +56,13 @@ class Orchestrator:
                                   message="Podemos buscar apoio humano. Nenhuma ferramenta foi executada.")
                 if plan.intent == "unknown":
                     return finish(status="needs_data", message="Ainda não consigo atender essa intenção. Pode esclarecer sua necessidade?")
+                if value.context.mode == "COMPETITION" and value.window is None:
+                    return finish(status="needs_data", message="Informe a janela temporal do extrato. Não foi presumida uma data de salário.")
                 request = ToolRequest(schema_version="1.0", request_id=str(uuid4()),
                     correlation_id=value.correlation_id, customer_id=value.context.customer_id,
-                    tool=plan.tool, arguments=dict(kind="projection", proposed_spend_cents=value.proposed_spend_cents))
+                    tool=plan.tool, identity_proof=value.identity_proof,
+                    arguments=dict(kind="projection", proposed_spend_cents=value.proposed_spend_cents,
+                        ledger_window=value.window.model_dump() if value.context.mode == "COMPETITION" else None))
                 decision = PolicyDecision.model_validate(await self.transport.post(
                     "authorize", request.model_dump(), value.correlation_id))
                 if (decision.customer_id != value.context.customer_id or decision.correlation_id != value.correlation_id
@@ -81,6 +85,10 @@ class Orchestrator:
                 if result.status != "ok":
                     return finish(status="needs_data" if result.error.code == "MISSING_DATA" else "denied" if result.status == "denied" else "error",
                                   message="Faltam dados para calcular." if result.error.code == "MISSING_DATA" else "A ferramenta não concluiu a operação. Nenhum saldo foi presumido.")
+                if result.data.kind == "financial_context":
+                    return finish(status="needs_data", financial_context=result.data,
+                        message=f"Foram encontrados {result.data.calculated.transaction_count} lançamentos na janela solicitada. Os valores do extrato são observações. "
+                        "Faltam saldo atual confirmado, próxima renda e compromissos futuros para projetar. Não foram criadas estimativas ou inferências.")
                 projection = result.data
                 emit("model_started", "started")
                 wording = NarrativePlan.model_validate(await self.provider.compose(

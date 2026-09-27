@@ -131,7 +131,8 @@
         {
           "enum": [
             "data.snapshot",
-            "finance.project"
+            "finance.project",
+            "data.ledger"
           ],
           "type": "string"
         },

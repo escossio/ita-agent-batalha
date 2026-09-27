@@ -2,7 +2,7 @@
 
 Fundação do agente financeiro ITA. Repositório público: <https://github.com/escossio/ita-agent-batalha>.
 
-**Etapas 1–12 certificadas com mock explícito. Integração Vertex AI/Gemini implementada; schema BigQuery inspecionado e adapter Data preparado, ainda sem ativação na jornada. Voz e Tom: `SOURCE_PENDING_LOCAL_COPY`.**
+**Etapas 1–12 certificadas com mock explícito. Integração Vertex AI/Gemini implementada; BigQuery conectado à jornada por identidade/Policy/Broker, com contexto incompleto explícito e testes sem GCP. Voz e Tom: `SOURCE_PENDING_LOCAL_COPY`.**
 
 A sequência oficial está em [IMPLEMENTATION_ORDER.md](docs/architecture/IMPLEMENTATION_ORDER.md).
 O estado verificável e as pendências estão em [STATUS.md](STATUS.md).
@@ -56,6 +56,6 @@ Seu código usa valores fixos e insere entrada do usuário em `innerHTML`; não 
 
 Workspace isolado no padrão de projetos do AGT. Configuração Git local com identidade pública noreply.
 AGT coordena; workers executam cargas pesadas e certificam o SHA solicitado. GitHub Actions certifica alterações via PR; veja `docs/security/GITHUB_GOVERNANCE.md`.
-A vertical slice DEMO e os testes adversariais foram certificados; não houve deploy externo, migração GCP, integração bancária ou movimentação financeira. O dataset externo da competição não é fixture local e ainda não está ligado à jornada.
+A vertical slice DEMO e os testes adversariais foram certificados; não houve deploy externo, migração GCP, integração bancária ou movimentação financeira. O modo da competição usa o adapter BigQuery e retorna contexto incompleto quando faltam dados de projeção. CI usa transporte sintético identificado. Veja [operação e limites](docs/demo/COMPETITION_RUNTIME.md).
 
 Acesso ao Drive não é necessário nem será reconstruído. Trabalhar somente com artefatos locais; o GitHub/repositório público é a fonte versionada principal. Regras específicas de Voz e Tom dependem de sua futura cópia local.

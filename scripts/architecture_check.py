@@ -11,6 +11,7 @@ def violations(path: Path, source: str) -> list[str]:
     issues = []
     tree = ast.parse(source)
     is_agent = "agent" in path.parts
+    is_data = path.parts[:2] == ("services", "data")
     for node in ast.walk(tree):
         if isinstance(node, ast.Import):
             names = [n.name for n in node.names]
@@ -19,18 +20,20 @@ def violations(path: Path, source: str) -> list[str]:
         else:
             names = []
         for name in names:
+            if not is_data and any(part in name.split(".") for part in ("bigquery", "bigquery_storage")):
+                issues.append(f"{path}:{node.lineno}: BigQuery is exclusive to Data Access")
             if is_agent and any(part in name.split(".") for part in (
                 "psycopg", "psycopg2", "sqlalchemy", "sqlite3", "subprocess",
                 "finance", "data", "policy", "broker", "bigquery", "bigquery_storage",
             )):
                 issues.append(f"{path}:{node.lineno}: forbidden agent import {name}")
-        if is_agent and isinstance(node, ast.Constant) and isinstance(node.value, str):
+        if not is_data and isinstance(node, ast.Constant) and isinstance(node.value, str):
             try:
                 host = urlsplit(node.value).hostname if node.value.startswith(("http://", "https://")) else node.value
             except ValueError:
                 host = None
             if host in {"bigquery.googleapis.com", "bigquerystorage.googleapis.com"}:
-                issues.append(f"{path}:{node.lineno}: direct BigQuery endpoint forbidden")
+                issues.append(f"{path}:{node.lineno}: BigQuery endpoint outside Data Access forbidden")
         if is_agent and isinstance(node, ast.Call) and isinstance(node.func, ast.Name):
             if node.func.id in {"eval", "exec", "__import__"}:
                 issues.append(f"{path}:{node.lineno}: dynamic execution forbidden")
@@ -56,9 +59,16 @@ def network_violations(config: dict) -> list[str]:
         issues.append("agent: secret/data volumes forbidden")
     if any("DB_" in name or "POSTGRES" in name for name in services["agent"].get("environment", {})):
         issues.append("agent: database configuration forbidden")
+    for name, spec in services.items():
+        if name != "data" and any(key.startswith("ITA_BIGQUERY_") for key in spec.get("environment", {})):
+            issues.append(f"{name}: BigQuery configuration outside Data Access")
     for name, network in config["networks"].items():
-        if name not in {"edge", "model_egress"} and not network.get("internal"):
+        if name not in {"edge", "model_egress", "data_egress"} and not network.get("internal"):
             issues.append(f"{name}: network must be internal")
+    if "data_egress" in config["networks"]:
+        attached = {name for name, spec in services.items() if "data_egress" in spec.get("networks", {})}
+        if attached != {"data"}:
+            issues.append("data_egress: only Data Access may reach BigQuery")
     if "model_egress" in config["networks"]:
         attached = {name for name, spec in services.items() if "model_egress" in spec.get("networks", {})}
         if attached != {"agent"}:

@@ -2,7 +2,20 @@
 from datetime import datetime
 from typing import Annotated, Literal
 from pydantic import Field, model_validator
-from .models import Contract, Record, CorrelationID, Identifier, Money, Timestamp
+from .base import Contract, Record, CorrelationID, Identifier, Money, Timestamp
+
+
+class LedgerWindow(Record):
+    from_time: Timestamp
+    to_time: Timestamp
+
+    @model_validator(mode="after")
+    def valid_window(self):
+        start = datetime.fromisoformat(self.from_time.replace("Z", "+00:00"))
+        end = datetime.fromisoformat(self.to_time.replace("Z", "+00:00"))
+        if not 0 < (end - start).total_seconds() <= 366 * 86400:
+            raise ValueError("window must be positive and at most 366 days")
+        return self
 
 
 class LedgerReadRequest(Contract):
@@ -54,7 +67,7 @@ class CompetitionLedger(Contract):
     kind: Literal["competition_ledger"]
     correlation_id: CorrelationID
     customer_id: Identifier
-    provenance: Literal["COMPETITION_SYNTHETIC_BIGQUERY"]
+    provenance: Literal["COMPETITION_SYNTHETIC_BIGQUERY", "COMPETITION_SYNTHETIC_BIGQUERY_MOCK"]
     currency: Literal["BRL"]
     source_money_unit: Literal["major"]
     source_numeric_storage: Literal["FLOAT64_APPROXIMATE"]
@@ -79,4 +92,37 @@ class CompetitionLedger(Contract):
         return self
 
 
-LEDGER_CONTRACTS = (LedgerReadRequest, CompetitionLedger)
+class LedgerCounts(Record):
+    transaction_count: Annotated[int, Field(ge=0, le=1000)]
+    balance_observation_count: Annotated[int, Field(ge=0, le=1000)]
+
+
+MISSING_PROJECTION = ["confirmed_current_balance", "next_income_date", "next_income_amount", "future_commitments", "transaction_direction_semantics"]
+
+
+class FinancialContext(Contract):
+    kind: Literal["financial_context"]
+    correlation_id: CorrelationID
+    customer_id: Identifier
+    status: Literal["INCOMPLETE_FINANCIAL_CONTEXT"]
+    observed: CompetitionLedger
+    calculated: LedgerCounts
+    estimates: Annotated[list[str], Field(max_length=0)]
+    inferences: Annotated[list[str], Field(max_length=0)]
+    missing: Annotated[list[Literal["confirmed_current_balance", "next_income_date", "next_income_amount",
+        "future_commitments", "transaction_direction_semantics", "transactions_in_window", "balance_after"]], Field(max_length=7)]
+
+    @model_validator(mode="after")
+    def evidence_integrity(self):
+        if self.customer_id != self.observed.customer_id or self.correlation_id != self.observed.correlation_id:
+            raise ValueError("observation identity mismatch")
+        balances = sum(e.balance_after_cents is not None for e in self.observed.entries)
+        if self.calculated.transaction_count != len(self.observed.entries) or self.calculated.balance_observation_count != balances:
+            raise ValueError("counts lack observation evidence")
+        expected = MISSING_PROJECTION + ([] if self.observed.entries else ["transactions_in_window"]) + ([] if balances else ["balance_after"])
+        if self.missing != expected:
+            raise ValueError("missing context cannot be concealed")
+        return self
+
+
+LEDGER_CONTRACTS = (LedgerReadRequest, CompetitionLedger, FinancialContext)

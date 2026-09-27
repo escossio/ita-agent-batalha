@@ -77,6 +77,336 @@
       "title": "Commitment",
       "type": "object"
     },
+    "CompetitionLedger": {
+      "additionalProperties": false,
+      "properties": {
+        "complete_financial_context": {
+          "const": false,
+          "title": "Complete Financial Context",
+          "type": "boolean"
+        },
+        "correlation_id": {
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+          "title": "Correlation Id",
+          "type": "string"
+        },
+        "currency": {
+          "const": "BRL",
+          "title": "Currency",
+          "type": "string"
+        },
+        "customer_id": {
+          "pattern": "^[a-zA-Z0-9][a-zA-Z0-9_-]{0,63}$",
+          "title": "Customer Id",
+          "type": "string"
+        },
+        "entries": {
+          "items": {
+            "$ref": "#/$defs/CompetitionLedgerEntry"
+          },
+          "maxItems": 1000,
+          "title": "Entries",
+          "type": "array"
+        },
+        "from_time": {
+          "maxLength": 32,
+          "title": "From Time",
+          "type": "string"
+        },
+        "kind": {
+          "const": "competition_ledger",
+          "title": "Kind",
+          "type": "string"
+        },
+        "normalization": {
+          "const": "DECIMAL_STRING_HALF_UP_CENTS_V1",
+          "title": "Normalization",
+          "type": "string"
+        },
+        "provenance": {
+          "enum": [
+            "COMPETITION_SYNTHETIC_BIGQUERY",
+            "COMPETITION_SYNTHETIC_BIGQUERY_MOCK"
+          ],
+          "title": "Provenance",
+          "type": "string"
+        },
+        "schema_version": {
+          "const": "1.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "source_money_unit": {
+          "const": "major",
+          "title": "Source Money Unit",
+          "type": "string"
+        },
+        "source_numeric_storage": {
+          "const": "FLOAT64_APPROXIMATE",
+          "title": "Source Numeric Storage",
+          "type": "string"
+        },
+        "to_time": {
+          "maxLength": 32,
+          "title": "To Time",
+          "type": "string"
+        }
+      },
+      "required": [
+        "schema_version",
+        "kind",
+        "correlation_id",
+        "customer_id",
+        "provenance",
+        "currency",
+        "source_money_unit",
+        "source_numeric_storage",
+        "normalization",
+        "from_time",
+        "to_time",
+        "entries",
+        "complete_financial_context"
+      ],
+      "title": "CompetitionLedger",
+      "type": "object"
+    },
+    "CompetitionLedgerEntry": {
+      "additionalProperties": false,
+      "properties": {
+        "amount_cents": {
+          "anyOf": [
+            {
+              "maximum": 1000000000000,
+              "minimum": -1000000000000,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Amount Cents"
+        },
+        "amount_rounded": {
+          "title": "Amount Rounded",
+          "type": "boolean"
+        },
+        "balance_after_cents": {
+          "anyOf": [
+            {
+              "maximum": 1000000000000,
+              "minimum": -1000000000000,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Balance After Cents"
+        },
+        "balance_rounded": {
+          "title": "Balance Rounded",
+          "type": "boolean"
+        },
+        "description": {
+          "anyOf": [
+            {
+              "maxLength": 4000,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Description"
+        },
+        "installment_count": {
+          "anyOf": [
+            {
+              "maximum": 2147483647,
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Installment Count"
+        },
+        "installment_number": {
+          "anyOf": [
+            {
+              "maximum": 2147483647,
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Installment Number"
+        },
+        "macro_category": {
+          "anyOf": [
+            {
+              "maxLength": 256,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Macro Category"
+        },
+        "micro_category": {
+          "anyOf": [
+            {
+              "maxLength": 256,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Micro Category"
+        },
+        "occurred_at": {
+          "anyOf": [
+            {
+              "maxLength": 32,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Occurred At"
+        },
+        "source_type": {
+          "anyOf": [
+            {
+              "maxLength": 256,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Source Type"
+        },
+        "source_year_month": {
+          "anyOf": [
+            {
+              "maximum": 999912,
+              "minimum": 100001,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Source Year Month"
+        }
+      },
+      "required": [
+        "occurred_at",
+        "source_year_month",
+        "source_type",
+        "description",
+        "amount_cents",
+        "balance_after_cents",
+        "macro_category",
+        "micro_category",
+        "installment_number",
+        "installment_count",
+        "amount_rounded",
+        "balance_rounded"
+      ],
+      "title": "CompetitionLedgerEntry",
+      "type": "object"
+    },
+    "FinancialContext": {
+      "additionalProperties": false,
+      "properties": {
+        "calculated": {
+          "$ref": "#/$defs/LedgerCounts"
+        },
+        "correlation_id": {
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+          "title": "Correlation Id",
+          "type": "string"
+        },
+        "customer_id": {
+          "pattern": "^[a-zA-Z0-9][a-zA-Z0-9_-]{0,63}$",
+          "title": "Customer Id",
+          "type": "string"
+        },
+        "estimates": {
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 0,
+          "title": "Estimates",
+          "type": "array"
+        },
+        "inferences": {
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 0,
+          "title": "Inferences",
+          "type": "array"
+        },
+        "kind": {
+          "const": "financial_context",
+          "title": "Kind",
+          "type": "string"
+        },
+        "missing": {
+          "items": {
+            "enum": [
+              "confirmed_current_balance",
+              "next_income_date",
+              "next_income_amount",
+              "future_commitments",
+              "transaction_direction_semantics",
+              "transactions_in_window",
+              "balance_after"
+            ],
+            "type": "string"
+          },
+          "maxItems": 7,
+          "title": "Missing",
+          "type": "array"
+        },
+        "observed": {
+          "$ref": "#/$defs/CompetitionLedger"
+        },
+        "schema_version": {
+          "const": "1.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "status": {
+          "const": "INCOMPLETE_FINANCIAL_CONTEXT",
+          "title": "Status",
+          "type": "string"
+        }
+      },
+      "required": [
+        "schema_version",
+        "kind",
+        "correlation_id",
+        "customer_id",
+        "status",
+        "observed",
+        "calculated",
+        "estimates",
+        "inferences",
+        "missing"
+      ],
+      "title": "FinancialContext",
+      "type": "object"
+    },
     "FinancialSnapshot": {
       "additionalProperties": false,
       "properties": {
@@ -273,6 +603,29 @@
       "title": "Income",
       "type": "object"
     },
+    "LedgerCounts": {
+      "additionalProperties": false,
+      "properties": {
+        "balance_observation_count": {
+          "maximum": 1000,
+          "minimum": 0,
+          "title": "Balance Observation Count",
+          "type": "integer"
+        },
+        "transaction_count": {
+          "maximum": 1000,
+          "minimum": 0,
+          "title": "Transaction Count",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "transaction_count",
+        "balance_observation_count"
+      ],
+      "title": "LedgerCounts",
+      "type": "object"
+    },
     "Projection": {
       "additionalProperties": false,
       "properties": {
@@ -412,7 +765,12 @@
             "MISSING_DATA",
             "DEPENDENCY_UNAVAILABLE",
             "TIMEOUT",
-            "NOT_IMPLEMENTED"
+            "NOT_IMPLEMENTED",
+            "SOURCE_AUTHENTICATION_FAILED",
+            "SOURCE_SCHEMA_MISMATCH",
+            "SOURCE_REGION_MISMATCH",
+            "SOURCE_NOT_FOUND",
+            "SOURCE_INVALID_DATA"
           ],
           "title": "Code",
           "type": "string"
@@ -447,6 +805,8 @@
             {
               "discriminator": {
                 "mapping": {
+                  "competition_ledger": "#/$defs/CompetitionLedger",
+                  "financial_context": "#/$defs/FinancialContext",
                   "financial_snapshot": "#/$defs/FinancialSnapshot",
                   "projection": "#/$defs/Projection"
                 },
@@ -458,6 +818,12 @@
                 },
                 {
                   "$ref": "#/$defs/Projection"
+                },
+                {
+                  "$ref": "#/$defs/CompetitionLedger"
+                },
+                {
+                  "$ref": "#/$defs/FinancialContext"
                 }
               ]
             },
@@ -506,7 +872,8 @@
         "tool": {
           "enum": [
             "data.snapshot",
-            "finance.project"
+            "finance.project",
+            "data.ledger"
           ],
           "title": "Tool",
           "type": "string"
@@ -540,6 +907,17 @@
       "title": "Customer Id",
       "type": "string"
     },
+    "financial_context": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/FinancialContext"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
     "financial_result": {
       "anyOf": [
         {
@@ -567,7 +945,10 @@
       "type": "string"
     },
     "mode": {
-      "const": "DEMO",
+      "enum": [
+        "DEMO",
+        "COMPETITION"
+      ],
       "title": "Mode",
       "type": "string"
     },

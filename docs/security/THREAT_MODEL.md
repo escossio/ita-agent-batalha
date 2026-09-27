@@ -25,3 +25,15 @@ Princípios verificados: autorização falhou → não executa; validação falh
 Limites honestos: ataques de linguagem são certificados com mock e providers hostis simulados; não certificam resistência de Gemini real sem ativação/avaliação externa. O contrato fechado e a autorização independente continuam determinísticos independentemente do modelo. Comprometimento do host/Docker, DoS sustentado e autenticação bancária real estão fora da demo local; não expor como produção multiusuário.
 
 Voz e Tom permanece SOURCE_PENDING_LOCAL_COPY e não é autoridade ausente de segurança. Não há movimentação financeira ou tool de contratação. Logs não registram payloads, tokens ou dados bancários reais.
+
+## Ampliação BigQuery
+
+- Troca de cliente, janela, gasto ou sessão: prova API–Policy assinada, curta, vinculada à requisição; registry lido novamente permite revogação.
+- Broker falsificado/chamada Data direta: HMAC por par de serviços, nonce/TTL/cache limitado e reautorização independente. Prova sem consentimento/grant é negada. Replay cache é local ao processo; não garante exactly-once entre réplicas.
+- Histórico apresentado como salário futuro/saldo atual: contrato FinancialContext exige lacunas, proíbe estimativas/inferências nesta capacidade e não permite Projection sem dados.
+- SQL injection: consulta fixa, identificadores somente de config validada, cliente/janela por parâmetros.
+- Fonte truncada, schema drift, região/tabela errada, ADC/timeout: erro estruturado sem fixture fallback nem contexto parcial. Dados grandes falham antes do transporte interno.
+- Descrição com prompt injection: permanece observação não confiável; não é enviada ao ModelProvider. UI usa textContent.
+- Vazamento de inventário/sessões: bruto fica privado; CI usa registros sintéticos e sessões/chaves efêmeras, sem conteúdo nos logs.
+
+Evidências: test_competition_runtime, test_bigquery_data, test_financial_context e competition_slice.py. GCP live, IdP externo e resiliência de Gemini real continuam exigindo certificação externa; não são simulados como aprovados.

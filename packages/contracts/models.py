@@ -1,33 +1,16 @@
 """Protocolo 1.0: validação estrita, sem autoridade financeira no LLM."""
 
-from datetime import date, datetime
 from typing import Annotated, Literal
 
-from pydantic import AfterValidator, BaseModel, ConfigDict, Field, model_validator
+from pydantic import Field, model_validator
 
 
-def calendar_date(value: str) -> str:
-    date.fromisoformat(value)
-    return value
+from .base import Contract, Record, Identifier, CorrelationID, Digest, Day, Timestamp, Money, Amount
+from .ledger import CompetitionLedger, LedgerWindow, FinancialContext
 
-
-def utc_timestamp(value: str) -> str:
-    parsed = datetime.fromisoformat(value.replace("Z", "+00:00"))
-    if parsed.tzinfo is None or parsed.utcoffset().total_seconds() != 0:
-        raise ValueError("UTC timestamp required")
-    return value
-
-
-Identifier = Annotated[str, Field(pattern=r"^[a-zA-Z0-9][a-zA-Z0-9_-]{0,63}$")]
-CorrelationID = Annotated[str, Field(pattern=r"^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$")]
-Digest = Annotated[str, Field(pattern=r"^[0-9a-f]{64}$")]
-Day = Annotated[str, Field(pattern=r"^\d{4}-\d{2}-\d{2}$"), AfterValidator(calendar_date)]
-Timestamp = Annotated[str, Field(max_length=32), AfterValidator(utc_timestamp)]
-Money = Annotated[int, Field(ge=-10**12, le=10**12)]
-Amount = Annotated[int, Field(ge=0, le=10**12)]
 Product = Literal["credit", "renegotiation", "financing", "consortium", "investment"]
-ToolName = Literal["data.snapshot", "finance.project"]
-Action = Literal["read_snapshot", "project_cashflow", "compare_products", "end_conversation", "handoff"]
+ToolName = Literal["data.snapshot", "finance.project", "data.ledger"]
+Action = Literal["read_snapshot", "read_ledger", "project_cashflow", "compare_products", "end_conversation", "handoff"]
 Reason = Literal[
     "ALLOWED", "DEFAULT_DENY", "NO_CONSENT", "HUMAN_REQUESTED", "PERSON_SAFETY",
     "UNKNOWN_CONTEXT", "FINANCIAL_DISTRESS", "INELIGIBLE", "PRODUCT_BLOCKED",
@@ -36,24 +19,23 @@ Reason = Literal[
 ]
 
 
-class Record(BaseModel):
-    model_config = ConfigDict(extra="forbid", strict=True, frozen=True, validate_default=True)
-
-
-class Contract(Record):
-    schema_version: Literal["1.0"]
-
-
 class CustomerContext(Contract):
     customer_id: Identifier
-    mode: Literal["DEMO"]
+    mode: Literal["DEMO", "COMPETITION"]
     consent_to_analysis: bool
     financial_level: Literal["unknown", "critical", "tight", "stable"]
     emotional_state: Literal["unknown", "neutral", "distressed", "crisis"]
     human_requested: bool
     contact_permission: bool = False
     locale: Literal["pt-BR"] = "pt-BR"
-    provenance: Literal["DEMO_FIXTURE"]
+    provenance: Literal["DEMO_FIXTURE", "VERIFIED_RUNTIME_IDENTITY"]
+
+
+    @model_validator(mode="after")
+    def identity_provenance(self):
+        if (self.mode == "COMPETITION") != (self.provenance == "VERIFIED_RUNTIME_IDENTITY"):
+            raise ValueError("context mode/provenance mismatch")
+        return self
 
 
 class Income(Record):
@@ -141,11 +123,11 @@ class PolicyDecision(Contract):
     customer_id: Identifier
     request_digest: Digest
     outcome: Literal["allow", "deny", "handoff"]
-    allowed_actions: Annotated[list[Action], Field(max_length=5)]
-    blocked_actions: Annotated[list[Action], Field(max_length=5)]
+    allowed_actions: Annotated[list[Action], Field(max_length=6)]
+    blocked_actions: Annotated[list[Action], Field(max_length=6)]
     allowed_products: Annotated[list[Product], Field(max_length=5)]
     blocked_products: Annotated[list[Product], Field(max_length=5)]
-    authorized_tools: Annotated[list[ToolName], Field(max_length=2)]
+    authorized_tools: Annotated[list[ToolName], Field(max_length=3)]
     credit_allowed: bool
     max_options: Annotated[int, Field(ge=0, le=5)]
     requires_human: bool
@@ -175,9 +157,15 @@ class SnapshotArguments(Record):
     kind: Literal["snapshot"]
 
 
+class LedgerArguments(Record):
+    kind: Literal["ledger"]
+    window: LedgerWindow
+
+
 class ProjectionArguments(Record):
     kind: Literal["projection"]
     proposed_spend_cents: Amount
+    ledger_window: LedgerWindow | None = None
 
 
 class ToolRequest(Contract):
@@ -185,13 +173,14 @@ class ToolRequest(Contract):
     correlation_id: CorrelationID
     customer_id: Identifier
     tool: ToolName
-    arguments: Annotated[SnapshotArguments | ProjectionArguments, Field(discriminator="kind")]
+    identity_proof: Annotated[str, Field(max_length=4096)] | None = None
+    arguments: Annotated[SnapshotArguments | ProjectionArguments | LedgerArguments, Field(discriminator="kind")]
     # Trace only: Broker must independently enforce Policy, never trust caller grants.
     policy_decision_id: CorrelationID | None = None
 
     @model_validator(mode="after")
     def matching_arguments(self):
-        expected = "snapshot" if self.tool == "data.snapshot" else "projection"
+        expected = {"data.snapshot": "snapshot", "data.ledger": "ledger", "finance.project": "projection"}[self.tool]
         if self.arguments.kind != expected:
             raise ValueError("tool/arguments mismatch")
         return self
@@ -233,7 +222,7 @@ class Projection(Record):
 
 
 class ToolError(Record):
-    code: Literal["POLICY_DENIED", "POLICY_UNAVAILABLE", "INVALID_INPUT", "INVALID_OUTPUT", "MISSING_DATA", "DEPENDENCY_UNAVAILABLE", "TIMEOUT", "NOT_IMPLEMENTED"]
+    code: Literal["POLICY_DENIED", "POLICY_UNAVAILABLE", "INVALID_INPUT", "INVALID_OUTPUT", "MISSING_DATA", "DEPENDENCY_UNAVAILABLE", "TIMEOUT", "NOT_IMPLEMENTED", "SOURCE_AUTHENTICATION_FAILED", "SOURCE_SCHEMA_MISMATCH", "SOURCE_REGION_MISMATCH", "SOURCE_NOT_FOUND", "SOURCE_INVALID_DATA"]
     retryable: bool
 
 
@@ -244,7 +233,7 @@ class ToolResult(Contract):
     tool: ToolName
     status: Literal["ok", "error", "denied", "timeout"]
     duration_ms: Annotated[int, Field(ge=0, le=3600000)]
-    data: Annotated[FinancialSnapshot | Projection, Field(discriminator="kind")] | None
+    data: Annotated[FinancialSnapshot | Projection | CompetitionLedger | FinancialContext, Field(discriminator="kind")] | None
     error: ToolError | None
 
     @model_validator(mode="after")
@@ -252,8 +241,8 @@ class ToolResult(Contract):
         if self.status == "ok":
             if self.error is not None or self.data is None:
                 raise ValueError("success requires data and no error")
-            expected = "financial_snapshot" if self.tool == "data.snapshot" else "projection"
-            if self.data.kind != expected:
+            expected = {"data.snapshot": {"financial_snapshot"}, "data.ledger": {"competition_ledger"}, "finance.project": {"projection", "financial_context"}}[self.tool]
+            if self.data.kind not in expected:
                 raise ValueError("tool/result mismatch")
             if self.data.customer_id != self.customer_id:
                 raise ValueError("tool/customer mismatch")
@@ -263,10 +252,11 @@ class ToolResult(Contract):
 
 
 class AgentResponse(Contract):
+    financial_context: FinancialContext | None = None
     model_provider: Literal["mock", "vertex"] | None = None
     correlation_id: CorrelationID
     customer_id: Identifier
-    mode: Literal["DEMO"]
+    mode: Literal["DEMO", "COMPETITION"]
     status: Literal["ok", "needs_data", "denied", "handoff", "error"]
     intent: Literal["project_cashflow", "unknown", "end_conversation", "handoff"]
     message: Annotated[str, Field(min_length=1, max_length=2000)]
@@ -277,6 +267,11 @@ class AgentResponse(Contract):
 
     @model_validator(mode="after")
     def response_integrity(self):
+        if self.financial_context is not None:
+            if self.status != "needs_data" or self.financial_result is not None or self.mode != "COMPETITION":
+                raise ValueError("incomplete context cannot claim projection")
+            if not any(r.status == "ok" and r.data == self.financial_context for r in self.tool_results):
+                raise ValueError("context requires successful tool evidence")
         if self.status != "ok" and self.financial_result is not None:
             raise ValueError("unsuccessful response cannot claim calculated results")
         if self.financial_result is not None and not any(

@@ -47,7 +47,7 @@ class PolicyInput(Record):
     @model_validator(mode="after")
     def binding(self):
         if self.request is not None:
-            expected = "read_snapshot" if self.request.tool == "data.snapshot" else "project_cashflow"
+            expected = {"data.snapshot": "read_snapshot", "data.ledger": "read_ledger", "finance.project": "project_cashflow"}[self.request.tool]
             if self.action != expected or self.request.customer_id != self.context.customer_id or self.request.correlation_id != self.correlation_id:
                 raise ValueError("policy request identity/action mismatch")
         if self.eligibility is not None and self.eligibility.customer_id != self.context.customer_id:

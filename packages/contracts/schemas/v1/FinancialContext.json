@@ -1,5 +1,98 @@
 {
   "$defs": {
+    "CompetitionLedger": {
+      "additionalProperties": false,
+      "properties": {
+        "complete_financial_context": {
+          "const": false,
+          "title": "Complete Financial Context",
+          "type": "boolean"
+        },
+        "correlation_id": {
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+          "title": "Correlation Id",
+          "type": "string"
+        },
+        "currency": {
+          "const": "BRL",
+          "title": "Currency",
+          "type": "string"
+        },
+        "customer_id": {
+          "pattern": "^[a-zA-Z0-9][a-zA-Z0-9_-]{0,63}$",
+          "title": "Customer Id",
+          "type": "string"
+        },
+        "entries": {
+          "items": {
+            "$ref": "#/$defs/CompetitionLedgerEntry"
+          },
+          "maxItems": 1000,
+          "title": "Entries",
+          "type": "array"
+        },
+        "from_time": {
+          "maxLength": 32,
+          "title": "From Time",
+          "type": "string"
+        },
+        "kind": {
+          "const": "competition_ledger",
+          "title": "Kind",
+          "type": "string"
+        },
+        "normalization": {
+          "const": "DECIMAL_STRING_HALF_UP_CENTS_V1",
+          "title": "Normalization",
+          "type": "string"
+        },
+        "provenance": {
+          "enum": [
+            "COMPETITION_SYNTHETIC_BIGQUERY",
+            "COMPETITION_SYNTHETIC_BIGQUERY_MOCK"
+          ],
+          "title": "Provenance",
+          "type": "string"
+        },
+        "schema_version": {
+          "const": "1.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "source_money_unit": {
+          "const": "major",
+          "title": "Source Money Unit",
+          "type": "string"
+        },
+        "source_numeric_storage": {
+          "const": "FLOAT64_APPROXIMATE",
+          "title": "Source Numeric Storage",
+          "type": "string"
+        },
+        "to_time": {
+          "maxLength": 32,
+          "title": "To Time",
+          "type": "string"
+        }
+      },
+      "required": [
+        "schema_version",
+        "kind",
+        "correlation_id",
+        "customer_id",
+        "provenance",
+        "currency",
+        "source_money_unit",
+        "source_numeric_storage",
+        "normalization",
+        "from_time",
+        "to_time",
+        "entries",
+        "complete_financial_context"
+      ],
+      "title": "CompetitionLedger",
+      "type": "object"
+    },
     "CompetitionLedgerEntry": {
       "additionalProperties": false,
       "properties": {
@@ -153,24 +246,40 @@
       ],
       "title": "CompetitionLedgerEntry",
       "type": "object"
+    },
+    "LedgerCounts": {
+      "additionalProperties": false,
+      "properties": {
+        "balance_observation_count": {
+          "maximum": 1000,
+          "minimum": 0,
+          "title": "Balance Observation Count",
+          "type": "integer"
+        },
+        "transaction_count": {
+          "maximum": 1000,
+          "minimum": 0,
+          "title": "Transaction Count",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "transaction_count",
+        "balance_observation_count"
+      ],
+      "title": "LedgerCounts",
+      "type": "object"
     }
   },
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "properties": {
-    "complete_financial_context": {
-      "const": false,
-      "title": "Complete Financial Context",
-      "type": "boolean"
+    "calculated": {
+      "$ref": "#/$defs/LedgerCounts"
     },
     "correlation_id": {
       "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
       "title": "Correlation Id",
-      "type": "string"
-    },
-    "currency": {
-      "const": "BRL",
-      "title": "Currency",
       "type": "string"
     },
     "customer_id": {
@@ -178,55 +287,55 @@
       "title": "Customer Id",
       "type": "string"
     },
-    "entries": {
+    "estimates": {
       "items": {
-        "$ref": "#/$defs/CompetitionLedgerEntry"
+        "type": "string"
       },
-      "maxItems": 1000,
-      "title": "Entries",
+      "maxItems": 0,
+      "title": "Estimates",
       "type": "array"
     },
-    "from_time": {
-      "maxLength": 32,
-      "title": "From Time",
-      "type": "string"
+    "inferences": {
+      "items": {
+        "type": "string"
+      },
+      "maxItems": 0,
+      "title": "Inferences",
+      "type": "array"
     },
     "kind": {
-      "const": "competition_ledger",
+      "const": "financial_context",
       "title": "Kind",
       "type": "string"
     },
-    "normalization": {
-      "const": "DECIMAL_STRING_HALF_UP_CENTS_V1",
-      "title": "Normalization",
-      "type": "string"
+    "missing": {
+      "items": {
+        "enum": [
+          "confirmed_current_balance",
+          "next_income_date",
+          "next_income_amount",
+          "future_commitments",
+          "transaction_direction_semantics",
+          "transactions_in_window",
+          "balance_after"
+        ],
+        "type": "string"
+      },
+      "maxItems": 7,
+      "title": "Missing",
+      "type": "array"
     },
-    "provenance": {
-      "enum": [
-        "COMPETITION_SYNTHETIC_BIGQUERY",
-        "COMPETITION_SYNTHETIC_BIGQUERY_MOCK"
-      ],
-      "title": "Provenance",
-      "type": "string"
+    "observed": {
+      "$ref": "#/$defs/CompetitionLedger"
     },
     "schema_version": {
       "const": "1.0",
       "title": "Schema Version",
       "type": "string"
     },
-    "source_money_unit": {
-      "const": "major",
-      "title": "Source Money Unit",
-      "type": "string"
-    },
-    "source_numeric_storage": {
-      "const": "FLOAT64_APPROXIMATE",
-      "title": "Source Numeric Storage",
-      "type": "string"
-    },
-    "to_time": {
-      "maxLength": 32,
-      "title": "To Time",
+    "status": {
+      "const": "INCOMPLETE_FINANCIAL_CONTEXT",
+      "title": "Status",
       "type": "string"
     }
   },
@@ -235,16 +344,13 @@
     "kind",
     "correlation_id",
     "customer_id",
-    "provenance",
-    "currency",
-    "source_money_unit",
-    "source_numeric_storage",
-    "normalization",
-    "from_time",
-    "to_time",
-    "entries",
-    "complete_financial_context"
+    "status",
+    "observed",
+    "calculated",
+    "estimates",
+    "inferences",
+    "missing"
   ],
-  "title": "CompetitionLedger",
+  "title": "FinancialContext",
   "type": "object"
 }
