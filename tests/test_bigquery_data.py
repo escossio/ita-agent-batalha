@@ -137,12 +137,14 @@ class BigQueryReaderTests(unittest.TestCase):
         self.assertEqual(payload["queryParameters"][0]["parameterValue"]["value"], value["source_user_id"])
 
     def test_drift_wrong_source_or_location_prevents_query(self):
-        for change in ("schema", "identity", "location", "view"):
+        for change in ("schema", "identity", "table", "location", "view"):
             transport = Transport()
             if change == "schema":
                 transport.metadata["schema"]["fields"][5]["type"] = "STRING"
             elif change == "identity":
                 transport.metadata["tableReference"]["datasetId"] = "other"
+            elif change == "table":
+                transport.metadata["tableReference"]["tableId"] = "other"
             elif change == "location":
                 transport.metadata["location"] = "EU"
             else:

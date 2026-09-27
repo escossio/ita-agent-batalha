@@ -33,6 +33,11 @@ class SourceGateTests(unittest.TestCase):
             with self.subTest(source=source):
                 self.assertTrue(violations(Path("services/agent/main.py"), source))
 
+    def test_bigquery_is_exclusive_to_data_access(self):
+        for component in ("agent", "finance", "policy", "api", "tool-broker"):
+            self.assertTrue(violations(Path(f"services/{component}/main.py"), "from google.cloud import bigquery"))
+        self.assertFalse(violations(Path("services/data/bigquery.py"), "from google.cloud import bigquery"))
+
     def test_agent_contract_import_is_allowed(self):
         self.assertFalse(violations(Path("services/agent/main.py"), "from packages.contracts import Request"))
 

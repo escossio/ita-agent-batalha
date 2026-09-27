@@ -17,3 +17,7 @@ Mesmo correlation ID atravessa entrada, contratos e auditoria. A UI exibe inten�
 Certificação em worker: infra/docker/vertical_slice.py acessa a Web, valida resposta e altera o saldo no PostgreSQL para comprovar que a nova resposta vem da persistência, restaurando depois. Verifica também consentimento negado. Build/up/shutdown e isolamento continuam na regressão existente.
 
 Limites: apenas dados DEMO; nenhuma autenticação bancária real, API Itaú ou movimentação. O protótipo original não é servido. Idioma limitado à composição segura enquanto Voz e Tom aguarda cópia local. Modelo mock não certifica comportamento Gemini real.
+
+## Fonte da competição
+
+O modo BigQuery agora usa a mesma entrada e orquestrador: sessão autenticada → Policy → Broker → Data/BigQuery → Finance/avaliação de contexto → resposta. Observações e cálculos limitados são tipados; falta de dados retorna needs_data, nunca fallback para a fixture acima. Veja [COMPETITION_RUNTIME.md](COMPETITION_RUNTIME.md).

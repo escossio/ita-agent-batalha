@@ -15,5 +15,6 @@ python3 infra/docker/vertical_slice.py
 python3 infra/docker/adversarial.py
 python3 infra/docker/smoke.py
 docker compose down --volumes --remove-orphans
+python3 infra/docker/competition_slice.py
 trap - EXIT
 echo "ITA_CONTAINER_CERTIFICATION=PASS SHA=$(git rev-parse HEAD)"

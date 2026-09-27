@@ -1,5 +1,13 @@
 'use strict';
 const form = document.getElementById('chat');
+let competition = false;
+fetch('/runtime.json').then(response => response.json()).then(config => {
+  competition = config.mode === 'competition';
+  document.getElementById('demo-profile').hidden = competition;
+  document.getElementById('ledger-window').hidden = !competition;
+  document.getElementById('from-time').required = competition;
+  document.getElementById('to-time').required = competition;
+}).catch(() => { document.getElementById('answer').textContent = 'Não foi possível consultar o modo de execução.'; });
 form.addEventListener('submit', async (event) => {
   event.preventDefault();
   const button = document.getElementById('submit');
@@ -14,7 +22,9 @@ form.addEventListener('submit', async (event) => {
       body: JSON.stringify({utterance: document.getElementById('question').value,
         amount_brl: document.getElementById('amount').value,
         consent_to_analysis: document.getElementById('consent').checked,
-        demo_case: document.getElementById('case').value})
+        demo_case: competition ? 'standard' : document.getElementById('case').value,
+        window: competition ? {from_time: new Date(document.getElementById('from-time').value + 'Z').toISOString(),
+          to_time: new Date(document.getElementById('to-time').value + 'Z').toISOString()} : null})
     });
     if (!response.ok) throw new Error('request failed');
     const result = await response.json();
@@ -25,7 +35,7 @@ form.addEventListener('submit', async (event) => {
     document.getElementById('trace').textContent = JSON.stringify({correlation_id: result.correlation_id,
       intent: result.intent, policy_decision_id: result.policy_decision_id, status: result.status,
       tools: result.tool_results.map(tool => ({tool: tool.tool, status: tool.status, duration_ms: tool.duration_ms})),
-      projection: result.financial_result}, null, 2);
+      projection: result.financial_result, financial_context: result.financial_context}, null, 2);
     document.getElementById('evidence').hidden = false;
   } catch {
     document.getElementById('answer').textContent = 'Não foi possível concluir a consulta. Nenhum saldo foi presumido. Tente novamente.';

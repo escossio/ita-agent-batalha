@@ -78,6 +78,12 @@ services:
     depends_on:
       agent:
         condition: service_healthy
+      secrets-init:
+        condition: service_completed_successfully
+    volumes:
+    - api-policy-key:/run/api-policy:ro
+    environment:
+      ITA_IDENTITY_KEY_FILE: /run/api-policy/key
   agent:
     environment:
       ITA_MODEL_PROVIDER: ${ITA_MODEL_PROVIDER:-mock}
@@ -145,6 +151,7 @@ services:
     networks:
     - agent_policy
     - broker_policy
+    - data_policy
     healthcheck:
       test:
       - CMD
@@ -159,6 +166,13 @@ services:
       options:
         max-size: 5m
         max-file: '2'
+    volumes:
+    - api-policy-key:/run/api-policy:ro
+    environment:
+      ITA_IDENTITY_KEY_FILE: /run/api-policy/key
+    depends_on:
+      secrets-init:
+        condition: service_completed_successfully
   tool-broker:
     build:
       context: .
@@ -203,6 +217,10 @@ services:
         condition: service_healthy
       data:
         condition: service_healthy
+    volumes:
+    - broker-data-key:/run/broker-data:ro
+    environment:
+      ITA_BROKER_DATA_KEY_FILE: /run/broker-data/key
   finance:
     build:
       context: .
@@ -258,6 +276,7 @@ services:
     networks:
     - broker_data
     - data_db
+    - data_policy
     healthcheck:
       test:
       - CMD
@@ -275,13 +294,17 @@ services:
     depends_on:
       postgres:
         condition: service_healthy
+      policy:
+        condition: service_healthy
     volumes:
     - db-app-secret:/run/secrets:ro
+    - broker-data-key:/run/broker-data:ro
     environment:
       DB_HOST: postgres
       DB_NAME: ita_demo
       DB_USER: ita_demo
       DB_PASSWORD_FILE: /run/secrets/password
+      ITA_BROKER_DATA_KEY_FILE: /run/broker-data/key
   observability:
     build:
       context: .
@@ -323,10 +346,12 @@ services:
     volumes:
     - db-admin-secret:/admin
     - db-app-secret:/app-secret
+    - broker-data-key:/broker-data
+    - api-policy-key:/api-policy
     command:
     - python
     - -c
-    - "from pathlib import Path; import secrets\nfor name in ['/admin/password','/app-secret/password']:\n\
+    - "from pathlib import Path; import secrets\nfor name in ['/admin/password','/app-secret/password','/broker-data/key','/api-policy/key']:\n\
       \ p=Path(name); p.exists() or p.write_text(secrets.token_urlsafe(48)); p.chmod(0o444)"
     restart: 'no'
   postgres:
@@ -382,7 +407,11 @@ networks:
     internal: true
   web_api:
     internal: true
+  data_policy:
+    internal: true
 volumes:
   postgres-data: {}
   db-admin-secret: {}
   db-app-secret: {}
+  broker-data-key: {}
+  api-policy-key: {}
