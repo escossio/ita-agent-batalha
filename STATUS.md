@@ -142,10 +142,12 @@ Validação local deste mapeamento: 107 testes curtos aprovados, 10 schemas sem 
 
 Instrução posterior autoriza conectar o adapter pela jornada real, sem deploy. Contratos estendidos de forma aditiva no protocolo 1.0: janela explícita, data.ledger, prova de identidade opaca e FinancialContext com INCOMPLETE_FINANCIAL_CONTEXT. Observações, contagens determinísticas, listas vazias de estimativas/inferências e dados ausentes são separados e validados. Não há conversão implícita para FinancialSnapshot. A jornada DEMO permanece compatível. Checkpoint de contratos precede o wiring runtime; certificação ponta a ponta ainda pendente.
 
-## Wiring competition — aguardando certificação distribuída
+## Wiring competition — certificada
 
 API vincula sessão privada a cliente e assina prova curta para Policy; Broker reautoriza cada capacidade; Data autentica Broker e reconsulta Policy. CompetitionLedger normalizado atravessa Broker → Finance → FinancialContext → AgentResponse/Web. UI só apresenta janela UTC e evidências, sem cliente selecionável/calculadora financeira. FinancialContext distingue observações, contagens, estimativas/inferências vazias e lacunas. Projeção futura/recorrência/produtos/limites continuam bloqueados.
 
 Configuração alterada: compose.yaml (redes Data–Policy e chaves por par), novo compose.bigquery.yaml (modo/registry/egress exclusivo Data), .env.example e requirements-dev.txt. Nenhuma infraestrutura externa/live/credencial GCP foi criada; bruto privado permanece fora do Git/imagens. CI agora inclui ambas as jornadas e falhas/recuperação/shutdown. Certificação real do GCP é próximo passo externo, não dependência local.
 
 Validação local do wiring: 120 testes curtos e 11 schemas aprovados; lint e arquitetura (34 arquivos) sem violações; Compose base e overrides BigQuery+Vertex combinados aprovados. Secret scan e certificação distribuída/GitHub exigidos antes do merge.
+
+Certificação do código em 997d8fb20b096332f6b998df704c2d1cd42b37f6, PR #15: 120 testes; lint, unit/contract, arquitetura, secret scan, CodeQL (zero alertas abertos no PR), Compose/build e ambas as jornadas em containers aprovados no GitHub e em worker distribuído. Falhas/recuperação, bloqueio de acesso direto e shutdown limpo aprovados; fallback entre workers funcionou, sem suíte pesada no AGT. Evidência distribuída associada ao SHA com status PASS. Este registro documental também passa pelos checks obrigatórios antes do merge. Sem chamada/deploy GCP; certificação do transporte real/ADC permanece pendência externa explícita.
