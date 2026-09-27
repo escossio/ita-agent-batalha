@@ -17,7 +17,12 @@ def inspect(name: str, data: bytes) -> list[str]:
     if re.search(r"\b\d{3}\.\d{3}\.\d{3}-\d{2}\b", text):
         findings.append(f"{name}: potential personal identifier")
     for email in re.findall(r"[\w.+-]+@[\w.-]+\.[A-Za-z]{2,}", text):
-        if not email.endswith("@users.noreply.github.com"):
+        # Reviewed synthetic identities and URL-userinfo attack fixture, only in
+        # this test file. Real project/SA names and all other files remain blocked.
+        fixture_email = name == "tests/test_cloudrun.py" and re.fullmatch(
+            r"(?:broker|agent)@example\.iam\.gserviceaccount\.com|"
+            r"ita-api-sa@example-project\.iam\.gserviceaccount\.com|x\.run\.app@evil\.example", email)
+        if not email.endswith("@users.noreply.github.com") and not fixture_email:
             findings.append(f"{name}: personal email")
     for value in re.findall(r"(?<![\w.])(?:\d{1,3}\.){3}\d{1,3}(?![\w.])", text):
         try:
